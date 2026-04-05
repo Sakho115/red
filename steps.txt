@@ -1,0 +1,30 @@
+To run this Phoenix project on your localhost, follow these steps:
+
+1. **Prerequisites**: Make sure you have **Elixir**, **Erlang**, and **PostgreSQL** installed on your machine.
+
+2. **Navigate to the project directory**:
+   ```bash
+   cd /home/sakho115/sakho/red
+   ```
+
+3. **Install dependencies and setup the database**:
+   Run the setup alias which will fetch dependencies, create the database, run migrations, and build assets.
+   ```bash
+   mix setup
+   ```
+
+4. **Start the Phoenix server**:
+   You can start the server using the following command:
+   ```bash
+   mix phx.server
+   ```
+   *Alternatively, if you want to run it inside an interactive shell (IEx):*
+   ```bash
+   iex -S mix phx.server
+   ```
+
+5. **Access the application**:
+   Open your web browser and visit:
+   ```
+   http://localhost:4000
+   ```

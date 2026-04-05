@@ -1,0 +1,50 @@
+<section class="mx-auto w-96 space-y-6">
+  <.live_component module={SupportComponent} id="support-component" />
+
+  <.simple_form
+    :let={form}
+    :if={@form}
+    for={@form}
+    phx-change="update-form"
+    phx-submit={JS.dispatch("click", to: "#registration-component")}
+    class="grid gap-8"
+  >
+    <fieldset
+      :if={@show_registration?}
+      id="fieldset-registration"
+      class="grid gap-4 bg-gray-50 ring-1 ring-gray-200 shadow-lg p-6 rounded-lg"
+    >
+      <p>Create a <strong>new</strong> account:</p>
+
+      <.input type="email" field={form[:email]} label="Email" phx-debounce="250" autocomplete="username webauthn" />
+      <.live_component
+        disabled={@form.source.valid? == false}
+        module={RegistrationComponent}
+        id="registration-component"
+        app={EngHub}
+        check_uvpa_available={false}
+        class={[
+          "bg-gray-200 hover:bg-gray-300 hover:text-black rounded transition",
+          "ring ring-transparent focus:ring-gray-400 focus:outline-none",
+          "flex gap-2 items-center justify-center px-4 py-2 w-full",
+          "disabled:cursor-not-allowed disabled:opacity-25"
+        ]}
+      />
+
+
+      <.link navigate={~p"/sign-in"} class="underline">Sign into an existing account</.link>
+    </fieldset>
+
+  </.simple_form>
+  <.form
+    :if={@token_form}
+    id="token-form"
+    action={~p"/sign-in"}
+    method="post"
+    style="position: absolute; left: -9999px;"
+    phx-mounted={Phoenix.LiveView.JS.dispatch("click", to: "#submit-token")}
+  >
+    <input type="hidden" name="value" value={@token_form[:value].value} />
+    <button type="submit" id="submit-token">Go</button>
+  </.form>
+</section>

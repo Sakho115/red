@@ -1,0 +1,39 @@
+# EngHub Project Logic & Features Overview
+
+EngHub is an Elixir Phoenix decentralized identity-powered application. Its core domain is separated into distinct contexts governing auth, social interactions, project management, and community features.
+
+Here is the exhaustive record of all project logic and context features:
+
+## 1. Identity & Security (`EngHub.Identity`)
+- **WebAuthn (Passkeys)**: The entire authentication mechanism relies on Passkeys instead of passwords using the `webauthn_components` dependency.
+- **User Management**: Creation and structuring of User accounts with decentralized validation.
+- **Tokens**: Secure session tokens (`user_tokens` table) that are periodically scrubbed/cleared using `user_token_cleaner.ex`.
+
+## 2. Social Mechanics (`EngHub.Social`)
+- **Followers**: Users can follow and unfollow other users. The logic ensures you cannot duplicate follows via a unique compound DB index (`follower_id` + `following_id`).
+- **Telemetry**: Core actions like `user_followed` and `user_unfollowed` invoke Erlang's `:telemetry.execute/2` to broadcast system events for real-time LiveDashboard metrics.
+- **Helper methods**: `following?(follower_id, following_id)` query functions determine active relationships instantly.
+
+## 3. Timeline & Feeds (`EngHub.Timeline`)
+- **Post Management**: CRUD logic for creating `Post`s. Includes length constraints limiting messages to strings under 2000 characters.
+- **Feeds Engine**: `list_feed_posts(user_id, opts)` computes a personalized timeline by compiling posts from the user *and* their followed peers. Uses Ecto subqueries for efficiency, and accepts pagination `opts` (`limit`/`offset`) to prevent memory overload.
+- **PubSub Broadcasting**: When posts are created, updated, or deleted, internal notifications are broadcasted via `Phoenix.PubSub` across "posts" topics to ensure real-time UI updates.
+- **Telemetry**: Emits telemetry events upon post creation and deletion.
+
+## 4. Workspaces & Repos (`EngHub.Projects`)
+- **Projects**: Core collaborative instances containing standard CRUD data.
+- **Project Members**: Mapping table (`project_members`) to associate `User`s with a `Project`.
+
+## 5. File System (`EngHub.Vault`)
+- **Files**: Handles cloud file mapping records for the platform.
+- **File Versions**: Enables distinct version control or file updating mechanisms natively by tracking independent snapshots of items in the Vault.
+
+## 6. Community Forums (`EngHub.Discussions`)
+- **Threads**: Contextual parent modules used for forum conversations.
+- **Comments**: Child records bound to threads allowing nested or chronological discussions.
+
+## 7. Open Market (`EngHub.Marketplace`)
+- **Listings**: Entities representing items, services, or hardware up for trade or sale within the Hub.
+
+## 8. Competitions (`EngHub.Events`)
+- **Hackathons**: Standardized event nodes designed to manage organized community hackathons and event logic.

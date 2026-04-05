@@ -1,0 +1,21 @@
+Project Overview: EngHub
+
+EngHub is a web application built using the Elixir Phoenix Framework (v1.8). The following is a detailed description of the features and configurations we have implemented up until now:
+
+1. WebAuthn Authentication (Passkeys) Setup:
+- Integrated passwordless, decentralized identity authentication using the `webauthn_components` library.
+- Developed `RegistrationLive` and `AuthenticationLive` components for signing up and signing in with WebAuthn Passkeys.
+- Built the `Identity` context (including `identity.ex` and `user_token_cleaner.ex`) to manage user identities and secure access tokens.
+- Addressed and resolved dependency conflicts, ensuring the project strictly utilizes free and open-source plugins.
+
+2. Social and Feed Capabilities:
+- Designed and implemented social features using Elixir/Ecto, organized into `Social` and `Timeline` contexts.
+- Added user "following" mechanics and a personalized timeline feed feature that displays posts from users being followed.
+- Added `PostLive` integrations (`Index`, `Form`, `Show`) mapped into a `require_authenticated_user` live session via the `Phoenix.Router`.
+- Extensively wrote test fixtures and test cases for these context functions and LiveViews, ensuring all underlying social behavior passes perfectly.
+
+3. Project Setup and Formatting:
+- Authored clear deployment documentation (`steps.txt`) covering prerequisites and instructions to spin up the local Postgres database (`mix setup`) and Phoenix server (`mix phx.server`).
+- Followed modern best practices for the framework, replacing custom CSS workflows with the latest `tailwindcss` native imports and esbuild.
+
+Overall, EngHub currently stands as a decentralized authentication-ready application with a robust base for personalized social posting and feeds.
