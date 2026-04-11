@@ -40,6 +40,7 @@ defmodule EngHub.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:oban, "~> 2.17"},
       {:cbor, "~> 1.0.0", override: true},
       {:webauthn_components, "~> 0.8.0"},
       {:phoenix, "~> 1.8.4"},

@@ -23,32 +23,33 @@
   on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
 @plugin "../vendor/daisyui-theme" {
   name: "dark";
-  default: false;
+  default: true;
   prefersdark: true;
   color-scheme: "dark";
-  --color-base-100: oklch(20% 0 0);
-  --color-base-200: oklch(25% 0 0);
-  --color-base-300: oklch(30% 0 0);
-  --color-base-content: oklch(93% 0 0);
-  --color-primary: oklch(60% 0.15 250);
+  
+  /* Discord 2026 Color Palette (OKLCH) */
+  --color-base-100: oklch(24% 0.01 250); /* Background */
+  --color-base-200: oklch(21% 0.01 250); /* Sidebar */
+  --color-base-300: oklch(18% 0.01 250); /* Server Bar */
+  --color-base-content: oklch(92% 0.01 250);
+  
+  --color-primary: oklch(62% 0.22 265); /* Blurple */
   --color-primary-content: oklch(98% 0 0);
-  --color-secondary: oklch(50% 0.1 200);
-  --color-secondary-content: oklch(98% 0 0);
-  --color-accent: oklch(70% 0.2 30);
-  --color-accent-content: oklch(20% 0 0);
-  --color-neutral: oklch(34% 0 0);
-  --color-neutral-content: oklch(93% 0 0);
-  --color-info: oklch(62% 0.214 259.815);
-  --color-info-content: oklch(97% 0.014 254.604);
-  --color-success: oklch(60% 0.118 184.704);
-  --color-success-content: oklch(98% 0.014 180.72);
-  --color-warning: oklch(66% 0.179 58.318);
-  --color-warning-content: oklch(98% 0.022 95.277);
-  --color-error: oklch(58% 0.253 17.585);
-  --color-error-content: oklch(96% 0.015 12.422);
-  --radius-selector: 0.25rem;
-  --radius-field: 0.25rem;
-  --radius-box: 0.375rem;
+  
+  --color-secondary: oklch(55% 0.15 260);
+  --color-accent: oklch(75% 0.18 150);
+  
+  --color-neutral: oklch(35% 0.02 250);
+  --color-neutral-content: oklch(88% 0.01 250);
+  
+  --color-info: oklch(65% 0.15 250);
+  --color-success: oklch(68% 0.18 155);
+  --color-warning: oklch(78% 0.15 85);
+  --color-error: oklch(62% 0.22 25);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -58,38 +59,68 @@
 
 @plugin "../vendor/daisyui-theme" {
   name: "light";
-  default: true;
+  default: false;
   prefersdark: false;
   color-scheme: "light";
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(97% 0 0);
-  --color-base-300: oklch(95% 0 0);
-  --color-base-content: oklch(35% 0 0);
-  --color-primary: oklch(60% 0.15 250);
-  --color-primary-content: oklch(98% 0 0);
-  --color-secondary: oklch(50% 0.1 200);
-  --color-secondary-content: oklch(98% 0 0);
-  --color-accent: oklch(70% 0.2 30);
-  --color-accent-content: oklch(20% 0 0);
-  --color-neutral: oklch(92% 0 0);
-  --color-neutral-content: oklch(35% 0 0);
-  --color-info: oklch(62% 0.214 259.815);
-  --color-info-content: oklch(97% 0.014 254.604);
-  --color-success: oklch(70% 0.14 182.503);
-  --color-success-content: oklch(98% 0.014 180.72);
-  --color-warning: oklch(66% 0.179 58.318);
-  --color-warning-content: oklch(98% 0.022 95.277);
-  --color-error: oklch(58% 0.253 17.585);
-  --color-error-content: oklch(96% 0.015 12.422);
-  --radius-selector: 0.25rem;
-  --radius-field: 0.25rem;
-  --radius-box: 0.375rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
+  --color-base-100: oklch(98% 0 0);
+  --color-base-200: oklch(94% 0 0);
+  --color-base-300: oklch(90% 0 0);
+  --color-base-content: oklch(25% 0 0);
+  --color-primary: oklch(58% 0.22 265);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(50% 0.15 260);
+  --color-accent: oklch(65% 0.18 150);
+  --color-neutral: oklch(85% 0 0);
+  --color-neutral-content: oklch(30% 0 0);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
 }
+
+/* Glassmorphism Utilities */
+.glass-surface {
+  background-color: var(--color-base-100);
+  backdrop-filter: blur(24px);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.glass-header {
+  background-color: rgba(var(--color-base-100), 0.4);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-sidebar {
+  background-color: rgba(var(--color-base-200), 0.4);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-server-bar {
+  background-color: rgba(var(--color-base-300), 0.6);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Discord Specific Animations */
+@keyframes server-icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.animate-server-icon:hover {
+  animation: server-icon-bounce 0.3s ease-in-out;
+}
+
+.server-pill {
+  position: absolute;
+  left: 0;
+  width: 4px;
+  background-color: white;
+  border-radius: 0 9999px 9999px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);

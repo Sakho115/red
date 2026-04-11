@@ -7,6 +7,7 @@ defmodule EngHub.Projects do
   alias EngHub.Repo
 
   alias EngHub.Projects.Project
+  alias EngHub.Projects.ProjectMember
 
   @doc """
   Returns the list of projects.
@@ -36,6 +37,14 @@ defmodule EngHub.Projects do
 
   """
   def get_project!(id), do: Repo.get!(Project, id)
+
+  @doc """
+  Gets a project by its associated channel_id.
+  """
+  def get_project_by_channel(channel_id) do
+    from(p in Project, where: p.channel_id == ^channel_id)
+    |> Repo.one()
+  end
 
   @doc """
   Creates a project.
@@ -86,7 +95,10 @@ defmodule EngHub.Projects do
 
   """
   def delete_project(%Project{} = project) do
-    Repo.delete(project)
+    Repo.transaction(fn ->
+      from(m in ProjectMember, where: m.project_id == ^project.id) |> Repo.delete_all()
+      Repo.delete!(project)
+    end)
   end
 
   @doc """
@@ -196,5 +208,47 @@ defmodule EngHub.Projects do
   """
   def change_project_member(%ProjectMember{} = project_member, attrs \\ %{}) do
     ProjectMember.changeset(project_member, attrs)
+  end
+
+  # ---------------------------------------------------------------------------
+  # RBAC helpers (delegate to EngHub.Projects.RBAC)
+  # ---------------------------------------------------------------------------
+
+  alias EngHub.Projects.RBAC
+
+  @doc "Returns the role string for `user_id` in `project`, or `nil` if not a member."
+  defdelegate get_member_role(project, user_id), to: RBAC, as: :get_role
+
+  @doc "Returns `true` when `user_id` has at least `min_role` in `project`."
+  defdelegate can?(project, user_id, min_role), to: RBAC
+
+  @doc "Raises `EngHub.Projects.RBAC.UnauthorizedError` unless `user_id` meets `min_role`."
+  defdelegate authorize!(project, user_id, min_role), to: RBAC
+
+  @doc "Lists all members of `project_id` with preloaded `:user`."
+  defdelegate list_members(project_id), to: RBAC
+
+  @doc "Adds or updates a member's role in a project. Returns `{:ok, member}` or `{:error, changeset}`."
+  defdelegate upsert_member(project_id, user_id, role), to: RBAC
+
+  @doc "Removes a member from a project. Returns `{:ok, member}` or `{:error, :not_found}`."
+  defdelegate remove_member(project_id, user_id), to: RBAC
+
+  @doc """
+  Creates a project and automatically adds the creator as `:owner`.
+  """
+  def create_project_for_user(attrs, owner_id) do
+    Repo.transaction(fn ->
+      case create_project(attrs) do
+        {:ok, project} ->
+          case RBAC.upsert_member(project.id, owner_id, "owner") do
+            {:ok, _member} -> project
+            {:error, reason} -> Repo.rollback(reason)
+          end
+
+        {:error, reason} ->
+          Repo.rollback(reason)
+      end
+    end)
   end
 end

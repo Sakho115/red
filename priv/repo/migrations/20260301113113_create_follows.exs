@@ -11,6 +11,9 @@ defmodule EngHub.Repo.Migrations.CreateFollows do
 
     create index(:follows, [:follower_id])
     create index(:follows, [:following_id])
-    create unique_index(:follows, [:follower_id, :following_id], name: :follows_follower_following_index)
+
+    create unique_index(:follows, [:follower_id, :following_id],
+             name: :follows_follower_following_index
+           )
   end
 end

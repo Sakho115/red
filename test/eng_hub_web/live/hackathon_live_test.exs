@@ -4,8 +4,16 @@ defmodule EngHubWeb.HackathonLiveTest do
   import Phoenix.LiveViewTest
   import EngHub.EventsFixtures
 
-  @create_attrs %{title: "some title", start_date: "2026-03-15T16:09:00Z", end_date: "2026-03-15T16:09:00Z"}
-  @update_attrs %{title: "some updated title", start_date: "2026-03-16T16:09:00Z", end_date: "2026-03-16T16:09:00Z"}
+  @create_attrs %{
+    title: "some title",
+    start_date: "2026-03-15T16:09:00Z",
+    end_date: "2026-03-15T16:09:00Z"
+  }
+  @update_attrs %{
+    title: "some updated title",
+    start_date: "2026-03-16T16:09:00Z",
+    end_date: "2026-03-16T16:09:00Z"
+  }
   @invalid_attrs %{title: nil, start_date: nil, end_date: nil}
   defp create_hackathon(_) do
     hackathon = hackathon_fixture()

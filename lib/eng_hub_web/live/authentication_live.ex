@@ -6,21 +6,26 @@ defmodule EngHubWeb.AuthenticationLive do
   require Logger
 
   alias EngHub.Identity
-  alias EngHub.Identity.User
+
   alias EngHub.Identity.UserToken
 
-  def mount(_params, _user_id, %{assigns: %{current_user: %User{}}} = socket) do
-    {:ok, push_navigate(socket, to: ~p"/", replace: true)}
+  def mount(_params, _session, socket) do
+    if socket.assigns[:current_user] do
+      {:ok, push_navigate(socket, to: ~p"/", replace: true)}
+    else
+      {:ok,
+       socket
+       |> assign(:page_title, "Sign In")
+       # :email or :otp
+       |> assign(:step, :email)
+       |> assign(:email, nil)
+       |> assign(:user, nil)
+       |> assign(:token_form, nil)}
+    end
   end
 
-  def mount(_params, _session, socket) do
-    {:ok,
-     socket
-     |> assign(:page_title, "Sign In")
-     |> assign(:step, :email) # :email or :otp
-     |> assign(:email, nil)
-     |> assign(:user, nil)
-     |> assign(:token_form, nil)}
+  def handle_event("validate", %{"email" => email}, socket) do
+    {:noreply, assign(socket, :email, email)}
   end
 
   def handle_event("submit_email", %{"email" => email}, socket) do
@@ -28,20 +33,10 @@ defmodule EngHubWeb.AuthenticationLive do
       {:ok, user} ->
         case Identity.generate_user_otp(user) do
           {:ok, code} ->
-            # Actually deliver the OTP using standard Swoosh
-            alias Swoosh.Email
-            
-            Email.new()
-            |> Email.to(email)
-            |> Email.from({"EngHub", "noreply@enghub.com"})
-            |> Email.subject("Your EngHub Authentication Code")
-            |> Email.html_body("""
-              <h2>Welcome to EngHub</h2>
-              <p>Your one-time password (OTP) is: <strong>#{code}</strong></p>
-              <p>This code will expire in 5 minutes.</p>
-            """)
-            |> Email.text_body("Your EngHub OTP is: #{code}")
-            |> EngHub.Mailer.deliver()
+            # Deliver the OTP asynchronously using Oban
+            %{to: email, code: code}
+            |> EngHub.Workers.EmailWorker.new()
+            |> Oban.insert()
 
             {:noreply,
              socket
@@ -52,6 +47,33 @@ defmodule EngHubWeb.AuthenticationLive do
 
           {:error, _} ->
             {:noreply, put_flash(socket, :error, "Could not generate OTP. Please try again.")}
+        end
+
+      {:error, _changeset} ->
+        {:noreply, put_flash(socket, :error, "Invalid email format.")}
+    end
+  end
+
+  def handle_event("submit_magic_link", %{"email" => email}, socket) do
+    case Identity.create_or_get_user(email) do
+      {:ok, user} ->
+        case Identity.generate_user_magic_link(user) do
+          {:ok, token} ->
+            # Deliver the Magic Link asynchronously using Oban
+            %{to: email, token: token}
+            |> EngHub.Workers.EmailWorker.new()
+            |> Oban.insert()
+
+            {:noreply,
+             socket
+             |> put_flash(
+               :info,
+               "A magic link has been sent to your email. You can close this tab."
+             )}
+
+          {:error, _} ->
+            {:noreply,
+             put_flash(socket, :error, "Could not generate Magic Link. Please try again.")}
         end
 
       {:error, _changeset} ->

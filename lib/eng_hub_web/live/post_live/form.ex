@@ -80,6 +80,7 @@ defmodule EngHubWeb.PostLive.Form do
 
   defp save_post(socket, :new, post_params) do
     post_params = Map.put(post_params, "user_id", socket.assigns.current_user.id)
+
     case Timeline.create_post(post_params) do
       {:ok, post} ->
         {:noreply,

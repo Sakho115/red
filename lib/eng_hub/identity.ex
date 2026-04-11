@@ -186,7 +186,8 @@ defmodule EngHub.Identity do
         {:ok, user}
 
       nil ->
-        create(%{email: email})
+        [username_base | _] = String.split(email, "@")
+        create(%{email: email, username: "#{username_base}_#{:rand.uniform(9999)}"})
     end
   end
 

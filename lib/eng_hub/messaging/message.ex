@@ -1,11 +1,13 @@
 defmodule EngHub.Messaging.Message do
   use Ecto.Schema
   import Ecto.Changeset
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
 
   schema "messages" do
     field :content, :string
     belongs_to :user, EngHub.Identity.User, type: Ecto.ULID
-    belongs_to :channel, EngHub.Messaging.Channel
+    belongs_to :channel, EngHub.Communities.Channel
 
     timestamps(type: :utc_datetime)
   end

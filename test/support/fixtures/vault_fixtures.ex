@@ -8,11 +8,17 @@ defmodule EngHub.VaultFixtures do
   Generate a file.
   """
   def file_fixture(attrs \\ %{}) do
+    attrs = Map.new(attrs)
+    project_id = Map.get(attrs, :project_id) || EngHub.ProjectsFixtures.project_fixture().id
+    uploader_id = Map.get(attrs, :uploader_id) || EngHub.IdentityFixtures.user_fixture().id
+
     {:ok, file} =
       attrs
       |> Enum.into(%{
         filename: "some filename",
         mime_type: "some mime_type",
+        project_id: project_id,
+        uploader_id: uploader_id,
         size: 42,
         storage_path: "some storage_path"
       })

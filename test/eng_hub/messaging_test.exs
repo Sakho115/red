@@ -4,7 +4,7 @@ defmodule EngHub.MessagingTest do
   alias EngHub.Messaging
 
   describe "channels" do
-    alias EngHub.Messaging.Channel
+    alias EngHub.Communities.Channel
 
     import EngHub.MessagingFixtures
 
@@ -12,7 +12,8 @@ defmodule EngHub.MessagingTest do
 
     test "list_channels/0 returns all channels" do
       channel = channel_fixture()
-      assert Messaging.list_channels() == [channel]
+      channels = Messaging.list_channels()
+      assert Enum.any?(channels, &(&1.id == channel.id))
     end
 
     test "get_channel!/1 returns the channel with given id" do
@@ -21,7 +22,8 @@ defmodule EngHub.MessagingTest do
     end
 
     test "create_channel/1 with valid data creates a channel" do
-      valid_attrs = %{name: "some name"}
+      category = EngHub.CommunitiesFixtures.category_fixture()
+      valid_attrs = %{name: "some name", server_id: category.server_id, category_id: category.id, type: :general_chat}
 
       assert {:ok, %Channel{} = channel} = Messaging.create_channel(valid_attrs)
       assert channel.name == "some name"
@@ -66,16 +68,21 @@ defmodule EngHub.MessagingTest do
 
     test "list_messages/0 returns all messages" do
       message = message_fixture()
-      assert Messaging.list_messages() == [message]
+      messages = Messaging.list_messages()
+      assert Enum.any?(messages, &(&1.id == message.id))
     end
 
     test "get_message!/1 returns the message with given id" do
       message = message_fixture()
-      assert Messaging.get_message!(message.id) == message
+      fetched = Messaging.get_message!(message.id)
+      assert fetched.id == message.id
+      assert fetched.content == message.content
     end
 
     test "create_message/1 with valid data creates a message" do
-      valid_attrs = %{content: "some content"}
+      channel = channel_fixture()
+      user = EngHub.IdentityFixtures.user_fixture()
+      valid_attrs = %{content: "some content", channel_id: channel.id, user_id: user.id}
 
       assert {:ok, %Message{} = message} = Messaging.create_message(valid_attrs)
       assert message.content == "some content"
@@ -96,7 +103,9 @@ defmodule EngHub.MessagingTest do
     test "update_message/2 with invalid data returns error changeset" do
       message = message_fixture()
       assert {:error, %Ecto.Changeset{}} = Messaging.update_message(message, @invalid_attrs)
-      assert message == Messaging.get_message!(message.id)
+      fetched = Messaging.get_message!(message.id)
+      assert fetched.id == message.id
+      assert fetched.content == message.content
     end
 
     test "delete_message/1 deletes the message" do

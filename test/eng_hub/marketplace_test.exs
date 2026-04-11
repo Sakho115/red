@@ -21,7 +21,12 @@ defmodule EngHub.MarketplaceTest do
     end
 
     test "create_listing/1 with valid data creates a listing" do
-      valid_attrs = %{status: "some status", description: "some description", title: "some title", price_or_exchange: "some price_or_exchange"}
+      valid_attrs = %{
+        status: "some status",
+        description: "some description",
+        title: "some title",
+        price_or_exchange: "some price_or_exchange"
+      }
 
       assert {:ok, %Listing{} = listing} = Marketplace.create_listing(valid_attrs)
       assert listing.status == "some status"
@@ -36,7 +41,13 @@ defmodule EngHub.MarketplaceTest do
 
     test "update_listing/2 with valid data updates the listing" do
       listing = listing_fixture()
-      update_attrs = %{status: "some updated status", description: "some updated description", title: "some updated title", price_or_exchange: "some updated price_or_exchange"}
+
+      update_attrs = %{
+        status: "some updated status",
+        description: "some updated description",
+        title: "some updated title",
+        price_or_exchange: "some updated price_or_exchange"
+      }
 
       assert {:ok, %Listing{} = listing} = Marketplace.update_listing(listing, update_attrs)
       assert listing.status == "some updated status"

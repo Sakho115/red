@@ -16,7 +16,13 @@
     >
       <p>Create a <strong>new</strong> account:</p>
 
-      <.input type="email" field={form[:email]} label="Email" phx-debounce="250" autocomplete="username webauthn" />
+      <.input
+        type="email"
+        field={form[:email]}
+        label="Email"
+        phx-debounce="250"
+        autocomplete="username webauthn"
+      />
       <.live_component
         disabled={@form.source.valid? == false}
         module={RegistrationComponent}
@@ -31,13 +37,12 @@
         ]}
       />
 
-
       <.link navigate={~p"/sign-in"} class="underline">Sign into an existing account</.link>
     </fieldset>
-
   </.simple_form>
   <.form
     :if={@token_form}
+    for={@token_form}
     id="token-form"
     action={~p"/sign-in"}
     method="post"

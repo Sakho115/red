@@ -4,8 +4,18 @@ defmodule EngHubWeb.ListingLiveTest do
   import Phoenix.LiveViewTest
   import EngHub.MarketplaceFixtures
 
-  @create_attrs %{status: "some status", description: "some description", title: "some title", price_or_exchange: "some price_or_exchange"}
-  @update_attrs %{status: "some updated status", description: "some updated description", title: "some updated title", price_or_exchange: "some updated price_or_exchange"}
+  @create_attrs %{
+    status: "some status",
+    description: "some description",
+    title: "some title",
+    price_or_exchange: "some price_or_exchange"
+  }
+  @update_attrs %{
+    status: "some updated status",
+    description: "some updated description",
+    title: "some updated title",
+    price_or_exchange: "some updated price_or_exchange"
+  }
   @invalid_attrs %{status: nil, description: nil, title: nil, price_or_exchange: nil}
   defp create_listing(%{user: user}) do
     listing = listing_fixture(seller_id: user.id)
@@ -16,14 +26,14 @@ defmodule EngHubWeb.ListingLiveTest do
   describe "Index" do
     setup [:register_and_log_in_user, :create_listing]
 
-    test "lists all listings", %{conn: conn, user: user, listing: listing} do
+    test "lists all listings", %{conn: conn, listing: listing} do
       {:ok, _index_live, html} = live(conn, ~p"/listings")
 
       assert html =~ "Listing Listings"
       assert html =~ listing.title
     end
 
-    test "saves new listing", %{conn: conn, user: user} do
+    test "saves new listing", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, ~p"/listings")
 
       assert {:ok, form_live, _} =
@@ -49,7 +59,7 @@ defmodule EngHubWeb.ListingLiveTest do
       assert html =~ "some title"
     end
 
-    test "updates listing in listing", %{conn: conn, user: user, listing: listing} do
+    test "updates listing in listing", %{conn: conn, listing: listing} do
       {:ok, index_live, _html} = live(conn, ~p"/listings")
 
       assert {:ok, form_live, _html} =
@@ -75,7 +85,7 @@ defmodule EngHubWeb.ListingLiveTest do
       assert html =~ "some updated title"
     end
 
-    test "deletes listing in listing", %{conn: conn, user: user, listing: listing} do
+    test "deletes listing in listing", %{conn: conn, listing: listing} do
       {:ok, index_live, _html} = live(conn, ~p"/listings")
 
       assert index_live |> element("#listings-#{listing.id} a", "Delete") |> render_click()
@@ -86,14 +96,14 @@ defmodule EngHubWeb.ListingLiveTest do
   describe "Show" do
     setup [:register_and_log_in_user, :create_listing]
 
-    test "displays listing", %{conn: conn, user: user, listing: listing} do
+    test "displays listing", %{conn: conn, listing: listing} do
       {:ok, _show_live, html} = live(conn, ~p"/listings/#{listing}")
 
       assert html =~ "Show Listing"
       assert html =~ listing.title
     end
 
-    test "updates listing and returns to show", %{conn: conn, user: user, listing: listing} do
+    test "updates listing and returns to show", %{conn: conn, listing: listing} do
       {:ok, show_live, _html} = live(conn, ~p"/listings/#{listing}")
 
       assert {:ok, form_live, _} =

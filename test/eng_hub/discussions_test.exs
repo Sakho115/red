@@ -21,7 +21,16 @@ defmodule EngHub.DiscussionsTest do
     end
 
     test "create_thread/1 with valid data creates a thread" do
-      valid_attrs = %{title: "some title", category: "some category", content: "some content"}
+      project = EngHub.ProjectsFixtures.project_fixture()
+      user = EngHub.IdentityFixtures.user_fixture()
+
+      valid_attrs = %{
+        title: "some title",
+        category: "some category",
+        content: "some content",
+        project_id: project.id,
+        author_id: user.id
+      }
 
       assert {:ok, %Thread{} = thread} = Discussions.create_thread(valid_attrs)
       assert thread.title == "some title"
@@ -35,7 +44,12 @@ defmodule EngHub.DiscussionsTest do
 
     test "update_thread/2 with valid data updates the thread" do
       thread = thread_fixture()
-      update_attrs = %{title: "some updated title", category: "some updated category", content: "some updated content"}
+
+      update_attrs = %{
+        title: "some updated title",
+        category: "some updated category",
+        content: "some updated content"
+      }
 
       assert {:ok, %Thread{} = thread} = Discussions.update_thread(thread, update_attrs)
       assert thread.title == "some updated title"

@@ -8,9 +8,10 @@ defmodule EngHubWeb.Router do
     plug :put_root_layout, html: {EngHubWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    
+
     import EngHubWeb.UserAuth
     plug :fetch_current_user
+    plug EngHubWeb.Plugs.RateLimiter
   end
 
   pipeline :api do
@@ -21,12 +22,21 @@ defmodule EngHubWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    live "/sign-up", AuthenticationLive, :new
-    live "/sign-in", AuthenticationLive, :new
-    post "/sign-in", Session, :create
-    live "/users/:username", ProfileLive.Show, :show
 
-    live_session :require_authenticated_user, on_mount: [{EngHubWeb.UserAuth, :ensure_authenticated}] do
+    live_session :public, on_mount: [{EngHubWeb.UserAuth, :mount_current_user}] do
+      live "/sign-up", AuthenticationLive, :new
+      live "/sign-in", AuthenticationLive, :new
+      post "/sign-in", SessionController, :create
+      get "/auth/magic/:token", MagicLinkController, :show
+      live "/users/:username", ProfileLive.Show, :show
+
+      live "/servers", ServerLive.Index, :index
+      live "/servers/:server_id", ChannelLive.Index, :index
+      live "/servers/:server_id/channels/:id", ChannelLive.Index, :show
+    end
+
+    live_session :require_authenticated_user,
+      on_mount: [{EngHubWeb.UserAuth, :ensure_authenticated}] do
       live "/posts", PostLive.Index, :index
       live "/posts/new", PostLive.Form, :new
       live "/posts/:id", PostLive.Show, :show
@@ -36,7 +46,8 @@ defmodule EngHubWeb.Router do
       live "/projects/new", ProjectLive.Form, :new
       live "/projects/:id", ProjectLive.Show, :show
       live "/projects/:id/edit", ProjectLive.Form, :edit
-      
+
+      # Kept for compatibility or removed if fully migrating
       live "/projects/:project_id/channels", ChannelLive.Index, :index
       live "/projects/:project_id/channels/:id", ChannelLive.Index, :show
 

@@ -21,11 +21,29 @@ defmodule EngHub.Timeline do
     limit = Keyword.get(opts, :limit, 100)
     offset = Keyword.get(opts, :offset, 0)
 
-    Post
-    |> order_by([p], desc: p.inserted_at)
-    |> preload([p], :user)
-    |> limit(^limit)
-    |> offset(^offset)
+    cache_key = "timeline_global_#{limit}_#{offset}"
+
+    EngHub.Cache.get_or_fetch(cache_key, 60, fn ->
+      from(p in Post,
+        where: is_nil(p.deleted_at),
+        order_by: [desc: p.inserted_at],
+        preload: [:user],
+        limit: ^limit,
+        offset: ^offset
+      )
+      |> Repo.all()
+    end)
+  end
+
+  @doc """
+  Returns the list of posts for a specific channel.
+  """
+  def list_posts_by_channel(channel_id) do
+    from(p in Post,
+      where: p.channel_id == ^channel_id and is_nil(p.deleted_at),
+      order_by: [desc: p.inserted_at],
+      preload: [:user]
+    )
     |> Repo.all()
   end
 
@@ -39,13 +57,14 @@ defmodule EngHub.Timeline do
 
     from(p in Post,
       where:
-        p.user_id == ^user_id or
-          p.user_id in subquery(
-            from(f in EngHub.Social.Follow,
-              where: f.follower_id == ^user_id,
-              select: f.following_id
-            )
-          ),
+        is_nil(p.deleted_at) and
+          (p.user_id == ^user_id or
+             p.user_id in subquery(
+               from(f in EngHub.Social.Follow,
+                 where: f.follower_id == ^user_id,
+                 select: f.following_id
+               )
+             )),
       order_by: [desc: p.inserted_at],
       limit: ^limit,
       offset: ^offset,
@@ -68,7 +87,10 @@ defmodule EngHub.Timeline do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id) do
+    from(p in Post, where: p.id == ^id and is_nil(p.deleted_at))
+    |> Repo.one!()
+  end
 
   def subscribe do
     Phoenix.PubSub.subscribe(EngHub.PubSub, "posts")
@@ -101,6 +123,7 @@ defmodule EngHub.Timeline do
       |> broadcast(:post_created)
 
     if match?({:ok, _}, result) do
+      EngHub.Cache.invalidate_prefix("timeline_global_")
       :telemetry.execute([:eng_hub, :timeline, :post_created], %{count: 1})
     end
 
@@ -120,10 +143,17 @@ defmodule EngHub.Timeline do
 
   """
   def update_post(%Post{} = post, attrs) do
-    post
-    |> Post.changeset(attrs)
-    |> Repo.update()
-    |> broadcast(:post_updated)
+    result =
+      post
+      |> Post.changeset(attrs)
+      |> Repo.update()
+      |> broadcast(:post_updated)
+
+    if match?({:ok, _}, result) do
+      EngHub.Cache.invalidate_prefix("timeline_global_")
+    end
+
+    result
   end
 
   @doc """
@@ -140,14 +170,20 @@ defmodule EngHub.Timeline do
   """
   def delete_post(%Post{} = post) do
     result =
-      Repo.delete(post)
-      |> broadcast(:post_deleted)
-      
-    if match?({:ok, _}, result) do
-      :telemetry.execute([:eng_hub, :timeline, :post_deleted], %{count: 1})
+      post
+      |> Ecto.Changeset.change(%{deleted_at: DateTime.truncate(DateTime.utc_now(), :second)})
+      |> Repo.update()
+
+    case result do
+      {:ok, updated_post} ->
+        broadcast({:ok, updated_post}, :post_deleted)
+        EngHub.Cache.invalidate_prefix("timeline_global_")
+        :telemetry.execute([:eng_hub, :timeline, :post_deleted], %{count: 1})
+        {:ok, updated_post}
+
+      error ->
+        error
     end
-    
-    result
   end
 
   @doc """
@@ -162,4 +198,32 @@ defmodule EngHub.Timeline do
   def change_post(%Post{} = post, attrs \\ %{}) do
     Post.changeset(post, attrs)
   end
+
+  @doc """
+  Performs a full-text search on posts using PostgreSQL tsvector.
+  """
+  def search_posts(query) when is_binary(query) and query != "" do
+    formatted_query = String.replace(query, " ", " | ")
+
+    from(p in Post,
+      where:
+        is_nil(p.deleted_at) and
+          fragment(
+            "to_tsvector('english', coalesce(body, '')) @@ to_tsquery('english', ?)",
+            ^formatted_query
+          ),
+      order_by: [
+        # Order by rank
+        desc:
+          fragment(
+            "ts_rank(to_tsvector('english', coalesce(body, '')), to_tsquery('english', ?))",
+            ^formatted_query
+          )
+      ],
+      preload: [:user]
+    )
+    |> Repo.all()
+  end
+
+  def search_posts(_empty_query), do: list_posts()
 end

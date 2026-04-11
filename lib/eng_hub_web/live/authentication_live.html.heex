@@ -6,34 +6,82 @@
     </div>
 
     <%= if @step == :email do %>
-      <form phx-submit="submit_email" class="space-y-4">
+      <form phx-submit="submit_email" phx-change="validate" class="space-y-4">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
           <div class="mt-1">
-            <input type="email" name="email" id="email" required placeholder="you@example.com" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-4 py-3 bg-gray-50/50" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={@email}
+              required
+              placeholder="you@example.com"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-4 py-3 bg-gray-50/50"
+            />
           </div>
         </div>
-        
-        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-          Continue with Email
+
+        <button
+          type="submit"
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+        >
+          Continue with Email (OTP)
+        </button>
+
+        <div class="relative flex items-center py-2">
+          <div class="flex-grow border-t border-gray-200"></div>
+          <span class="flex-shrink mx-4 text-xs text-gray-400 uppercase tracking-widest">or</span>
+          <div class="flex-grow border-t border-gray-200"></div>
+        </div>
+
+        <button
+          type="button"
+          phx-click="submit_magic_link"
+          phx-value-email={@email}
+          class="w-full flex justify-center items-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+        >
+          <.icon name="hero-bolt" class="h-5 w-5 mr-2 text-amber-500" /> Send Magic Link
         </button>
       </form>
     <% else %>
       <form phx-submit="submit_otp" class="space-y-4">
         <div>
-          <label for="otp" class="block text-sm font-medium text-gray-700">Enter 6-digit Code</label>
-          <p class="text-xs text-gray-500 mb-3 mt-1">We sent a security code to <strong>{@email}</strong>.</p>
+          <label for="otp" class="block text-sm font-medium text-gray-700">
+            Enter 6-digit Code
+          </label>
+          <p class="text-xs text-gray-500 mb-3 mt-1">
+            We sent a security code to <strong>{@email}</strong>.
+          </p>
           <div class="mt-1">
-            <input type="text" name="otp" id="otp" required inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="000000" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-center tracking-widest text-2xl px-4 py-3 bg-gray-50/50" autofocus />
+            <input
+              type="text"
+              name="otp"
+              id="otp"
+              required
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="6"
+              placeholder="000000"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-center tracking-widest text-2xl px-4 py-3 bg-gray-50/50"
+              autofocus
+            />
           </div>
         </div>
-        
-        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+
+        <button
+          type="submit"
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+        >
           Verify & Sign In
         </button>
-        
+
         <div class="text-center mt-4">
-          <button type="button" phx-click="back_to_email" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+          <button
+            type="button"
+            phx-click="back_to_email"
+            class="text-sm font-medium text-indigo-600 hover:text-indigo-500 transition-colors"
+          >
             Use a different email
           </button>
         </div>

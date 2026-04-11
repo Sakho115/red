@@ -16,7 +16,7 @@ defmodule EngHub.Identity.UserToken do
           type: atom(),
           value: binary(),
           user_id: binary(),
-          inserted_at: NaiveDateTime.t(),
+          inserted_at: NaiveDateTime.t()
         }
 
   @primary_key {:id, Ecto.ULID, autogenerate: true}
@@ -49,10 +49,10 @@ defmodule EngHub.Identity.UserToken do
         else
           put_change(changeset, :value, :crypto.strong_rand_bytes(64))
         end
-        
+
       :otp ->
         changeset
-        
+
       _ ->
         changeset
     end

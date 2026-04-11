@@ -21,7 +21,17 @@ defmodule EngHub.VaultTest do
     end
 
     test "create_file/1 with valid data creates a file" do
-      valid_attrs = %{size: 42, filename: "some filename", storage_path: "some storage_path", mime_type: "some mime_type"}
+      project = EngHub.ProjectsFixtures.project_fixture()
+      user = EngHub.IdentityFixtures.user_fixture()
+
+      valid_attrs = %{
+        size: 42,
+        filename: "some filename",
+        storage_path: "some storage_path",
+        mime_type: "some mime_type",
+        project_id: project.id,
+        uploader_id: user.id
+      }
 
       assert {:ok, %File{} = file} = Vault.create_file(valid_attrs)
       assert file.size == 42
@@ -36,7 +46,13 @@ defmodule EngHub.VaultTest do
 
     test "update_file/2 with valid data updates the file" do
       file = file_fixture()
-      update_attrs = %{size: 43, filename: "some updated filename", storage_path: "some updated storage_path", mime_type: "some updated mime_type"}
+
+      update_attrs = %{
+        size: 43,
+        filename: "some updated filename",
+        storage_path: "some updated storage_path",
+        mime_type: "some updated mime_type"
+      }
 
       assert {:ok, %File{} = file} = Vault.update_file(file, update_attrs)
       assert file.size == 43
@@ -96,7 +112,9 @@ defmodule EngHub.VaultTest do
       file_version = file_version_fixture()
       update_attrs = %{version_number: 43, storage_path: "some updated storage_path"}
 
-      assert {:ok, %FileVersion{} = file_version} = Vault.update_file_version(file_version, update_attrs)
+      assert {:ok, %FileVersion{} = file_version} =
+               Vault.update_file_version(file_version, update_attrs)
+
       assert file_version.version_number == 43
       assert file_version.storage_path == "some updated storage_path"
     end

@@ -2,6 +2,7 @@ defmodule EngHubWeb.ThreadLive.Show do
   use EngHubWeb, :live_view
 
   alias EngHub.Discussions
+  alias EngHubWeb.Live.Authorize
 
   @impl true
   def render(assigns) do
@@ -31,9 +32,17 @@ defmodule EngHubWeb.ThreadLive.Show do
 
   @impl true
   def mount(%{"id" => id}, _session, socket) do
-    {:ok,
-     socket
-     |> assign(:page_title, "Show Thread")
-     |> assign(:thread, Discussions.get_thread!(id))}
+    thread = Discussions.get_thread!(id)
+
+    case Authorize.check_permission(socket, thread.project_id, "viewer") do
+      {:ok, socket} ->
+        {:ok,
+         socket
+         |> assign(:page_title, "Show Thread")
+         |> assign(:thread, thread)}
+
+      {:error, socket} ->
+        {:ok, socket}
+    end
   end
 end

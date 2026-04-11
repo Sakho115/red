@@ -8,7 +8,13 @@ defmodule EngHub.Application do
   @impl true
   def start(_type, _args) do
     # Start the rate limit table owned by the application so it survives
-    :ets.new(:eng_hub_rate_limit, [:set, :public, :named_table, read_concurrency: true, write_concurrency: true])
+    :ets.new(:eng_hub_rate_limit, [
+      :set,
+      :public,
+      :named_table,
+      read_concurrency: true,
+      write_concurrency: true
+    ])
 
     children = [
       EngHubWeb.Telemetry,
@@ -17,6 +23,8 @@ defmodule EngHub.Application do
       {DNSCluster, query: Application.get_env(:eng_hub, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: EngHub.PubSub},
       EngHubWeb.Presence,
+      EngHub.Cache,
+      {Oban, Application.fetch_env!(:eng_hub, Oban)},
       # Start a worker by calling: EngHub.Worker.start_link(arg)
       # {EngHub.Worker, arg},
       # Start to serve requests, typically the last entry

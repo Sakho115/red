@@ -9,7 +9,7 @@ defmodule EngHub.TimelineFixtures do
   """
   def post_fixture(attrs \\ %{}) do
     user_id = Map.get(attrs, :user_id) || EngHub.IdentityFixtures.user_fixture().id
-    
+
     {:ok, post} =
       attrs
       |> Enum.into(%{

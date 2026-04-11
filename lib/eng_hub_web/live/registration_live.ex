@@ -105,7 +105,11 @@ defmodule EngHubWeb.RegistrationLive do
     end
   end
 
-  def handle_info({:error, %{"message" => message, "name" => "NoUserVerifyingPlatformAuthenticatorAvailable"}}, socket) do
+  def handle_info(
+        {:error,
+         %{"message" => message, "name" => "NoUserVerifyingPlatformAuthenticatorAvailable"}},
+        socket
+      ) do
     socket
     |> assign(:token_form, nil)
     |> put_flash(:error, message)

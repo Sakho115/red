@@ -2,6 +2,7 @@ defmodule EngHubWeb.HackathonLive.Show do
   use EngHubWeb, :live_view
 
   alias EngHub.Events
+  alias EngHubWeb.Live.Authorize
 
   @impl true
   def render(assigns) do
@@ -31,9 +32,17 @@ defmodule EngHubWeb.HackathonLive.Show do
 
   @impl true
   def mount(%{"id" => id}, _session, socket) do
-    {:ok,
-     socket
-     |> assign(:page_title, "Show Hackathon")
-     |> assign(:hackathon, Events.get_hackathon!(id))}
+    hackathon = Events.get_hackathon!(id)
+
+    case Authorize.check_permission(socket, hackathon.project_id, "viewer") do
+      {:ok, socket} ->
+        {:ok,
+         socket
+         |> assign(:page_title, "Show Hackathon")
+         |> assign(:hackathon, hackathon)}
+
+      {:error, socket} ->
+        {:ok, socket}
+    end
   end
 end

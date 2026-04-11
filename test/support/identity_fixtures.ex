@@ -14,9 +14,12 @@ defmodule EngHub.IdentityFixtures do
 
   def random_bytes(byte_length \\ 64), do: :crypto.strong_rand_bytes(byte_length)
 
+  def unique_username, do: "user#{random_integer()}"
+
   def valid_user_attrs(attrs \\ []) do
     Enum.into(attrs, %{
-      email: unique_email()
+      email: unique_email(),
+      username: unique_username()
     })
   end
 

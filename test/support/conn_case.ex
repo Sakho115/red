@@ -40,10 +40,11 @@ defmodule EngHubWeb.ConnCase do
   Logs the given `user` into the `conn`.
   """
   def log_in_user(conn, user) do
-    {:ok, user_token} = EngHub.Identity.create_token(%{
-      user_id: user.id,
-      type: :session
-    })
+    {:ok, user_token} =
+      EngHub.Identity.create_token(%{
+        user_id: user.id,
+        type: :session
+      })
 
     conn
     |> Plug.Test.init_test_session(user_token: Base.encode64(user_token.value, padding: false))

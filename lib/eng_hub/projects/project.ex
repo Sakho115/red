@@ -5,9 +5,10 @@ defmodule EngHub.Projects.Project do
   schema "projects" do
     field :name, :string
     field :description, :string
-    field :owner_id, :id
-    
-    has_many :channels, EngHub.Messaging.Channel
+    field :owner_id, Ecto.ULID
+    belongs_to :server, EngHub.Communities.Server, type: Ecto.ULID
+
+    has_many :channels, EngHub.Communities.Channel
 
     timestamps(type: :utc_datetime)
   end
@@ -15,7 +16,7 @@ defmodule EngHub.Projects.Project do
   @doc false
   def changeset(project, attrs) do
     project
-    |> cast(attrs, [:name, :description])
+    |> cast(attrs, [:name, :description, :server_id])
     |> validate_required([:name, :description])
   end
 end

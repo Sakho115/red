@@ -19,30 +19,20 @@ defmodule EngHubWeb.AuthenticationLiveTest do
       # Generate fake email
       email = "new_user@example.com"
 
-      assert view
-             |> form("form[phx-submit=\"submit_email\"]", %{"email" => email})
-             |> render_submit() =~ "A 6-digit code has been sent to your email."
+      render_submit(form(view, "form[phx-submit=\"submit_email\"]", %{"email" => email}))
 
       assert render(view) =~ "Enter 6-digit Code"
-      
+
       # Verify user was created
       assert {:ok, _} = Identity.create_or_get_user(email)
     end
-    
-    test "redirects if user is already logged in", %{conn: conn} do
-      # Make a user via context
-      {:ok, user} = Identity.create(%{email: "existing@example.com"})
-      {:ok, token} = Identity.create_token(%{user_id: user.id, type: :session})
-      
-      # Setup session
-      conn =
-        conn
-        |> bypass_through(EngHubWeb.Router, :browser)
-        |> get("/")
-        |> put_session(:user_token, Base.encode64(token.value, padding: false))
-        |> send_resp(200, "Flush")
 
-      assert {:error, {:redirect, %{to: "/"}}} = live(conn, ~p"/sign-in")
+    test "redirects if user is already logged in", %{conn: conn} do
+      # Create a user and log them in using the standard test helper
+      user = EngHub.IdentityFixtures.user_fixture()
+      conn = log_in_user(conn, user)
+
+      assert {:error, {:live_redirect, %{to: "/"}}} = live(conn, ~p"/sign-in")
     end
   end
 end

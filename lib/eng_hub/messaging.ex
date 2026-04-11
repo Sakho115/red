@@ -6,7 +6,7 @@ defmodule EngHub.Messaging do
   import Ecto.Query, warn: false
   alias EngHub.Repo
 
-  alias EngHub.Messaging.Channel
+  alias EngHub.Communities.Channel
   alias EngHub.Messaging.Message
 
   def subscribe(channel_id) do
@@ -15,7 +15,13 @@ defmodule EngHub.Messaging do
 
   defp broadcast({:ok, %Message{} = message}, event) do
     message = Repo.preload(message, :user)
-    Phoenix.PubSub.broadcast(EngHub.PubSub, "channels:#{message.channel_id}", {__MODULE__, event, message})
+
+    Phoenix.PubSub.broadcast(
+      EngHub.PubSub,
+      "channels:#{message.channel_id}",
+      {__MODULE__, event, message}
+    )
+
     {:ok, message}
   end
 

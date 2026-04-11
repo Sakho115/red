@@ -21,7 +21,11 @@ defmodule EngHub.EventsTest do
     end
 
     test "create_hackathon/1 with valid data creates a hackathon" do
-      valid_attrs = %{title: "some title", start_date: ~U[2026-03-15 16:07:00Z], end_date: ~U[2026-03-15 16:07:00Z]}
+      valid_attrs = %{
+        title: "some title",
+        start_date: ~U[2026-03-15 16:07:00Z],
+        end_date: ~U[2026-03-15 16:07:00Z]
+      }
 
       assert {:ok, %Hackathon{} = hackathon} = Events.create_hackathon(valid_attrs)
       assert hackathon.title == "some title"
@@ -35,7 +39,12 @@ defmodule EngHub.EventsTest do
 
     test "update_hackathon/2 with valid data updates the hackathon" do
       hackathon = hackathon_fixture()
-      update_attrs = %{title: "some updated title", start_date: ~U[2026-03-16 16:07:00Z], end_date: ~U[2026-03-16 16:07:00Z]}
+
+      update_attrs = %{
+        title: "some updated title",
+        start_date: ~U[2026-03-16 16:07:00Z],
+        end_date: ~U[2026-03-16 16:07:00Z]
+      }
 
       assert {:ok, %Hackathon{} = hackathon} = Events.update_hackathon(hackathon, update_attrs)
       assert hackathon.title == "some updated title"

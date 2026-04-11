@@ -22,7 +22,13 @@ defmodule EngHub.TimelineTest do
 
     test "create_post/1 with valid data creates a post" do
       user = EngHub.IdentityFixtures.user_fixture()
-      valid_attrs = %{body: "some body", code_snippet: "some code_snippet", github_url: "some github_url", user_id: user.id}
+
+      valid_attrs = %{
+        body: "some body",
+        code_snippet: "some code_snippet",
+        github_url: "some github_url",
+        user_id: user.id
+      }
 
       assert {:ok, %Post{} = post} = Timeline.create_post(valid_attrs)
       assert post.body == "some body"
@@ -36,7 +42,12 @@ defmodule EngHub.TimelineTest do
 
     test "update_post/2 with valid data updates the post" do
       post = post_fixture()
-      update_attrs = %{body: "some updated body", code_snippet: "some updated code_snippet", github_url: "some updated github_url"}
+
+      update_attrs = %{
+        body: "some updated body",
+        code_snippet: "some updated code_snippet",
+        github_url: "some updated github_url"
+      }
 
       assert {:ok, %Post{} = post} = Timeline.update_post(post, update_attrs)
       assert post.body == "some updated body"
@@ -60,6 +71,7 @@ defmodule EngHub.TimelineTest do
       post = post_fixture()
       assert %Ecto.Changeset{} = Timeline.change_post(post)
     end
+
     test "list_feed_posts/1 returns own posts and followed users' posts" do
       user = EngHub.IdentityFixtures.user_fixture()
       other_user = EngHub.IdentityFixtures.user_fixture()
@@ -72,7 +84,7 @@ defmodule EngHub.TimelineTest do
       EngHub.Social.follow_user(user.id, followed_user.id)
 
       feed_posts = Timeline.list_feed_posts(user.id)
-      
+
       assert length(feed_posts) == 2
       # The posts can be returned in any order if inserted_at is same precision
       feed_post_ids = Enum.map(feed_posts, & &1.id) |> MapSet.new()

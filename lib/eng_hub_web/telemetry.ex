@@ -79,7 +79,11 @@ defmodule EngHubWeb.Telemetry do
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
       summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io")
+      summary("vm.total_run_queue_lengths.io"),
+
+      # Custom App Metrics
+      counter("eng_hub.timeline.post_created.count"),
+      counter("eng_hub.timeline.post_deleted.count")
     ]
   end
 

@@ -3,6 +3,7 @@ defmodule EngHubWeb.ProjectLive.Form do
 
   alias EngHub.Projects
   alias EngHub.Projects.Project
+  alias EngHubWeb.Live.Authorize
 
   @impl true
   def render(assigns) do
@@ -37,12 +38,18 @@ defmodule EngHubWeb.ProjectLive.Form do
   defp return_to(_), do: "index"
 
   defp apply_action(socket, :edit, %{"id" => id}) do
-    project = Projects.get_project!(id)
+    case Authorize.check_permission(socket, id, "admin") do
+      {:ok, socket} ->
+        project = Projects.get_project!(id)
 
-    socket
-    |> assign(:page_title, "Edit Project")
-    |> assign(:project, project)
-    |> assign(:form, to_form(Projects.change_project(project)))
+        socket
+        |> assign(:page_title, "Edit Project")
+        |> assign(:project, project)
+        |> assign(:form, to_form(Projects.change_project(project)))
+
+      {:error, socket} ->
+        socket
+    end
   end
 
   defp apply_action(socket, :new, _params) do
@@ -78,7 +85,7 @@ defmodule EngHubWeb.ProjectLive.Form do
   end
 
   defp save_project(socket, :new, project_params) do
-    case Projects.create_project(project_params) do
+    case Projects.create_project_for_user(project_params, socket.assigns.current_user.id) do
       {:ok, project} ->
         {:noreply,
          socket
@@ -87,6 +94,9 @@ defmodule EngHubWeb.ProjectLive.Form do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
+
+      {:error, _reason} ->
+        {:noreply, socket |> put_flash(:error, "Could not create project")}
     end
   end
 

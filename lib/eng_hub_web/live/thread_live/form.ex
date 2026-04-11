@@ -14,6 +14,7 @@ defmodule EngHubWeb.ThreadLive.Form do
       </.header>
 
       <.form for={@form} id="thread-form" phx-change="validate" phx-submit="save">
+        <.input field={@form[:project_id]} type="hidden" />
         <.input field={@form[:category]} type="text" label="Category" />
         <.input field={@form[:title]} type="text" label="Title" />
         <.input field={@form[:content]} type="textarea" label="Content" />
@@ -46,8 +47,8 @@ defmodule EngHubWeb.ThreadLive.Form do
     |> assign(:form, to_form(Discussions.change_thread(thread)))
   end
 
-  defp apply_action(socket, :new, _params) do
-    thread = %Thread{}
+  defp apply_action(socket, :new, params) do
+    thread = %Thread{project_id: params["project_id"]}
 
     socket
     |> assign(:page_title, "New Thread")
@@ -79,6 +80,10 @@ defmodule EngHubWeb.ThreadLive.Form do
   end
 
   defp save_thread(socket, :new, thread_params) do
+    thread_params = Map.put(thread_params, "author_id", socket.assigns.current_user.id)
+    # If project_id is not in form but we have it in assigns/params
+    thread_params = Map.put_new(thread_params, "project_id", socket.assigns.thread.project_id)
+
     case Discussions.create_thread(thread_params) do
       {:ok, thread} ->
         {:noreply,

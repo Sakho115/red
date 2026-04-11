@@ -57,18 +57,19 @@ defmodule EngHub.SocialTest do
       follow = follow_fixture()
       assert %Ecto.Changeset{} = Social.change_follow(follow)
     end
+
     test "follow_user/2 creates a follow" do
       follower = EngHub.IdentityFixtures.user_fixture()
       following = EngHub.IdentityFixtures.user_fixture()
-      
+
       assert {:ok, _} = Social.follow_user(follower.id, following.id)
       assert Social.following?(follower.id, following.id)
     end
-    
+
     test "unfollow_user/2 deletes a follow" do
       follower = EngHub.IdentityFixtures.user_fixture()
       following = EngHub.IdentityFixtures.user_fixture()
-      
+
       Social.follow_user(follower.id, following.id)
       assert {:ok, _} = Social.unfollow_user(follower.id, following.id)
       refute Social.following?(follower.id, following.id)

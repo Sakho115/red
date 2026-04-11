@@ -8,24 +8,22 @@ defmodule EngHub.MessagingFixtures do
   Generate a channel.
   """
   def channel_fixture(attrs \\ %{}) do
-    {:ok, channel} =
-      attrs
-      |> Enum.into(%{
-        name: "some name"
-      })
-      |> EngHub.Messaging.create_channel()
-
-    channel
+    EngHub.CommunitiesFixtures.channel_fixture(attrs)
   end
 
   @doc """
   Generate a message.
   """
   def message_fixture(attrs \\ %{}) do
+    channel = channel_fixture()
+    user = EngHub.IdentityFixtures.user_fixture()
+
     {:ok, message} =
       attrs
       |> Enum.into(%{
-        content: "some content"
+        content: "some content",
+        channel_id: channel.id,
+        user_id: user.id
       })
       |> EngHub.Messaging.create_message()
 

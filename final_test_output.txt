@@ -1,0 +1,269 @@
+    warning: variable "follow" is unused (there is a variable with the same name in the context, use the pin operator (^) to match on it or prefix this variable with underscore if it is not meant to be used)
+    │
+ 41 │       assert {:ok, %Follow{} = follow} = Social.update_follow(follow, update_attrs)
+    │                                ~~~~~~
+    │
+    └─ test/eng_hub/social_test.exs:41:32: EngHub.SocialTest."test follows update_follow/2 with valid data updates the follow"/1
+
+....    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 27 │     test "lists all hackathons", %{conn: conn, user: user, hackathon: hackathon} do
+    │                                                      ~~~~
+    │
+    └─ test/eng_hub_web/live/hackathon_live_test.exs:27:54: EngHubWeb.HackathonLiveTest."test Index lists all hackathons"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 34 │     test "saves new hackathon", %{conn: conn, user: user} do
+    │                                                     ~~~~
+    │
+    └─ test/eng_hub_web/live/hackathon_live_test.exs:34:53: EngHubWeb.HackathonLiveTest."test Index saves new hackathon"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 60 │     test "updates hackathon in listing", %{conn: conn, user: user, hackathon: hackathon} do
+    │                                                              ~~~~
+    │
+    └─ test/eng_hub_web/live/hackathon_live_test.exs:60:62: EngHubWeb.HackathonLiveTest."test Index updates hackathon in listing"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 86 │     test "deletes hackathon in listing", %{conn: conn, user: user, hackathon: hackathon} do
+    │                                                              ~~~~
+    │
+    └─ test/eng_hub_web/live/hackathon_live_test.exs:86:62: EngHubWeb.HackathonLiveTest."test Index deletes hackathon in listing"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 97 │     test "displays hackathon", %{conn: conn, user: user, hackathon: hackathon} do
+    │                                                    ~~~~
+    │
+    └─ test/eng_hub_web/live/hackathon_live_test.exs:97:52: EngHubWeb.HackathonLiveTest."test Show displays hackathon"/1
+
+     warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+     │
+ 104 │     test "updates hackathon and returns to show", %{conn: conn, user: user, hackathon: hackathon} do
+     │                                                                       ~~~~
+     │
+     └─ test/eng_hub_web/live/hackathon_live_test.exs:104:71: EngHubWeb.HackathonLiveTest."test Show updates hackathon and returns to show"/1
+
+...    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 19 │     test "lists all projects", %{conn: conn, user: user, project: project} do
+    │                                                    ~~~~
+    │
+    └─ test/eng_hub_web/live/project_live_test.exs:19:52: EngHubWeb.ProjectLiveTest."test Index lists all projects"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 26 │     test "saves new project", %{conn: conn, user: user} do
+    │                                                   ~~~~
+    │
+    └─ test/eng_hub_web/live/project_live_test.exs:26:51: EngHubWeb.ProjectLiveTest."test Index saves new project"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 52 │     test "updates project in listing", %{conn: conn, user: user, project: project} do
+    │                                                            ~~~~
+    │
+    └─ test/eng_hub_web/live/project_live_test.exs:52:60: EngHubWeb.ProjectLiveTest."test Index updates project in listing"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 78 │     test "deletes project in listing", %{conn: conn, user: user, project: project} do
+    │                                                            ~~~~
+    │
+    └─ test/eng_hub_web/live/project_live_test.exs:78:60: EngHubWeb.ProjectLiveTest."test Index deletes project in listing"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 89 │     test "displays project", %{conn: conn, user: user, project: project} do
+    │                                                  ~~~~
+    │
+    └─ test/eng_hub_web/live/project_live_test.exs:89:50: EngHubWeb.ProjectLiveTest."test Show displays project"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 96 │     test "updates project and returns to show", %{conn: conn, user: user, project: project} do
+    │                                                                     ~~~~
+    │
+    └─ test/eng_hub_web/live/project_live_test.exs:96:69: EngHubWeb.ProjectLiveTest."test Show updates project and returns to show"/1
+
+........    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 31 │     test "lists all files", %{conn: conn, user: user, vault_file: file} do
+    │                                                 ~~~~
+    │
+    └─ test/eng_hub_web/live/file_live_test.exs:31:49: EngHubWeb.FileLiveTest."test Index lists all files"/1
+
+    warning: variable "index_live" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 39 │       {:ok, index_live, _html} = live(conn, ~p"/files")
+    │             ~~~~~~~~~~
+    │
+    └─ test/eng_hub_web/live/file_live_test.exs:39:13: EngHubWeb.FileLiveTest."test Index saves new file"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 38 │     test "saves new file", %{conn: conn, user: user, vault_file: file} do
+    │                                                ~~~~
+    │
+    └─ test/eng_hub_web/live/file_live_test.exs:38:48: EngHubWeb.FileLiveTest."test Index saves new file"/1
+
+.    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 60 │     test "updates file in listing", %{conn: conn, user: user, vault_file: file} do
+    │                                                         ~~~~
+    │
+    └─ test/eng_hub_web/live/file_live_test.exs:60:57: EngHubWeb.FileLiveTest."test Index updates file in listing"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 86 │     test "deletes file in listing", %{conn: conn, user: user, vault_file: file} do
+    │                                                         ~~~~
+    │
+    └─ test/eng_hub_web/live/file_live_test.exs:86:57: EngHubWeb.FileLiveTest."test Index deletes file in listing"/1
+
+    warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 97 │     test "displays file", %{conn: conn, user: user, vault_file: file} do
+    │                                               ~~~~
+    │
+    └─ test/eng_hub_web/live/file_live_test.exs:97:47: EngHubWeb.FileLiveTest."test Show displays file"/1
+
+     warning: variable "user" is unused (if the variable is not meant to be used, prefix it with an underscore)
+     │
+ 104 │     test "updates file and returns to show", %{conn: conn, user: user, vault_file: file} do
+     │                                                                  ~~~~
+     │
+     └─ test/eng_hub_web/live/file_live_test.exs:104:66: EngHubWeb.FileLiveTest."test Show updates file and returns to show"/1
+
+    warning: Phoenix.ConnTest.get_flash/2 is deprecated. get_flash/2 is deprecated. Use Phoenix.Flash.get/2 instead
+    │
+ 13 │       assert get_flash(conn, :info) =~ "Welcome back"
+    │              ~
+    │
+    └─ test/eng_hub_web/controllers/magic_link_controller_test.exs:13:14: EngHubWeb.MagicLinkControllerTest."test GET /auth/magic/:token logs in user with valid token"/1
+    └─ test/eng_hub_web/controllers/magic_link_controller_test.exs:20:14: EngHubWeb.MagicLinkControllerTest."test GET /auth/magic/:token fails with invalid token"/1
+
+.............................................................
+
+  1) test Index updates thread in listing (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:56
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.render_tree/1
+
+     The following arguments were given to Phoenix.LiveViewTest.render_tree/1:
+
+         # 1
+         "<html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><meta name=\"csrf-token\" content=\"dxlGIX4iCj0ZTldACSt2K2oHdD8SMTQnAt4xGRkQAz5xVH5sXwGgBTxp\"/><title data-default=\"EngHub\" data-suffix=\" · Phoenix Framework\">\n      Listing Threads\n     · Phoenix Framework</title><link phx-track-static=\"\" rel=\"stylesheet\" href=\"/assets/css/app.css\"/><script defer=\"\" phx-track-static=\"\" type=\"text/javascript\" src=\"/assets/js/app.js\"></script><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css\"/><script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/elixir.min.js\"></script><script>\n      (() => {\n        const setTheme = (theme) => {\n          if (theme === \"system\") {\n            localStorage.removeItem(\"phx:theme\");\n            document.documentElement.removeAttribute(\"data-theme\");\n          } else {\n            localStorage.setItem(\"phx:theme\", theme);\n            document.documentElement.setAttribute(\"data-theme\", theme);\n          }\n        };\n        if (!document.documentElement.hasAttribute(\"data-theme\")) {\n          setTheme(localStorage.getItem(\"phx:theme\") || \"system\");\n        }\n        window.addEventListener(\"storage\", (e) => e.key === \"phx:theme\" && setTheme(e.newValue || \"system\"));\n        \n        window.addEventListener(\"phx:set-theme\", (e) => setTheme(e.target.dataset.phxTheme));\n      })();\n    </script></head><body><div id=\"phx-GKUe_3Aet-jPfQ1h\" data-phx-main=\"\" data-phx-session=\"SFMyNTY.g2gDaAJhBnQAAAAIdwJpZG0AAAAUcGh4LUdLVWVfM0FldC1qUGZRMWh3B3Nlc3Npb250AAAAAHcGcm91dGVydxdFbGl4aXIuRW5nSHViV2ViLlJvdXRlcncKcGFyZW50X3BpZHcDbmlsdwR2aWV3dyFFbGl4aXIuRW5nSHViV2ViLlRocmVhZExpdmUuSW5kZXh3CHJvb3RfcGlkdwNuaWx3CXJvb3Rfdmlld3chRWxpeGlyLkVuZ0h1YldlYi5UaHJlYWRMaXZlLkluZGV4dxFsaXZlX3Nlc3Npb25fbmFtZXcacmVxdWlyZV9hdXRoZW50aWNhdGVkX3VzZXJuBgA1unx5nQFiAAFRgA.a0Og41x7Cksi10sYUsd3Mra0hI5CcSmuZTzzH9yTKjI\" data-phx-static=\"SFMyNTY.g2gDaAJhBnQAAAADdwJpZG0AAAAUcGh4LUdLVWVfM0FldC1qUGZRMWh3BWZsYXNodAAAAAB3CmFzc2lnbl9uZXdsAAAAAXcMY3VycmVudF91c2Vyam4GADW6fHmdAWIAAVGA.yag6SUSKvGE8DgNqVJZ_Rb8ulrpdINJRihN1C-EolqU\"><div class=\"flex h-screen w-screen overflow-hidden bg-base-100 text-base-content font-sans antialiased text-[15px]\"><!-- Static fallback or empty nav --><nav class=\"hidden md:flex w-[72px] flex-shrink-0 bg-base-300 flex-col items-center py-3 gap-3 border-r border-base-200 select-none\"><a href=\"/\" class=\"w-12 h-12 rounded-[16px] bg-primary text-primary-content flex items-center justify-center hover:rounded-xl transition-all duration-200 shadow-sm cursor-pointer relative group\">\n        EH\n      </a></nav><!-- Default Sidebar for non-server views --><aside class=\"hidden md:flex w-64 flex-shrink-0 bg-base-200 flex-col border-r border-base-300 select-none\"><div class=\"h-12 flex items-center px-4 font-semibold border-b border-base-300\"><span class=\"truncate\">EngHub</span></div><div class=\"flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar\"><a href=\"/\" class=\"flex items-center gap-3 px-2 py-1.5 rounded-[4px] hover:bg-base-300/40 text-base-content/70 hover:text-base-content font-medium text-sm transition-colors group\"><span class=\"hero-home w-4 h-4\"></span> Dashboard\n        </a><a href=\"/servers\" class=\"flex items-center gap-3 px-2 py-1.5 rounded-[4px] hover:bg-base-300/40 text-base-content/70 hover:text-base-content font-medium text-sm transition-colors group\"><span class=\"hero-server-stack w-4 h-4\"></span> Servers\n        </a></div></aside><!-- Main Content Area --><main class=\"flex-1 flex flex-col min-w-0 bg-base-100 relative\"><div id=\"flash-group\" aria-live=\"polite\"><div id=\"client-error\" phx-click=\"[[&quot;push&quot;,{&quot;value&quot;:{&quot;key&quot;:&quot;error&quot;},&quot;event&quot;:&quot;lv:clear-flash&quot;}],[&quot;hide&quot;,{&quot;time&quot;:200,&quot;to&quot;:&quot;#client-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;ease-in&quot;,&quot;duration-200&quo" <> ...
+
+     Attempted function clauses (showing 2 out of 2):
+
+         defp render_tree(-%Phoenix.LiveViewTest.View{} = view-)
+         defp render_tree(-%Phoenix.LiveViewTest.Element{} = element-)
+
+     code: html = render(live(conn, ~p"/threads") |> elem(2))
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:1145: Phoenix.LiveViewTest.render_tree/1
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:1122: Phoenix.LiveViewTest.render/1
+       test/eng_hub_web/live/thread_live_test.exs:77: (test)
+
+..
+
+  2) test Index saves new thread (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:32
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.render_tree/1
+
+     The following arguments were given to Phoenix.LiveViewTest.render_tree/1:
+
+         # 1
+         "<html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><meta name=\"csrf-token\" content=\"EwE-DnkpNAcELgZLeRsYNw5_ZXgoXB99EpMKMpUeSaEs3HnBvHW1rqH-\"/><title data-default=\"EngHub\" data-suffix=\" · Phoenix Framework\">\n      Listing Threads\n     · Phoenix Framework</title><link phx-track-static=\"\" rel=\"stylesheet\" href=\"/assets/css/app.css\"/><script defer=\"\" phx-track-static=\"\" type=\"text/javascript\" src=\"/assets/js/app.js\"></script><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css\"/><script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/elixir.min.js\"></script><script>\n      (() => {\n        const setTheme = (theme) => {\n          if (theme === \"system\") {\n            localStorage.removeItem(\"phx:theme\");\n            document.documentElement.removeAttribute(\"data-theme\");\n          } else {\n            localStorage.setItem(\"phx:theme\", theme);\n            document.documentElement.setAttribute(\"data-theme\", theme);\n          }\n        };\n        if (!document.documentElement.hasAttribute(\"data-theme\")) {\n          setTheme(localStorage.getItem(\"phx:theme\") || \"system\");\n        }\n        window.addEventListener(\"storage\", (e) => e.key === \"phx:theme\" && setTheme(e.newValue || \"system\"));\n        \n        window.addEventListener(\"phx:set-theme\", (e) => setTheme(e.target.dataset.phxTheme));\n      })();\n    </script></head><body><div id=\"phx-GKUe_3m2wyKsTwrC\" data-phx-main=\"\" data-phx-session=\"SFMyNTY.g2gDaAJhBnQAAAAIdwJpZG0AAAAUcGh4LUdLVWVfM20yd3lLc1R3ckN3B3Nlc3Npb250AAAAAHcGcm91dGVydxdFbGl4aXIuRW5nSHViV2ViLlJvdXRlcncKcGFyZW50X3BpZHcDbmlsdwR2aWV3dyFFbGl4aXIuRW5nSHViV2ViLlRocmVhZExpdmUuSW5kZXh3CHJvb3RfcGlkdwNuaWx3CXJvb3Rfdmlld3chRWxpeGlyLkVuZ0h1YldlYi5UaHJlYWRMaXZlLkluZGV4dxFsaXZlX3Nlc3Npb25fbmFtZXcacmVxdWlyZV9hdXRoZW50aWNhdGVkX3VzZXJuBgDTunx5nQFiAAFRgA.2LtKYoeWIb-nSbiifu7MKA6J-ma_bG1zxdkiDHkt_po\" data-phx-static=\"SFMyNTY.g2gDaAJhBnQAAAADdwJpZG0AAAAUcGh4LUdLVWVfM20yd3lLc1R3ckN3BWZsYXNodAAAAAB3CmFzc2lnbl9uZXdsAAAAAXcMY3VycmVudF91c2Vyam4GANO6fHmdAWIAAVGA.0dqhV-XAhRd1min9SY1zGqPKOpzJ7ZKUDrMJ39cwpjE\"><div class=\"flex h-screen w-screen overflow-hidden bg-base-100 text-base-content font-sans antialiased text-[15px]\"><!-- Static fallback or empty nav --><nav class=\"hidden md:flex w-[72px] flex-shrink-0 bg-base-300 flex-col items-center py-3 gap-3 border-r border-base-200 select-none\"><a href=\"/\" class=\"w-12 h-12 rounded-[16px] bg-primary text-primary-content flex items-center justify-center hover:rounded-xl transition-all duration-200 shadow-sm cursor-pointer relative group\">\n        EH\n      </a></nav><!-- Default Sidebar for non-server views --><aside class=\"hidden md:flex w-64 flex-shrink-0 bg-base-200 flex-col border-r border-base-300 select-none\"><div class=\"h-12 flex items-center px-4 font-semibold border-b border-base-300\"><span class=\"truncate\">EngHub</span></div><div class=\"flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar\"><a href=\"/\" class=\"flex items-center gap-3 px-2 py-1.5 rounded-[4px] hover:bg-base-300/40 text-base-content/70 hover:text-base-content font-medium text-sm transition-colors group\"><span class=\"hero-home w-4 h-4\"></span> Dashboard\n        </a><a href=\"/servers\" class=\"flex items-center gap-3 px-2 py-1.5 rounded-[4px] hover:bg-base-300/40 text-base-content/70 hover:text-base-content font-medium text-sm transition-colors group\"><span class=\"hero-server-stack w-4 h-4\"></span> Servers\n        </a></div></aside><!-- Main Content Area --><main class=\"flex-1 flex flex-col min-w-0 bg-base-100 relative\"><div id=\"flash-group\" aria-live=\"polite\"><div id=\"client-error\" phx-click=\"[[&quot;push&quot;,{&quot;value&quot;:{&quot;key&quot;:&quot;error&quot;},&quot;event&quot;:&quot;lv:clear-flash&quot;}],[&quot;hide&quot;,{&quot;time&quot;:200,&quot;to&quot;:&quot;#client-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;ease-in&quot;,&quot;duration-200&quo" <> ...
+
+     Attempted function clauses (showing 2 out of 2):
+
+         defp render_tree(-%Phoenix.LiveViewTest.View{} = view-)
+         defp render_tree(-%Phoenix.LiveViewTest.Element{} = element-)
+
+     code: html = render(live(conn, ~p"/threads") |> elem(2)) # Re-fetch to check content
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:1145: Phoenix.LiveViewTest.render_tree/1
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:1122: Phoenix.LiveViewTest.render/1
+       test/eng_hub_web/live/thread_live_test.exs:51: (test)
+
+...............................
+
+  3) test GET / redirects to posts (EngHubWeb.PageControllerTest)
+     test/eng_hub_web/controllers/page_controller_test.exs:4
+     Assertion with =~ failed
+     code:  assert html_response(conn, 302) =~ "/posts"
+     left:  "<html><body>You are being <a href=\"/servers\">redirected</a>.</body></html>"
+     right: "/posts"
+     stacktrace:
+       test/eng_hub_web/controllers/page_controller_test.exs:6: (test)
+
+........................
+
+  4) test channels list_channels/0 returns all channels (EngHub.MessagingTest)
+     test/eng_hub/messaging_test.exs:13
+     Assertion with == failed
+     code:  assert Messaging.list_channels() == [channel]
+     left:  [
+              %EngHub.Communities.Channel{
+                __meta__: #Ecto.Schema.Metadata<:loaded, "channels">,
+                id: "01KNWQSF9FQ4M8GCE3EXMGY0DA",
+                name: "general",
+                type: :general_chat,
+                position: 0,
+                server_id: "01KNWQSF9AGH055NXY2GDCSZSB",
+                server: #Ecto.Association.NotLoaded<association :server is not loaded>,
+                category_id: "01KNWQSF9CHJ6SVTM4E1ZWKCF1",
+                category: #Ecto.Association.NotLoaded<association :category is not loaded>,
+                project_id: nil,
+                project_resource: #Ecto.Association.NotLoaded<association :project_resource is not loaded>,
+                messages: #Ecto.Association.NotLoaded<association :messages is not loaded>,
+                inserted_at: ~U[2026-04-10 22:21:51Z],
+                updated_at: ~U[2026-04-10 22:21:51Z]
+              },
+              %EngHub.Communities.Channel{
+                __meta__: #Ecto.Schema.Metadata<:loaded, "channels">,
+                id: "01KNWQSF9K423RVTG78Y8WVAAB",
+                name: "some channel",
+                type: :general_chat,
+                position: 0,
+                server_id: "01KNWQSF9AGH055NXY2GDCSZSB",
+                server: #Ecto.Association.NotLoaded<association :server is not loaded>,
+                category_id: "01KNWQSF9HB9DDM62GJVPKBA33",
+                category: #Ecto.Association.NotLoaded<association :category is not loaded>,
+                project_id: nil,
+                project_resource: #Ecto.Association.NotLoaded<association :project_resource is not loaded>,
+                messages: #Ecto.Association.NotLoaded<association :messages is not loaded>,
+                inserted_at: ~U[2026-04-10 22:21:51Z],
+                updated_at: ~U[2026-04-10 22:21:51Z]
+              }
+            ]
+     right: [
+              %EngHub.Communities.Channel{
+                __meta__: #Ecto.Schema.Metadata<:loaded, "channels">,
+                id: "01KNWQSF9K423RVTG78Y8WVAAB",
+                name: "some channel",
+                type: :general_chat,
+                position: 0,
+                server_id: "01KNWQSF9AGH055NXY2GDCSZSB",
+                server: #Ecto.Association.NotLoaded<association :server is not loaded>,
+                category_id: "01KNWQSF9HB9DDM62GJVPKBA33",
+                category: #Ecto.Association.NotLoaded<association :category is not loaded>,
+                project_id: nil,
+                project_resource: #Ecto.Association.NotLoaded<association :project_resource is not loaded>,
+                messages: #Ecto.Association.NotLoaded<association :messages is not loaded>,
+                inserted_at: ~U[2026-04-10 22:21:51Z],
+                updated_at: ~U[2026-04-10 22:21:51Z]
+              }
+            ]
+     stacktrace:
+       test/eng_hub/messaging_test.exs:15: (test)
+
+...............................
+Finished in 4.5 seconds (1.9s async, 2.5s sync)
+169 tests, 4 failures
+
+Randomized with seed 854740

@@ -4,10 +4,18 @@ defmodule EngHubWeb.PostLiveTest do
   import Phoenix.LiveViewTest
   import EngHub.TimelineFixtures
 
-  @create_attrs %{body: "some body", code_snippet: "some code_snippet", github_url: "some github_url"}
-  @update_attrs %{body: "some updated body", code_snippet: "some updated code_snippet", github_url: "some updated github_url"}
+  @create_attrs %{
+    body: "some body",
+    code_snippet: "some code_snippet",
+    github_url: "some github_url"
+  }
+  @update_attrs %{
+    body: "some updated body",
+    code_snippet: "some updated code_snippet",
+    github_url: "some updated github_url"
+  }
   @invalid_attrs %{body: nil, code_snippet: nil, github_url: nil}
-  defp create_post(%{conn: conn, user: user}) do
+  defp create_post(%{conn: conn}) do
     user = EngHub.IdentityFixtures.user_fixture()
     conn = log_in_user(conn, user)
     post = post_fixture(%{user_id: user.id})
@@ -25,7 +33,7 @@ defmodule EngHubWeb.PostLiveTest do
       assert html =~ post.body
     end
 
-    test "saves new post", %{conn: conn, user: user} do
+    test "saves new post", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, ~p"/posts")
 
       assert {:ok, form_live, _} =

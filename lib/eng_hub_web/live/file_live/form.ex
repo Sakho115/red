@@ -14,6 +14,7 @@ defmodule EngHubWeb.FileLive.Form do
       </.header>
 
       <.form for={@form} id="file-form" phx-change="validate" phx-submit="save">
+        <.input field={@form[:project_id]} type="hidden" />
         <.input field={@form[:filename]} type="text" label="Filename" />
         <.input field={@form[:storage_path]} type="text" label="Storage path" />
         <.input field={@form[:mime_type]} type="text" label="Mime type" />
@@ -47,8 +48,8 @@ defmodule EngHubWeb.FileLive.Form do
     |> assign(:form, to_form(Vault.change_file(file)))
   end
 
-  defp apply_action(socket, :new, _params) do
-    file = %File{}
+  defp apply_action(socket, :new, params) do
+    file = %File{project_id: params["project_id"]}
 
     socket
     |> assign(:page_title, "New File")
@@ -80,6 +81,10 @@ defmodule EngHubWeb.FileLive.Form do
   end
 
   defp save_file(socket, :new, file_params) do
+    file_params = Map.put(file_params, "uploader_id", socket.assigns.current_user.id)
+    # If project_id is not in form but we have it in assigns/params
+    file_params = Map.put_new(file_params, "project_id", socket.assigns.file.project_id)
+
     case Vault.create_file(file_params) do
       {:ok, file} ->
         {:noreply,

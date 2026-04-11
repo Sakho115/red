@@ -123,14 +123,16 @@ defmodule EngHub.Social do
   """
   def unfollow_user(follower_id, following_id) do
     case Repo.get_by(Follow, follower_id: follower_id, following_id: following_id) do
-      nil -> {:error, :not_found}
-      follow -> 
+      nil ->
+        {:error, :not_found}
+
+      follow ->
         result = Repo.delete(follow)
-        
+
         if match?({:ok, _}, result) do
           :telemetry.execute([:eng_hub, :social, :user_unfollowed], %{count: 1})
         end
-        
+
         result
     end
   end

@@ -22,6 +22,14 @@ defmodule EngHub.Events do
   end
 
   @doc """
+  Returns the list of hackathons (events) for a specific channel.
+  """
+  def list_events_by_channel(channel_id) do
+    from(h in Hackathon, where: h.channel_id == ^channel_id, order_by: [desc: h.inserted_at])
+    |> Repo.all()
+  end
+
+  @doc """
   Gets a single hackathon.
 
   Raises `Ecto.NoResultsError` if the Hackathon does not exist.

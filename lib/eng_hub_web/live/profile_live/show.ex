@@ -37,20 +37,24 @@ defmodule EngHubWeb.ProfileLive.Show do
             </p>
             <p :if={@user.website}>
               <span class="font-semibold text-gray-700">Website:</span>
-              <a href={@user.website} target="_blank" class="ml-2 text-indigo-600 hover:text-indigo-900">
+              <a
+                href={@user.website}
+                target="_blank"
+                class="ml-2 text-indigo-600 hover:text-indigo-900"
+              >
                 {@user.website}
               </a>
             </p>
           </div>
         </div>
-
-        <!-- Bio and Activity -->
+        
+    <!-- Bio and Activity -->
         <div class="flex-1">
           <h2 class="text-xl font-bold text-gray-900 border-b pb-2">Biography</h2>
           <div class="mt-4 text-gray-700 whitespace-pre-wrap min-h-[100px]">
             {@user.bio || "This user hasn't added a bio yet."}
           </div>
-          
+
           <h2 class="text-xl font-bold text-gray-900 border-b pb-2 mt-10">Recent Activity</h2>
           <div class="mt-4 text-gray-500 italic">
             Activity timeline coming soon... (Posts, Threads, and Hackathons)

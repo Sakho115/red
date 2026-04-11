@@ -1,103 +1,64 @@
-<div class="flex h-screen w-screen overflow-hidden bg-base-100 text-base-content font-sans antialiased text-[15px]">
+<div class="flex h-screen w-screen overflow-hidden bg-base-100 text-base-content font-sans antialiased text-[15px] selection:bg-primary/30">
+  <%= if assigns[:servers] do %>
+    <!-- Pane 1: Server Bar -->
+    <.server_sidebar
+      servers={@servers}
+      current_server_id={assigns[:server] && @server.id}
+    />
+  <% else %>
+    <nav class="hidden md:flex w-[72px] flex-shrink-0 bg-base-300 flex-col items-center py-3 gap-3 border-r border-black/10 select-none glass-server-bar">
+      <a
+        href="/"
+        class="w-12 h-12 rounded-[16px] bg-primary text-primary-content flex items-center justify-center hover:rounded-xl transition-all duration-200 shadow-lg cursor-pointer relative group animate-server-icon"
+      >
+        EH
+      </a>
+    </nav>
+  <% end %>
+
+  <%= if assigns[:server] && assigns[:categories] do %>
+    <!-- Pane 2: Channel Sidebar -->
+    <.channel_sidebar
+      server={assigns[:server]}
+      categories={assigns[:categories] || []}
+      current_channel_id={assigns[:active_channel] && @active_channel.id}
+      current_user={assigns[:current_scope] || assigns[:current_user]}
+    />
+  <% else %>
+    <aside class="hidden md:flex w-60 flex-shrink-0 bg-base-200 flex-col border-r border-white/5 select-none glass-sidebar">
+      <div class="h-12 flex items-center px-4 font-bold border-b border-white/5">
+        <span class="truncate tracking-tight">EngHub</span>
+      </div>
+      <div class="flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
+        <a
+          href="/"
+          class="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-white/5 text-base-content/70 hover:text-base-content font-medium text-sm transition-all group"
+        >
+          <.icon name="hero-home" class="w-4 h-4 opacity-50 group-hover:opacity-100" /> Dashboard
+        </a>
+        <a
+          href="/servers"
+          class="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-white/5 text-base-content/70 hover:text-base-content font-medium text-sm transition-all group"
+        >
+          <.icon name="hero-server-stack" class="w-4 h-4 opacity-50 group-hover:opacity-100" /> Servers
+        </a>
+      </div>
+    </aside>
+  <% end %>
   
-  <!-- Outer Sidebar (Servers / Workspaces) -->
-  <nav class="hidden md:flex w-[72px] flex-shrink-0 bg-base-300 flex-col items-center py-3 gap-3 border-r border-base-200 select-none">
-    <a href="/" class="w-12 h-12 rounded-[16px] bg-primary text-primary-content flex items-center justify-center hover:rounded-xl transition-all duration-200 shadow-sm cursor-pointer relative group">
-      <img src={~p"/images/logo.svg"} class="w-7 h-7 filter invert opacity-90 group-hover:opacity-100" />
-      <div class="absolute left-0 -ml-1 flex items-center h-full w-2">
-        <div class="h-2 w-1 bg-primary rounded-r-md transition-all duration-300 group-hover:h-5"></div>
-      </div>
-    </a>
-    <div class="w-8 h-[2px] bg-base-200 rounded-full my-1"></div>
-    <a href="/" class="w-12 h-12 rounded-[24px] bg-base-100 flex items-center justify-center hover:rounded-[16px] hover:bg-primary hover:text-primary-content transition-all duration-200 cursor-pointer shadow-sm text-lg font-bold relative group">
-      EH
-      <div class="absolute left-0 -ml-1 flex items-center h-full w-2">
-        <div class="h-2 w-1 bg-base-content/20 rounded-r-md transition-all duration-300 group-hover:h-5 group-hover:bg-primary"></div>
-      </div>
-    </a>
-  </nav>
-
-  <!-- Inner Sidebar (Channels / Pages) -->
-  <aside class="hidden md:flex w-64 flex-shrink-0 bg-base-200 flex-col border-r border-base-300 select-none">
-    <div class="h-12 flex items-center px-4 font-semibold border-b border-base-300 hover:bg-base-300/30 cursor-pointer transition-colors shadow-sm">
-      <span class="truncate">EngHub Project</span>
-      <div class="flex-1"></div>
-      <.icon name="hero-chevron-down" class="w-4 h-4 text-base-content/60" />
-    </div>
-    <div class="flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
-      <div class="px-2 pt-3 pb-1 text-[11px] font-bold text-base-content/50 uppercase tracking-widest flex items-center group cursor-pointer hover:text-base-content/80">
-        <span class="flex-1">Main Menu</span>
-        <.icon name="hero-plus" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-      </div>
-      <a href="/" class="flex items-center gap-3 px-2 py-1.5 rounded-[4px] bg-base-300/60 text-base-content font-medium text-sm group">
-        <.icon name="hero-home" class="w-4 h-4 text-base-content/70 group-hover:text-base-content" />
-        Dashboard
-      </a>
-      <a href="/discussions" class="flex items-center gap-3 px-2 py-1.5 rounded-[4px] hover:bg-base-300/40 text-base-content/70 hover:text-base-content font-medium text-sm transition-colors group">
-        <.icon name="hero-chat-bubble-left-ellipsis" class="w-4 h-4 text-base-content/60 group-hover:text-base-content/90" />
-        Discussions
-      </a>
-      <a href="/teams" class="flex items-center gap-3 px-2 py-1.5 rounded-[4px] hover:bg-base-300/40 text-base-content/70 hover:text-base-content font-medium text-sm transition-colors group">
-        <.icon name="hero-users" class="w-4 h-4 text-base-content/60 group-hover:text-base-content/90" />
-        Teams
-      </a>
-    </div>
-    <div class="px-3 py-3 bg-base-200/50 mt-auto border-t border-base-300 flex items-center gap-3 shrink-0">
-      <div class="relative">
-        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content font-bold shadow-sm cursor-pointer hover:opacity-90">
-          U
-        </div>
-        <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-success rounded-full border-2 border-base-200"></div>
-      </div>
-      <div class="flex-1 min-w-0 cursor-pointer">
-        <div class="text-[13px] font-semibold truncate leading-tight">User Name</div>
-        <div class="text-[11px] text-base-content/60 truncate leading-tight">Online</div>
-      </div>
-      <div class="flex gap-1.5">
-        <.theme_toggle />
-        <button class="w-8 h-8 rounded-[4px] flex items-center justify-center text-base-content/70 hover:text-base-content hover:bg-base-300 transition-colors">
-          <.icon name="hero-cog-6-tooth" class="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Main Content Area -->
-  <main class="flex-1 flex flex-col min-w-0 bg-base-100">
-    <!-- Top Nav / Header -->
-    <header class="h-12 flex items-center px-4 border-b border-base-200 shrink-0 gap-3 bg-base-100">
-      <button class="md:hidden text-base-content/70 hover:text-base-content transition-colors mr-1">
-        <.icon name="hero-bars-3" class="w-5 h-5" />
-      </button>
-      <.icon name="hero-hashtag" class="hidden sm:block w-5 h-5 text-base-content/40" />
-      <span class="font-bold text-[15px]">general</span>
-      <div class="w-[1px] h-5 bg-base-200 mx-1"></div>
-      <span class="text-[13px] text-base-content/60 font-medium truncate">Welcome to the EngHub platform</span>
-      
-      <div class="flex-1"></div>
-      
-      <div class="flex items-center gap-4 text-base-content/70">
-        <a href="https://hexdocs.pm/phoenix/overview.html" class="hover:text-base-content transition-colors" title="Documentation">
-          <.icon name="hero-book-open" class="w-5 h-5" />
-        </a>
-        <a href="https://github.com/phoenixframework/phoenix" class="hover:text-base-content transition-colors" title="GitHub">
-          <.icon name="hero-code-bracket-square" class="w-5 h-5" />
-        </a>
-        <div class="relative w-36 sm:w-48 ml-2 hidden sm:block">
-          <input type="text" placeholder="Search" class="w-full bg-base-200 text-sm rounded-[4px] outline-none border border-transparent focus:border-primary/50 px-2 py-1 text-base-content placeholder:text-base-content/40 transition-colors" />
-          <.icon name="hero-magnifying-glass" class="w-3.5 h-3.5 absolute right-2 top-2 text-base-content/50" />
-        </div>
-      </div>
-    </header>
-    
-    <!-- Content Scroll Layout -->
-    <div class="flex-1 overflow-y-auto bg-base-100 custom-scrollbar relative">
-      <div class="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col min-h-full">
-        <div class="mx-auto w-full max-w-4xl flex-1 flex flex-col text-[15px] leading-relaxed">
-          <.flash_group flash={@flash} />
-          {render_slot(@inner_block)}
-        </div>
-      </div>
-    </div>
+  <!-- Pane 3: Main Content Area -->
+  <main class="flex-1 flex flex-col min-w-0 bg-base-100 relative overflow-hidden">
+    <.flash_group flash={@flash} />
+    {render_slot(@inner_block)}
   </main>
+
+  <%= if assigns[:members] && assigns[:server] do %>
+    <!-- Pane 4: Member List -->
+    <.member_sidebar
+      server={@server}
+      members={@members}
+      online_user_ids={assigns[:online_user_ids] || []}
+      current_user={assigns[:current_scope] || assigns[:current_user]}
+    />
+  <% end %>
 </div>

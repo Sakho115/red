@@ -4,11 +4,23 @@ defmodule EngHubWeb.FileLiveTest do
   import Phoenix.LiveViewTest
   import EngHub.VaultFixtures
 
-  @create_attrs %{size: 42, filename: "some filename", storage_path: "some storage_path", mime_type: "some mime_type"}
-  @update_attrs %{size: 43, filename: "some updated filename", storage_path: "some updated storage_path", mime_type: "some updated mime_type"}
+  @create_attrs %{
+    size: 42,
+    filename: "some filename",
+    storage_path: "some storage_path",
+    mime_type: "some mime_type"
+  }
+  @update_attrs %{
+    size: 43,
+    filename: "some updated filename",
+    storage_path: "some updated storage_path",
+    mime_type: "some updated mime_type"
+  }
   @invalid_attrs %{size: nil, filename: nil, storage_path: nil, mime_type: nil}
   defp create_file(%{user: user}) do
     file = file_fixture(uploader_id: user.id)
+    # Ensure user has permission to see/edit/delete the file in its project
+    {:ok, _} = EngHub.Projects.upsert_member(file.project_id, user.id, "editor")
 
     %{vault_file: file}
   end
@@ -23,14 +35,10 @@ defmodule EngHubWeb.FileLiveTest do
       assert html =~ file.filename
     end
 
-    test "saves new file", %{conn: conn, user: user} do
+    test "saves new file", %{conn: conn, user: user, vault_file: file} do
       {:ok, index_live, _html} = live(conn, ~p"/files")
 
-      assert {:ok, form_live, _} =
-               index_live
-               |> element("a", "New File")
-               |> render_click()
-               |> follow_redirect(conn, ~p"/files/new")
+      assert {:ok, form_live, _} = live(conn, ~p"/files/new?project_id=#{file.project_id}")
 
       assert render(form_live) =~ "New File"
 
@@ -40,7 +48,7 @@ defmodule EngHubWeb.FileLiveTest do
 
       assert {:ok, index_live, _html} =
                form_live
-               |> form("#file-form", file: @create_attrs)
+               |> form("#file-form", file: Map.put(@create_attrs, "project_id", file.project_id))
                |> render_submit()
                |> follow_redirect(conn, ~p"/files")
 

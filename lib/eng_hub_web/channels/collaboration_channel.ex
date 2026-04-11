@@ -4,7 +4,7 @@ defmodule EngHubWeb.CollaborationChannel do
 
   @impl true
   def join("collaboration:" <> project_id, payload, socket) do
-    if authorized?(payload) do
+    if authorized?(payload, project_id, socket) do
       send(self(), :after_join)
       {:ok, assign(socket, :project_id, project_id)}
     else
@@ -14,10 +14,11 @@ defmodule EngHubWeb.CollaborationChannel do
 
   @impl true
   def handle_info(:after_join, socket) do
-    {:ok, _} = Presence.track(socket, socket.assigns.current_user.id, %{
-      online_at: inspect(System.system_time(:second)),
-      email: socket.assigns.current_user.email
-    })
+    {:ok, _} =
+      Presence.track(socket, socket.assigns.current_user.id, %{
+        online_at: inspect(System.system_time(:second)),
+        email: socket.assigns.current_user.email
+      })
 
     push(socket, "presence_state", Presence.list(socket))
     {:noreply, socket}
@@ -29,8 +30,8 @@ defmodule EngHubWeb.CollaborationChannel do
     {:reply, :ok, socket}
   end
 
-  # Add authorization logic here as required.
-  defp authorized?(_payload) do
-    true
+  defp authorized?(_payload, project_id, socket) do
+    user = socket.assigns.current_user
+    EngHub.Projects.can?(project_id, user.id, "viewer")
   end
 end

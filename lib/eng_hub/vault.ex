@@ -8,17 +8,29 @@ defmodule EngHub.Vault do
 
   alias EngHub.Vault.File
 
-  @doc """
-  Returns the list of files.
-
-  ## Examples
-
-      iex> list_files()
-      [%File{}, ...]
-
-  """
   def list_files do
     Repo.all(File)
+  end
+
+  @doc """
+  Returns the list of files for a specific channel.
+  """
+  def list_files_by_channel(channel_id) do
+    from(f in File, where: f.channel_id == ^channel_id, order_by: [desc: f.inserted_at])
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of files for a specific user, based on their project memberships.
+  """
+  def list_files_for_user(user_id) do
+    from(f in File,
+      join: m in EngHub.Projects.ProjectMember,
+      on: m.project_id == f.project_id,
+      where: m.user_id == ^user_id,
+      order_by: [desc: f.inserted_at]
+    )
+    |> Repo.all()
   end
 
   @doc """

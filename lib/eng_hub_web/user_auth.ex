@@ -1,10 +1,35 @@
 defmodule EngHubWeb.UserAuth do
+  use EngHubWeb, :verified_routes
+
   import Plug.Conn
+  import Phoenix.Controller
 
   def fetch_current_user(conn, _opts) do
     {user_token, conn} = ensure_user_token(conn)
     user = user_token && get_user_by_session_token(user_token)
     assign(conn, :current_user, user)
+  end
+
+  def log_in_user(conn, user, _params \\ %{}) do
+    {:ok, token} = EngHub.Identity.create_token(%{user_id: user.id, type: :session})
+    encoded_token = Base.encode64(token.value, padding: false)
+    user_return_to = get_session(conn, :user_return_to)
+
+    conn
+    |> renew_session()
+    |> put_session(:user_token, encoded_token)
+    |> put_session(:live_socket_id, "users_sessions:#{encoded_token}")
+    |> redirect(to: user_return_to || signed_in_path(conn))
+  end
+
+  defp signed_in_path(_conn), do: ~p"/"
+
+  defp renew_session(conn) do
+    delete_csrf_token()
+
+    conn
+    |> configure_session(renew: true)
+    |> clear_session()
   end
 
   defp ensure_user_token(conn) do
@@ -15,14 +40,16 @@ defmodule EngHubWeb.UserAuth do
     end
   end
 
-  defp get_user_by_session_token(token_value) do
+  def get_user_by_session_token(token_value) do
     case Base.decode64(token_value, padding: false) do
-      {:ok, decoded} -> 
+      {:ok, decoded} ->
         case EngHub.Identity.get_by_token(decoded) do
           {:ok, user} -> user
           _ -> nil
         end
-      _ -> nil
+
+      _ ->
+        nil
     end
   end
 

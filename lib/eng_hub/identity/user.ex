@@ -54,7 +54,9 @@ defmodule EngHub.Identity.User do
     |> validate_required([:email, :username])
     |> validate_length(:email, min: 6, max: 120)
     |> validate_length(:username, min: 3, max: 20)
-    |> validate_format(:username, ~r/^[a-zA-Z0-9_]+$/, message: "can only contain letters, numbers, and underscores")
+    |> validate_format(:username, ~r/^[a-zA-Z0-9_]+$/,
+      message: "can only contain letters, numbers, and underscores"
+    )
     |> validate_format(:email, ~r/@/)
     |> update_change(:email, &String.downcase/1)
     |> unique_constraint(:email)

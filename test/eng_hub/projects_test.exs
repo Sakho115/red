@@ -77,10 +77,14 @@ defmodule EngHub.ProjectsTest do
     end
 
     test "create_project_member/1 with valid data creates a project_member" do
-      valid_attrs = %{role: "some role"}
+      project = project_fixture()
+      user = EngHub.IdentityFixtures.user_fixture()
+      valid_attrs = %{role: "editor", project_id: project.id, user_id: user.id}
 
-      assert {:ok, %ProjectMember{} = project_member} = Projects.create_project_member(valid_attrs)
-      assert project_member.role == "some role"
+      assert {:ok, %ProjectMember{} = project_member} =
+               Projects.create_project_member(valid_attrs)
+
+      assert project_member.role == "editor"
     end
 
     test "create_project_member/1 with invalid data returns error changeset" do
@@ -89,15 +93,20 @@ defmodule EngHub.ProjectsTest do
 
     test "update_project_member/2 with valid data updates the project_member" do
       project_member = project_member_fixture()
-      update_attrs = %{role: "some updated role"}
+      update_attrs = %{role: "admin"}
 
-      assert {:ok, %ProjectMember{} = project_member} = Projects.update_project_member(project_member, update_attrs)
-      assert project_member.role == "some updated role"
+      assert {:ok, %ProjectMember{} = project_member} =
+               Projects.update_project_member(project_member, update_attrs)
+
+      assert project_member.role == "admin"
     end
 
     test "update_project_member/2 with invalid data returns error changeset" do
       project_member = project_member_fixture()
-      assert {:error, %Ecto.Changeset{}} = Projects.update_project_member(project_member, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Projects.update_project_member(project_member, @invalid_attrs)
+
       assert project_member == Projects.get_project_member!(project_member.id)
     end
 

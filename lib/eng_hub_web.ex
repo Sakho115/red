@@ -86,6 +86,8 @@ defmodule EngHubWeb do
       import Phoenix.HTML
       # Core UI components
       import EngHubWeb.CoreComponents
+      import EngHubWeb.ServerComponents
+      import EngHubWeb.MemberComponents
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS

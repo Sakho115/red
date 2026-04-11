@@ -26,6 +26,7 @@ import { hooks as colocatedHooks } from "phoenix-colocated/eng_hub"
 import topbar from "../vendor/topbar"
 
 import { SupportHook, AuthenticationHook, RegistrationHook } from "webauthn_components";
+import { HardwarePreviewHook } from "./hardware_preview_hook"
 
 let customHooks = {
   Highlight: {
@@ -38,7 +39,12 @@ let customHooks = {
   },
   SupportHook,
   AuthenticationHook,
-  RegistrationHook
+  RegistrationHook,
+  HardwarePreview: HardwarePreviewHook,
+  ScrollToBottom: {
+    mounted() { this.el.scrollTop = this.el.scrollHeight },
+    updated() { this.el.scrollTop = this.el.scrollHeight }
+  }
 }
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")

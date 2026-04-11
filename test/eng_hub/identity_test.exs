@@ -7,12 +7,11 @@ defmodule EngHub.IdentityTest do
   alias EngHub.Identity.UserKey
   alias EngHub.Identity.UserToken
 
-
   describe "list/1" do
     setup do
       users =
-      Stream.repeatedly(fn -> IdentityFixtures.user_fixture() end)
-      |> Enum.take(10)
+        Stream.repeatedly(fn -> IdentityFixtures.user_fixture() end)
+        |> Enum.take(10)
 
       %{users: users}
     end

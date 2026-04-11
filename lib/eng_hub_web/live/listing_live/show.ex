@@ -2,6 +2,7 @@ defmodule EngHubWeb.ListingLive.Show do
   use EngHubWeb, :live_view
 
   alias EngHub.Marketplace
+  alias EngHubWeb.Live.Authorize
 
   @impl true
   def render(assigns) do
@@ -32,9 +33,17 @@ defmodule EngHubWeb.ListingLive.Show do
 
   @impl true
   def mount(%{"id" => id}, _session, socket) do
-    {:ok,
-     socket
-     |> assign(:page_title, "Show Listing")
-     |> assign(:listing, Marketplace.get_listing!(id))}
+    listing = Marketplace.get_listing!(id)
+
+    case Authorize.check_permission(socket, listing.project_id, "viewer") do
+      {:ok, socket} ->
+        {:ok,
+         socket
+         |> assign(:page_title, "Show Listing")
+         |> assign(:listing, listing)}
+
+      {:error, socket} ->
+        {:ok, socket}
+    end
   end
 end

@@ -24,15 +24,30 @@ defmodule EngHub.Discussions do
 
   @doc """
   Returns the list of threads.
-
-  ## Examples
-
-      iex> list_threads()
-      [%Thread{}, ...]
-
   """
   def list_threads do
     Repo.all(Thread)
+  end
+
+  @doc """
+  Returns the list of threads for a specific channel.
+  """
+  def list_threads_by_channel(channel_id) do
+    from(t in Thread, where: t.channel_id == ^channel_id, order_by: [desc: t.inserted_at])
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of threads for a specific user, based on their project memberships.
+  """
+  def list_threads_for_user(user_id) do
+    from(t in Thread,
+      join: m in EngHub.Projects.ProjectMember,
+      on: m.project_id == t.project_id,
+      where: m.user_id == ^user_id,
+      order_by: [desc: t.inserted_at]
+    )
+    |> Repo.all()
   end
 
   @doc """
