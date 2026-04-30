@@ -2,11 +2,13 @@ defmodule EngHub.Vault.FileVersion do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
   schema "file_versions" do
     field :version_number, :integer
     field :storage_path, :string
-    field :file_id, :id
-    field :created_by_id, :id
+    belongs_to :file, EngHub.Vault.File
+    belongs_to :created_by, EngHub.Identity.User
 
     timestamps(type: :utc_datetime)
   end

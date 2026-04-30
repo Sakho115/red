@@ -1,43 +1,70 @@
 <div class="relative min-h-screen bg-base-100 overflow-hidden font-sans selection:bg-primary/30 text-white">
   <!-- Dynamic Mesh Gradient Background -->
   <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[120px] animate-pulse [animation-delay:2s]"></div>
+    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse">
+    </div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[120px] animate-pulse [animation-delay:2s]">
+    </div>
   </div>
-
-  <!-- Navigation -->
+  
+<!-- Navigation -->
   <nav class="relative z-50 flex items-center justify-between px-8 py-6 backdrop-blur-md border-b border-white/5 bg-base-100/20">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 rotate-3 group-hover:rotate-0 transition-transform">
         <span class="font-black text-xl italic text-white">E</span>
       </div>
-      <span class="text-xl font-bold tracking-tighter uppercase italic">EngHub <span class="text-primary">2026</span></span>
+      <span class="text-xl font-bold tracking-tighter uppercase italic">
+        EngHub <span class="text-primary">2026</span>
+      </span>
     </div>
     <div class="flex items-center gap-6">
       <%= if @current_user do %>
-        <.link navigate={~p"/servers"} class="text-sm font-bold text-white/70 hover:text-white transition-colors">Go to Servers</.link>
-        <.link navigate={~p"/sign-out"} method="delete" class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-bold border border-white/5 transition-all">Sign Out</.link>
+        <.link
+          navigate={~p"/servers"}
+          class="text-sm font-bold text-white/70 hover:text-white transition-colors"
+        >
+          Go to Servers
+        </.link>
+        <.link
+          navigate={~p"/sign-out"}
+          method="delete"
+          class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-bold border border-white/5 transition-all"
+        >
+          Sign Out
+        </.link>
       <% else %>
-        <.link navigate={~p"/sign-in"} class="text-sm font-bold text-white/70 hover:text-white transition-colors">Log In</.link>
-        <.link navigate={~p"/sign-up"} class="px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-black shadow-xl shadow-primary/20 hover:scale-105 transition-all">Get Started</.link>
+        <.link
+          navigate={~p"/sign-in"}
+          class="text-sm font-bold text-white/70 hover:text-white transition-colors"
+        >
+          Log In
+        </.link>
+        <.link
+          navigate={~p"/sign-up"}
+          class="px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-black shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+        >
+          Get Started
+        </.link>
       <% end %>
     </div>
   </nav>
-
-  <!-- Hero Section -->
+  
+<!-- Hero Section -->
   <main class="relative z-10 flex flex-col items-center justify-center pt-32 pb-24 px-6 text-center max-w-5xl mx-auto">
     <div class="inline-flex items-center px-3 py-1 mb-8 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
-      <span class="text-[10px] font-black tracking-widest uppercase text-primary">The Future of Engineering Collaboration</span>
+      <span class="text-[10px] font-black tracking-widest uppercase text-primary">
+        The Future of Engineering Collaboration
+      </span>
     </div>
-    
+
     <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-white italic uppercase mb-8">
-      Build <span class="text-primary italic">Faster</span>.<br/>Collaborate <span class="text-secondary italic">Everything</span>.
+      Build <span class="text-primary italic">Faster</span>.<br />Collaborate <span class="text-secondary italic">Everything</span>.
     </h1>
 
     <p class="max-w-2xl mx-auto text-lg md:text-xl text-white/40 font-medium leading-relaxed mb-12">
       A decentralized, real-time workspace designed for modern engineers. From 3D previews to secure vaults, EngHub is where the next generation of hardware and software begins.
     </p>
-    
+
     <div class="flex flex-col sm:flex-row items-center gap-4">
       <%= if @current_user do %>
         <.link
@@ -45,7 +72,10 @@
           class="px-10 py-4 bg-primary text-white rounded-2xl text-lg font-black shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
         >
           Enter Workspace
-          <.icon name="hero-arrow-right-solid" class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <.icon
+            name="hero-arrow-right-solid"
+            class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+          />
         </.link>
       <% else %>
         <.link
@@ -53,20 +83,25 @@
           class="px-10 py-4 bg-primary text-white rounded-2xl text-lg font-black shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
         >
           Join the Hub
-          <.icon name="hero-sparkles-solid" class="w-5 h-5 group-hover:rotate-12 transition-transform" />
+          <.icon
+            name="hero-sparkles-solid"
+            class="w-5 h-5 group-hover:rotate-12 transition-transform"
+          />
         </.link>
       <% end %>
     </div>
   </main>
-
-  <!-- Feature Grid (Glassmorphism Cards) -->
+  
+<!-- Feature Grid (Glassmorphism Cards) -->
   <section class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 px-8 max-w-7xl mx-auto pb-32">
     <div class="p-8 rounded-[32px] bg-white/5 border border-white/5 backdrop-blur-xl hover:bg-white/10 transition-all group">
       <div class="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
         <.icon name="hero-cpu-chip-solid" class="w-6 h-6" />
       </div>
       <h3 class="text-xl font-black uppercase tracking-tighter mb-2 italic">Project Vault</h3>
-      <p class="text-white/40 text-sm font-medium leading-relaxed">Secure, version-controlled storage for your most critical engineering assets and components.</p>
+      <p class="text-white/40 text-sm font-medium leading-relaxed">
+        Secure, version-controlled storage for your most critical engineering assets and components.
+      </p>
     </div>
 
     <div class="p-8 rounded-[32px] bg-white/5 border border-white/5 backdrop-blur-xl hover:bg-white/10 transition-all group">
@@ -74,7 +109,9 @@
         <.icon name="hero-chat-bubble-left-right-solid" class="w-6 h-6" />
       </div>
       <h3 class="text-xl font-black uppercase tracking-tighter mb-2 italic">Real-Time Hub</h3>
-      <p class="text-white/40 text-sm font-medium leading-relaxed">Collaborate with your team using high-fidelity chat, threads, and live presence indicators.</p>
+      <p class="text-white/40 text-sm font-medium leading-relaxed">
+        Collaborate with your team using high-fidelity chat, threads, and live presence indicators.
+      </p>
     </div>
 
     <div class="p-8 rounded-[32px] bg-white/5 border border-white/5 backdrop-blur-xl hover:bg-white/10 transition-all group">
@@ -82,7 +119,9 @@
         <.icon name="hero-rocket-launch-solid" class="w-6 h-6" />
       </div>
       <h3 class="text-xl font-black uppercase tracking-tighter mb-2 italic">Hardware Sync</h3>
-      <p class="text-white/40 text-sm font-medium leading-relaxed">Seamlessly integrate your physical hardware previews and 3D models into the team workflow.</p>
+      <p class="text-white/40 text-sm font-medium leading-relaxed">
+        Seamlessly integrate your physical hardware previews and 3D models into the team workflow.
+      </p>
     </div>
   </section>
 </div>

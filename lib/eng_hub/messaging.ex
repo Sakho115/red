@@ -8,18 +8,19 @@ defmodule EngHub.Messaging do
 
   alias EngHub.Communities.Channel
   alias EngHub.Messaging.Message
+  alias EngHub.Messaging.Reaction
 
   def subscribe(channel_id) do
     Phoenix.PubSub.subscribe(EngHub.PubSub, "channels:#{channel_id}")
   end
 
   defp broadcast({:ok, %Message{} = message}, event) do
-    message = Repo.preload(message, :user)
+    preloaded = Repo.preload(message, [:user, [parent: :user], reactions: :user])
 
     Phoenix.PubSub.broadcast(
       EngHub.PubSub,
       "channels:#{message.channel_id}",
-      {__MODULE__, event, message}
+      {__MODULE__, event, preloaded}
     )
 
     {:ok, message}
@@ -121,8 +122,6 @@ defmodule EngHub.Messaging do
     Channel.changeset(channel, attrs)
   end
 
-  alias EngHub.Messaging.Message
-
   @doc """
   Returns the list of messages.
 
@@ -139,8 +138,9 @@ defmodule EngHub.Messaging do
   def list_messages_by_channel(channel_id) do
     Message
     |> where(channel_id: ^channel_id)
+    |> order_by(asc: :inserted_at)
     |> Repo.all()
-    |> Repo.preload(:user)
+    |> Repo.preload([:user, [parent: :user], reactions: :user])
   end
 
   @doc """
@@ -194,6 +194,7 @@ defmodule EngHub.Messaging do
     message
     |> Message.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:message_updated)
   end
 
   @doc """
@@ -210,6 +211,7 @@ defmodule EngHub.Messaging do
   """
   def delete_message(%Message{} = message) do
     Repo.delete(message)
+    |> broadcast(:message_deleted)
   end
 
   @doc """
@@ -224,4 +226,69 @@ defmodule EngHub.Messaging do
   def change_message(%Message{} = message, attrs \\ %{}) do
     Message.changeset(message, attrs)
   end
+
+  # Reactions
+
+  def create_reaction(attrs) do
+    %Reaction{}
+    |> Reaction.changeset(attrs)
+    |> Repo.insert()
+    |> broadcast_reaction(:reaction_created)
+  end
+
+  def delete_reaction(message_id, user_id, emoji) do
+    from(r in Reaction,
+      where: r.message_id == ^message_id and r.user_id == ^user_id and r.emoji == ^emoji
+    )
+    |> Repo.delete_all()
+    |> broadcast_reaction_deleted(message_id)
+  end
+
+  def toggle_reaction(message_id, user_id, emoji) do
+    query =
+      from(r in Reaction,
+        where: r.message_id == ^message_id and r.user_id == ^user_id and r.emoji == ^emoji
+      )
+
+    case Repo.one(query) do
+      %Reaction{} -> delete_reaction(message_id, user_id, emoji)
+      nil -> create_reaction(%{message_id: message_id, user_id: user_id, emoji: emoji})
+    end
+  end
+
+  defp broadcast_reaction({:ok, reaction}, event) do
+    case Repo.get(Message, reaction.message_id) do
+      %Message{channel_id: channel_id} ->
+        Phoenix.PubSub.broadcast(
+          EngHub.PubSub,
+          "channels:#{channel_id}",
+          {__MODULE__, event, reaction}
+        )
+
+      nil ->
+        # Message was likely deleted simultaneously
+        :ok
+    end
+
+    {:ok, reaction}
+  end
+
+  defp broadcast_reaction(error, _), do: error
+
+  defp broadcast_reaction_deleted({n, _}, message_id) when n > 0 do
+    case Repo.get(Message, message_id) do
+      %Message{channel_id: channel_id} ->
+        Phoenix.PubSub.broadcast(
+          EngHub.PubSub,
+          "channels:#{channel_id}",
+          {__MODULE__, :reaction_deleted, %{message_id: message_id}}
+        )
+
+      nil ->
+        # Message was likely deleted
+        :ok
+    end
+  end
+
+  defp broadcast_reaction_deleted(result, _), do: result
 end

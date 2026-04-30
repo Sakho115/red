@@ -7,6 +7,47 @@ defmodule EngHub.Timeline do
   alias EngHub.Repo
 
   alias EngHub.Timeline.Post
+  alias EngHub.Timeline.Activity
+
+  # Activities
+
+  @doc """
+  Logs a new activity.
+  """
+  def log_activity(attrs) do
+    %Activity{}
+    |> Activity.changeset(attrs)
+    |> Repo.insert()
+    |> case do
+      {:ok, activity} ->
+        # Broadcast to server-specific timeline
+        if activity.server_id do
+          Phoenix.PubSub.broadcast(
+            EngHub.PubSub,
+            "timeline:server:#{activity.server_id}",
+            {:activity_created, activity}
+          )
+        end
+
+        {:ok, activity}
+
+      error ->
+        error
+    end
+  end
+
+  @doc """
+  Lists recent activities for a server.
+  """
+  def list_activities(server_id) do
+    from(a in Activity,
+      where: a.server_id == ^server_id,
+      order_by: [desc: a.inserted_at],
+      preload: [:user, :project],
+      limit: 50
+    )
+    |> Repo.all()
+  end
 
   @doc """
   Returns the list of posts.
@@ -97,7 +138,8 @@ defmodule EngHub.Timeline do
   end
 
   defp broadcast({:ok, post}, event) do
-    Phoenix.PubSub.broadcast(EngHub.PubSub, "posts", {event, post})
+    preloaded = Repo.preload(post, :user)
+    Phoenix.PubSub.broadcast(EngHub.PubSub, "posts", {event, preloaded})
     {:ok, post}
   end
 

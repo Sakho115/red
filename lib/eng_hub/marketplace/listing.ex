@@ -2,13 +2,15 @@ defmodule EngHub.Marketplace.Listing do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
   schema "listings" do
     field :title, :string
     field :description, :string
     field :price_or_exchange, :string
     field :status, :string
-    field :project_id, :integer
-    field :seller_id, Ecto.ULID
+    belongs_to :project, EngHub.Projects.Project
+    belongs_to :seller, EngHub.Identity.User
 
     timestamps(type: :utc_datetime)
   end

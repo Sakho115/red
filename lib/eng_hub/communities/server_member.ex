@@ -9,6 +9,7 @@ defmodule EngHub.Communities.ServerMember do
 
     belongs_to :user, EngHub.Identity.User
     belongs_to :server, EngHub.Communities.Server
+    many_to_many :roles, EngHub.Communities.Role, join_through: "server_member_roles"
 
     timestamps(type: :utc_datetime)
   end

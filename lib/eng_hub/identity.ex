@@ -9,6 +9,40 @@ defmodule EngHub.Identity do
   import Ecto.Query
 
   @token_expiration {24, :hour}
+  @rate_limit_table :eng_hub_rate_limit
+
+  @doc """
+  Increments and checks the rate limit for a given key.
+  Returns `{:ok, count}` if under limit, or `{:error, :rate_limited}`.
+  """
+  def check_rate_limit(key, max_attempts, scale_ms) do
+    now = System.system_time(:millisecond)
+    clean_expired_limits(key, now - scale_ms)
+
+    # Insert new attempt
+    attempt_id = Ecto.ULID.generate()
+    :ets.insert(@rate_limit_table, {{key, attempt_id}, now})
+
+    # Count recent attempts
+    count = count_attempts(key)
+
+    if count > max_attempts do
+      {:error, :rate_limited}
+    else
+      {:ok, count}
+    end
+  end
+
+  defp clean_expired_limits(key, threshold) do
+    # Match pattern for {{key, _}, time}
+    match_spec = [{{{key, :_}, :"$1"}, [{:<, :"$1", threshold}], [true]}]
+    :ets.select_delete(@rate_limit_table, match_spec)
+  end
+
+  defp count_attempts(key) do
+    match_spec = [{{{key, :_}, :_}, [], [true]}]
+    :ets.select_count(@rate_limit_table, match_spec)
+  end
 
   @doc """
   Returns all `User` records with optional preloads.
@@ -252,7 +286,7 @@ defmodule EngHub.Identity do
     }
 
     case create_token(token_attrs) do
-      {:ok, token} -> {:ok, Base.encode64(token.value, padding: false)}
+      {:ok, token} -> {:ok, Base.url_encode64(token.value, padding: false)}
       error -> error
     end
   end
@@ -263,7 +297,7 @@ defmodule EngHub.Identity do
   def verify_user_magic_link(encoded_token) when is_binary(encoded_token) do
     expiration_timestamp = get_expiration_timestamp({15, :minute})
 
-    case Base.decode64(encoded_token, padding: false) do
+    case Base.url_decode64(encoded_token, padding: false) do
       {:ok, decoded_value} ->
         query =
           from(user in User,
@@ -287,5 +321,21 @@ defmodule EngHub.Identity do
       _ ->
         {:error, :invalid_token_format}
     end
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking profile changes.
+  """
+  def change_user_profile(%User{} = user, attrs \\ %{}) do
+    User.changeset(user, attrs)
+  end
+
+  @doc """
+  Updates a user's profile.
+  """
+  def update_user_profile(%User{} = user, attrs) do
+    user
+    |> User.changeset(attrs)
+    |> Repo.update()
   end
 end

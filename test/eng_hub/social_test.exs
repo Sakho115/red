@@ -38,7 +38,7 @@ defmodule EngHub.SocialTest do
       follow = follow_fixture()
       update_attrs = %{}
 
-      assert {:ok, %Follow{} = follow} = Social.update_follow(follow, update_attrs)
+      assert {:ok, %Follow{} = _follow} = Social.update_follow(follow, update_attrs)
     end
 
     test "update_follow/2 with invalid data returns error changeset" do

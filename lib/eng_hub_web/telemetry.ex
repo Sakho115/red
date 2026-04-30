@@ -83,7 +83,12 @@ defmodule EngHubWeb.Telemetry do
 
       # Custom App Metrics
       counter("eng_hub.timeline.post_created.count"),
-      counter("eng_hub.timeline.post_deleted.count")
+      counter("eng_hub.timeline.post_deleted.count"),
+      counter("eng_hub.authz.unauthorized.count"),
+      counter("eng_hub.identity.login.success.count"),
+      counter("eng_hub.identity.login.failure.count"),
+      counter("eng_hub.notifications.created.count"),
+      summary("eng_hub.identity.login.duration", unit: {:native, :millisecond})
     ]
   end
 

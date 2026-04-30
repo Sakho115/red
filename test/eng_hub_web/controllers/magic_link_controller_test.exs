@@ -10,14 +10,14 @@ defmodule EngHubWeb.MagicLinkControllerTest do
 
       conn = get(conn, ~p"/auth/magic/#{token}")
       assert redirected_to(conn) == ~p"/"
-      assert get_flash(conn, :info) =~ "Welcome back"
+      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Welcome back"
       assert get_session(conn, :user_token)
     end
 
     test "fails with invalid token", %{conn: conn} do
       conn = get(conn, ~p"/auth/magic/invalid")
       assert redirected_to(conn) == ~p"/sign-in"
-      assert get_flash(conn, :error) =~ "Invalid or expired"
+      assert Phoenix.Flash.get(conn.assigns.flash, :error) =~ "Invalid or expired"
     end
   end
 end

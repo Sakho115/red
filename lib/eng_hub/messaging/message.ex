@@ -6,8 +6,14 @@ defmodule EngHub.Messaging.Message do
 
   schema "messages" do
     field :content, :string
+    field :type, :string, default: "default"
+    field :edited_at, :utc_datetime
+
     belongs_to :user, EngHub.Identity.User, type: Ecto.ULID
     belongs_to :channel, EngHub.Communities.Channel
+    belongs_to :parent, EngHub.Messaging.Message
+    has_many :replies, EngHub.Messaging.Message, foreign_key: :parent_id
+    has_many :reactions, EngHub.Messaging.Reaction
 
     timestamps(type: :utc_datetime)
   end
@@ -15,7 +21,7 @@ defmodule EngHub.Messaging.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:content, :user_id, :channel_id])
+    |> cast(attrs, [:content, :user_id, :channel_id, :parent_id, :type, :edited_at])
     |> validate_required([:content, :user_id, :channel_id])
   end
 end

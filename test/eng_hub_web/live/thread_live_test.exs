@@ -23,65 +23,76 @@ defmodule EngHubWeb.ThreadLiveTest do
     setup [:register_and_log_in_user, :create_thread]
 
     test "lists all threads", %{conn: conn, thread: thread} do
-      {:ok, _index_live, html} = live(conn, ~p"/threads")
+      {:ok, index_live, _html} = live(conn, ~p"/threads")
+      child_live = find_live_child(index_live, "threads-app")
+      html = render(child_live)
 
       assert html =~ "Listing Threads"
       assert html =~ thread.category
     end
 
     test "saves new thread", %{conn: conn, thread: thread} do
-      {:ok, _index_live, _html} = live(conn, ~p"/threads")
+      {:ok, index_live, _html} = live(conn, ~p"/threads")
+      child_live = find_live_child(index_live, "threads-app")
 
-      assert {:ok, form_live, _} = live(conn, ~p"/threads/new?project_id=#{thread.project_id}")
+      assert {:ok, form_live, _} =
+               child_live
+               |> element("a", "New Thread")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/threads/new")
 
-      assert render(form_live) =~ "New Thread"
+      form_child = find_live_child(form_live, "threads-app")
+      assert render(form_child) =~ "New Thread"
 
-      assert form_live
+      assert form_child
              |> form("#thread-form", thread: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
-      assert {:ok, _index_live, html} =
-               form_live
-               |> form("#thread-form",
-                 thread: Map.put(@create_attrs, "project_id", thread.project_id)
-               )
+      assert {:ok, index_live, _html} =
+               form_child
+               |> form("#thread-form", thread: @create_attrs)
                |> render_submit()
                |> follow_redirect(conn, ~p"/threads")
 
-      assert html =~ "Thread created successfully"
-      assert html =~ "some category"
+      child_live = find_live_child(index_live, "threads-app")
+      assert render(index_live) =~ "Thread created successfully"
+      assert render(child_live) =~ "some category"
     end
 
     test "updates thread in listing", %{conn: conn, thread: thread} do
       {:ok, index_live, _html} = live(conn, ~p"/threads")
+      child_live = find_live_child(index_live, "threads-app")
 
       assert {:ok, form_live, _html} =
-               index_live
+               child_live
                |> element("#threads-#{thread.id} a", "Edit")
                |> render_click()
                |> follow_redirect(conn, ~p"/threads/#{thread}/edit")
 
-      assert render(form_live) =~ "Edit Thread"
+      form_child = find_live_child(form_live, "threads-app")
+      assert render(form_child) =~ "Edit Thread"
 
-      assert form_live
+      assert form_child
              |> form("#thread-form", thread: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
-      assert {:ok, _index_live, html} =
-               form_live
+      assert {:ok, index_live, _html} =
+               form_child
                |> form("#thread-form", thread: @update_attrs)
                |> render_submit()
                |> follow_redirect(conn, ~p"/threads")
 
-      assert html =~ "Thread updated successfully"
-      assert html =~ "some updated category"
+      child_live = find_live_child(index_live, "threads-app")
+      assert render(index_live) =~ "Thread updated successfully"
+      assert render(child_live) =~ "some updated category"
     end
 
     test "deletes thread in listing", %{conn: conn, thread: thread} do
       {:ok, index_live, _html} = live(conn, ~p"/threads")
+      child_live = find_live_child(index_live, "threads-app")
 
-      assert index_live |> element("#threads-#{thread.id} a", "Delete") |> render_click()
-      refute has_element?(index_live, "#threads-#{thread.id}")
+      assert child_live |> element("#threads-#{thread.id} button", "Delete") |> render_click()
+      refute has_element?(child_live, "#threads-#{thread.id}")
     end
   end
 
@@ -89,7 +100,9 @@ defmodule EngHubWeb.ThreadLiveTest do
     setup [:register_and_log_in_user, :create_thread]
 
     test "displays thread", %{conn: conn, thread: thread} do
-      {:ok, _show_live, html} = live(conn, ~p"/threads/#{thread}")
+      {:ok, index_live, _html} = live(conn, ~p"/threads/#{thread}")
+      child_live = find_live_child(index_live, "threads-app")
+      html = render(child_live)
 
       assert html =~ "Show Thread"
       assert html =~ thread.category
@@ -97,28 +110,30 @@ defmodule EngHubWeb.ThreadLiveTest do
 
     test "updates thread and returns to show", %{conn: conn, thread: thread} do
       {:ok, show_live, _html} = live(conn, ~p"/threads/#{thread}")
+      child_live = find_live_child(show_live, "threads-app")
 
       assert {:ok, form_live, _} =
-               show_live
+               child_live
                |> element("a", "Edit")
                |> render_click()
-               |> follow_redirect(conn, ~p"/threads/#{thread}/edit?return_to=show")
+               |> follow_redirect(conn, ~p"/threads/#{thread}/edit")
 
-      assert render(form_live) =~ "Edit Thread"
+      form_child = find_live_child(form_live, "threads-app")
+      assert render(form_child) =~ "Edit Thread"
 
-      assert form_live
+      assert form_child
              |> form("#thread-form", thread: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
       assert {:ok, show_live, _html} =
-               form_live
+               form_child
                |> form("#thread-form", thread: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/threads/#{thread}")
+               |> follow_redirect(conn, ~p"/threads")
 
-      html = render(show_live)
-      assert html =~ "Thread updated successfully"
-      assert html =~ "some updated category"
+      child_live = find_live_child(show_live, "threads-app")
+      assert render(show_live) =~ "Thread updated successfully"
+      assert render(child_live) =~ "some updated category"
     end
   end
 end

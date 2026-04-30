@@ -4,10 +4,12 @@ defmodule EngHub.Projects.ProjectMember do
 
   @valid_roles ~w(viewer editor admin owner)
 
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
   schema "project_members" do
     field :role, :string, default: "viewer"
     belongs_to :project, EngHub.Projects.Project
-    belongs_to :user, EngHub.Identity.User, type: Ecto.ULID
+    belongs_to :user, EngHub.Identity.User
 
     timestamps(type: :utc_datetime)
   end

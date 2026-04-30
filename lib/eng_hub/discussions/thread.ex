@@ -2,14 +2,17 @@ defmodule EngHub.Discussions.Thread do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
   schema "threads" do
     field :category, :string
     field :title, :string
     field :content, :string
-    field :author_id, Ecto.ULID
-    field :project_id, :id
-    belongs_to :server, EngHub.Communities.Server, type: :binary_id
-    belongs_to :channel, EngHub.Communities.Channel, type: :binary_id
+    field :type, :string, default: "discussion"
+    belongs_to :author, EngHub.Identity.User
+    belongs_to :project, EngHub.Projects.Project
+    belongs_to :server, EngHub.Communities.Server
+    belongs_to :channel, EngHub.Communities.Channel
 
     timestamps(type: :utc_datetime)
   end
@@ -17,7 +20,16 @@ defmodule EngHub.Discussions.Thread do
   @doc false
   def changeset(thread, attrs) do
     thread
-    |> cast(attrs, [:category, :title, :content, :project_id, :author_id, :server_id, :channel_id])
+    |> cast(attrs, [
+      :category,
+      :title,
+      :content,
+      :project_id,
+      :author_id,
+      :server_id,
+      :channel_id,
+      :type
+    ])
     |> validate_required([:category, :title, :content, :author_id])
   end
 end

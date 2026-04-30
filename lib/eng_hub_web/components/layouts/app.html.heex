@@ -1,64 +1,6 @@
-<div class="flex h-screen w-screen overflow-hidden bg-base-100 text-base-content font-sans antialiased text-[15px] selection:bg-primary/30">
-  <%= if assigns[:servers] do %>
-    <!-- Pane 1: Server Bar -->
-    <.server_sidebar
-      servers={@servers}
-      current_server_id={assigns[:server] && @server.id}
-    />
-  <% else %>
-    <nav class="hidden md:flex w-[72px] flex-shrink-0 bg-base-300 flex-col items-center py-3 gap-3 border-r border-black/10 select-none glass-server-bar">
-      <a
-        href="/"
-        class="w-12 h-12 rounded-[16px] bg-primary text-primary-content flex items-center justify-center hover:rounded-xl transition-all duration-200 shadow-lg cursor-pointer relative group animate-server-icon"
-      >
-        EH
-      </a>
-    </nav>
-  <% end %>
-
-  <%= if assigns[:server] && assigns[:categories] do %>
-    <!-- Pane 2: Channel Sidebar -->
-    <.channel_sidebar
-      server={assigns[:server]}
-      categories={assigns[:categories] || []}
-      current_channel_id={assigns[:active_channel] && @active_channel.id}
-      current_user={assigns[:current_scope] || assigns[:current_user]}
-    />
-  <% else %>
-    <aside class="hidden md:flex w-60 flex-shrink-0 bg-base-200 flex-col border-r border-white/5 select-none glass-sidebar">
-      <div class="h-12 flex items-center px-4 font-bold border-b border-white/5">
-        <span class="truncate tracking-tight">EngHub</span>
-      </div>
-      <div class="flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
-        <a
-          href="/"
-          class="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-white/5 text-base-content/70 hover:text-base-content font-medium text-sm transition-all group"
-        >
-          <.icon name="hero-home" class="w-4 h-4 opacity-50 group-hover:opacity-100" /> Dashboard
-        </a>
-        <a
-          href="/servers"
-          class="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-white/5 text-base-content/70 hover:text-base-content font-medium text-sm transition-all group"
-        >
-          <.icon name="hero-server-stack" class="w-4 h-4 opacity-50 group-hover:opacity-100" /> Servers
-        </a>
-      </div>
-    </aside>
-  <% end %>
-  
-  <!-- Pane 3: Main Content Area -->
-  <main class="flex-1 flex flex-col min-w-0 bg-base-100 relative overflow-hidden">
+<main class="flex h-screen w-screen overflow-hidden bg-base-100 text-base-content font-sans antialiased text-[15px] selection:bg-primary/30">
+  <div class="flex-1 flex flex-col min-w-0 bg-base-100 relative overflow-y-auto">
     <.flash_group flash={@flash} />
     {render_slot(@inner_block)}
-  </main>
-
-  <%= if assigns[:members] && assigns[:server] do %>
-    <!-- Pane 4: Member List -->
-    <.member_sidebar
-      server={@server}
-      members={@members}
-      online_user_ids={assigns[:online_user_ids] || []}
-      current_user={assigns[:current_scope] || assigns[:current_user]}
-    />
-  <% end %>
-</div>
+  </div>
+</main>

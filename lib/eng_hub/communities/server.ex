@@ -9,6 +9,7 @@ defmodule EngHub.Communities.Server do
     field :description, :string
     field :visibility, :string, default: "public"
     field :deleted_at, :utc_datetime
+    field :settings, :map, default: %{}
 
     belongs_to :owner, EngHub.Identity.User
     has_many :members, EngHub.Communities.ServerMember
@@ -20,7 +21,7 @@ defmodule EngHub.Communities.Server do
 
   def changeset(server, attrs) do
     server
-    |> cast(attrs, [:name, :description, :visibility, :owner_id, :deleted_at])
+    |> cast(attrs, [:name, :description, :visibility, :owner_id, :deleted_at, :settings])
     |> validate_required([:name, :owner_id])
     |> validate_inclusion(:visibility, ["public", "private"])
   end

@@ -10,127 +10,263 @@
    The heroicons installation itself is managed by your mix.exs */
 @plugin "../vendor/heroicons";
 
-/* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
-   curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
-   Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
+/* daisyUI Tailwind Plugin */
 @plugin "../vendor/daisyui" {
   themes: false;
 }
 
-/* daisyUI theme plugin. You can update this file by fetching the latest version with:
-  curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.js
-  We ship with two themes, a light one inspired on Phoenix colors and a dark one inspired
-  on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
+/* Discord-Style Depth Hierarchy (OKLCH) */
 @plugin "../vendor/daisyui-theme" {
   name: "dark";
   default: true;
   prefersdark: true;
   color-scheme: "dark";
   
-  /* Discord 2026 Color Palette (OKLCH) */
-  --color-base-100: oklch(24% 0.01 250); /* Background */
-  --color-base-200: oklch(21% 0.01 250); /* Sidebar */
-  --color-base-300: oklch(18% 0.01 250); /* Server Bar */
-  --color-base-content: oklch(92% 0.01 250);
+  --color-base-100: oklch(22% 0.01 255); /* Main Content #313338 */
+  --color-base-200: oklch(18% 0.01 255); /* Sidebar #2b2d31 */
+  --color-base-300: oklch(14% 0 0);       /* Server Bar #1e1f22 */
+  --color-base-content: oklch(92% 0.005 255);
   
-  --color-primary: oklch(62% 0.22 265); /* Blurple */
-  --color-primary-content: oklch(98% 0 0);
-  
-  --color-secondary: oklch(55% 0.15 260);
-  --color-accent: oklch(75% 0.18 150);
-  
-  --color-neutral: oklch(35% 0.02 250);
-  --color-neutral-content: oklch(88% 0.01 250);
-  
-  --color-info: oklch(65% 0.15 250);
-  --color-success: oklch(68% 0.18 155);
-  --color-warning: oklch(78% 0.15 85);
-  --color-error: oklch(62% 0.22 25);
-
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.75rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
-}
-
-@plugin "../vendor/daisyui-theme" {
-  name: "light";
-  default: false;
-  prefersdark: false;
-  color-scheme: "light";
-  --color-base-100: oklch(98% 0 0);
-  --color-base-200: oklch(94% 0 0);
-  --color-base-300: oklch(90% 0 0);
-  --color-base-content: oklch(25% 0 0);
-  --color-primary: oklch(58% 0.22 265);
+  /* Accent Colors */
+  --color-primary: oklch(65% 0.15 255); /* Re-tuned to Discord Blurple */
   --color-primary-content: oklch(100% 0 0);
-  --color-secondary: oklch(50% 0.15 260);
-  --color-accent: oklch(65% 0.18 150);
-  --color-neutral: oklch(85% 0 0);
-  --color-neutral-content: oklch(30% 0 0);
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.75rem;
+  
+  --color-secondary: oklch(55% 0.12 255);
+  --color-accent: oklch(75% 0.08 200);
+  
+  --color-neutral: oklch(12% 0 0);
+  --color-neutral-content: oklch(85% 0 0);
+  
+  --color-info: oklch(65% 0.15 255);
+  --color-success: oklch(65% 0.15 155);
+  --color-warning: oklch(75% 0.15 85);
+  --color-error: oklch(60% 0.2 25);
+
+  --radius-selector: 8px;
+  --radius-field: 8px;
+  --radius-box: 12px;
+  --size-selector: 1px;
+  --size-field: 1px;
+  --border: 1px;
 }
 
 /* Glassmorphism Utilities */
 .glass-surface {
-  background-color: var(--color-base-100);
+  background-color: color-mix(in oklch, var(--color-base-100), transparent 5%);
   backdrop-filter: blur(24px);
-  border-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid color-mix(in oklch, var(--color-base-content), transparent 96%);
 }
 
 .glass-header {
-  background-color: rgba(var(--color-base-100), 0.4);
+  background-color: color-mix(in oklch, var(--color-base-100), transparent 15%);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid color-mix(in oklch, var(--color-base-content), transparent 97%);
 }
 
 .glass-sidebar {
-  background-color: rgba(var(--color-base-200), 0.4);
+  background-color: var(--color-base-200);
   backdrop-filter: blur(16px);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid color-mix(in oklch, var(--color-base-content), transparent 97%);
 }
 
 .glass-server-bar {
-  background-color: rgba(var(--color-base-300), 0.6);
-  backdrop-filter: blur(16px);
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--color-base-300);
+  border-right: 1px solid color-mix(in oklch, var(--color-base-content), transparent 98%);
 }
 
-/* Discord Specific Animations */
-@keyframes server-icon-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
+/* Premium Animations */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
 }
 
-.animate-server-icon:hover {
-  animation: server-icon-bounce 0.3s ease-in-out;
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
+/* Discord-Style Active Indicators */
 .server-pill {
   position: absolute;
   left: 0;
   width: 4px;
   background-color: white;
-  border-radius: 0 9999px 9999px 0;
+  border-radius: 0 4px 4px 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.channel-pill {
+  position: absolute;
+  left: -12px;
+  width: 4px;
+  height: 24px;
+  background-color: var(--color-primary);
+  border-radius: 0 4px 4px 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-/* Add variants based on LiveView classes */
-@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
-@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
-@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+/* Premium Tooltips */
+.premium-tooltip {
+  --offset-distance: 12px;
+  position: absolute;
+  left: calc(100% + var(--offset-distance));
+  padding: 6px 12px;
+  background-color: oklch(10% 0 0);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateX(-4px) scale(0.95);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
 
-/* Use the data attribute for dark mode  */
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+.premium-tooltip::after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: oklch(10% 0 0);
+}
+
+.group:hover .premium-tooltip {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Fluid Typing Animation */
+.typing-dot {
+  width: 5px;
+  height: 5px;
+  background-color: currentColor;
+  border-radius: 50%;
+  animation: typing-bounce 1s infinite ease-in-out;
+}
+
+@keyframes typing-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Interactive Animations */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.active-scale:active {
+  transform: scale(0.95);
+  transition: transform 0.08s;
+}
+
+/* Chat Micro-animations */
+@keyframes message-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-message {
+  animation: message-fade-in 0.15s ease-out;
+}
+
+/* New Premium Utilities */
+.channel-active-indicator {
+  position: absolute;
+  left: 0;
+  width: 3px;
+  height: 20px;
+  background-color: white;
+  border-radius: 0 4px 4px 0;
+}
+
+.message-action-bar {
+  @view-transition;
+  background-color: color-mix(in oklch, var(--color-base-200), transparent 10%);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in oklch, var(--color-base-content), transparent 92%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.rotate-collapse {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collapsed .rotate-collapse {
+  transform: rotate(-90deg);
+}
+
+.date-separator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.date-separator::before,
+.date-separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid color-mix(in oklch, var(--color-base-content), transparent 94%);
+}
+
+.date-separator:not(:empty)::before {
+  margin-right: 0.75rem;
+}
+
+.date-separator:not(:empty)::after {
+  margin-left: 0.75rem;
+}
+
+.date-separator span {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: color-mix(in oklch, var(--color-base-content), transparent 60%);
+}
+
+/* Custom Scrollbar for Notion Look */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--color-base-content), transparent 85%);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--color-base-content), transparent 60%);
+}
 
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
-/* This file is for your main application CSS */
+/* Layout Grid Stability */
+.flex-1 { min-width: 0; }
+header { isolation: isolate; }
+aside { flex-shrink: 0; }

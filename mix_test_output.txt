@@ -1,0 +1,1024 @@
+................
+
+  1) test Index updates hackathon in listing (EngHubWeb.HackathonLiveTest)
+     test/eng_hub_web/live/hackathon_live_test.exs:61
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /hackathons (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "v8Dk1zu+l3gcMfJuIzT0LPs6Ge16RbCB8ZgmnSZwSsevzJkuohF5DK1i8Y2wYzg1RTPSZjOmfLQw3eDTt/TJog"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdLvO9M5_poAAAoh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.HackathonLiveTest, :"test Index updates hackathon in listing", 1, [file: ~c"test/eng_hub_web/live/hackathon_live_test.exs", line: 62]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "v8Dk1zu+l3gcMfJuIzT0LPs6Ge16RbCB8ZgmnSZwSsevzJkuohF5DK1i8Y2wYzg1RTPSZjOmfLQw3eDTt/TJog"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdLvO9M5_poAAAoh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/hackathons"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/hackathons")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/hackathon_live_test.exs:62: (test)
+
+
+
+  2) test Index saves new hackathon (EngHubWeb.HackathonLiveTest)
+     test/eng_hub_web/live/hackathon_live_test.exs:35
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /hackathons (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "l4SRDHdWCV0ZzvEmKuOYI74fNS3f7vkJIJkDeyH8ghwHrGBoAJ0Ll6Vr+gyF+wKBPMden4gxF4gMEIxFQ8GRIQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdav_FTHY4cAAApB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.HackathonLiveTest, :"test Index saves new hackathon", 1, [file: ~c"test/eng_hub_web/live/hackathon_live_test.exs", line: 36]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "l4SRDHdWCV0ZzvEmKuOYI74fNS3f7vkJIJkDeyH8ghwHrGBoAJ0Ll6Vr+gyF+wKBPMden4gxF4gMEIxFQ8GRIQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdav_FTHY4cAAApB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/hackathons"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/hackathons")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/hackathon_live_test.exs:36: (test)
+
+
+
+  3) test Index deletes hackathon in listing (EngHubWeb.HackathonLiveTest)
+     test/eng_hub_web/live/hackathon_live_test.exs:87
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /hackathons (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "JyH1aTifQ7l5/BAJcWhil43FU9wjAZRemmG/EBIVnQ4fqVrhpIuu4BKXcmJLuhUyL+UuTCpo+bWCqCUaFfdl4A"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdcpHeF43hoAAAph"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.HackathonLiveTest, :"test Index deletes hackathon in listing", 1, [file: ~c"test/eng_hub_web/live/hackathon_live_test.exs", line: 88]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "JyH1aTifQ7l5/BAJcWhil43FU9wjAZRemmG/EBIVnQ4fqVrhpIuu4BKXcmJLuhUyL+UuTCpo+bWCqCUaFfdl4A"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdcpHeF43hoAAAph"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/hackathons"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/hackathons")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/hackathon_live_test.exs:88: (test)
+
+
+
+  4) test Show updates hackathon and returns to show (EngHubWeb.HackathonLiveTest)
+     test/eng_hub_web/live/hackathon_live_test.exs:105
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /hackathons/01KQEEYGQN3E3AB92GPVSV54D1 (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons", "01KQEEYGQN3E3AB92GPVSV54D1"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "cja4YCN66jTrObLIiZKUuNMZ7f6V/aC3YL5sSx1N2E7CdWTXBOKIoR8mcs/TU1xXMtBiMVhkmJVunJwXoyws/A"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons/01KQEEYGQN3E3AB92GPVSV54D1", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdhn1lhHBzYAAAqB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.HackathonLiveTest, :"test Show updates hackathon and returns to show", 1, [file: ~c"test/eng_hub_web/live/hackathon_live_test.exs", line: 106]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons", "01KQEEYGQN3E3AB92GPVSV54D1"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "cja4YCN66jTrObLIiZKUuNMZ7f6V/aC3YL5sSx1N2E7CdWTXBOKIoR8mcs/TU1xXMtBiMVhkmJVunJwXoyws/A"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons/01KQEEYGQN3E3AB92GPVSV54D1", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdhn1lhHBzYAAAqB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/hackathons/01KQEEYGQN3E3AB92GPVSV54D1"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, show_live, _html} = live(conn, ~p"/hackathons/#{hackathon}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/hackathon_live_test.exs:106: (test)
+
+
+
+  5) test Index lists all hackathons (EngHubWeb.HackathonLiveTest)
+     test/eng_hub_web/live/hackathon_live_test.exs:27
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /hackathons (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "iulMWcO4XmNb0Lq1861QZR33O+JDZ7BS9ANDWdHdeB7PYpSg7I4jKddJlzh65C+ztr1xsIf9b/H4BGYjdjJcpA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdkbzbsyXuoAAAMi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.HackathonLiveTest, :"test Index lists all hackathons", 1, [file: ~c"test/eng_hub_web/live/hackathon_live_test.exs", line: 28]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "iulMWcO4XmNb0Lq1861QZR33O+JDZ7BS9ANDWdHdeB7PYpSg7I4jKddJlzh65C+ztr1xsIf9b/H4BGYjdjJcpA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdkbzbsyXuoAAAMi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/hackathons"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, html} = live(conn, ~p"/hackathons")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/hackathon_live_test.exs:28: (test)
+
+
+
+  6) test Show displays hackathon (EngHubWeb.HackathonLiveTest)
+     test/eng_hub_web/live/hackathon_live_test.exs:98
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /hackathons/01KQEEYGRXSNZSNAPG9XW2DQ4P (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons", "01KQEEYGRXSNZSNAPG9XW2DQ4P"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "ZRmVLr2p4pXuQ9vAAv3FSZ58BGKiOkrtcO4U1i5yDTB2p3N1OOlpknUaxO4sbEpOsgs/Ms6KcFYlpp1cFA0C6Q"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons/01KQEEYGRXSNZSNAPG9XW2DQ4P", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdoADhYRgoQAAAqh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.HackathonLiveTest, :"test Show displays hackathon", 1, [file: ~c"test/eng_hub_web/live/hackathon_live_test.exs", line: 99]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["hackathons", "01KQEEYGRXSNZSNAPG9XW2DQ4P"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "ZRmVLr2p4pXuQ9vAAv3FSZ58BGKiOkrtcO4U1i5yDTB2p3N1OOlpknUaxO4sbEpOsgs/Ms6KcFYlpp1cFA0C6Q"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/hackathons/01KQEEYGRXSNZSNAPG9XW2DQ4P", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcdoADhYRgoQAAAqh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/hackathons/01KQEEYGRXSNZSNAPG9XW2DQ4P"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _show_live, html} = live(conn, ~p"/hackathons/#{hackathon}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/hackathon_live_test.exs:99: (test)
+
+............
+
+  7) test Index updates post in listing (EngHubWeb.PostLiveTest)
+     test/eng_hub_web/live/post_live_test.exs:62
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /posts (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "L7DRlCaCvcjk5rmJ47reF+1mW8chGxVXxIVAEp+4xMggWD58Tqik1mCAd2htWP/l5n1zrwgVfj61X60oXEj+ng"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceIwqKK7CEoAAAtB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.PostLiveTest, :"test Index updates post in listing", 1, [file: ~c"test/eng_hub_web/live/post_live_test.exs", line: 63]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "L7DRlCaCvcjk5rmJ47reF+1mW8chGxVXxIVAEp+4xMggWD58Tqik1mCAd2htWP/l5n1zrwgVfj61X60oXEj+ng"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceIwqKK7CEoAAAtB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/posts"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/posts")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/post_live_test.exs:63: (test)
+
+
+
+  8) test Index saves new post (EngHubWeb.PostLiveTest)
+     test/eng_hub_web/live/post_live_test.exs:36
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /posts (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "WmGwJp/n/n46vUayKGi9Cg1ihi4ocMpBYJmDdisCS5G++n32jVTpVlazmnqzpC+tUIZ/8JSI1NCZGWCJsItlyw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceMXi7jLk84AAAth"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.PostLiveTest, :"test Index saves new post", 1, [file: ~c"test/eng_hub_web/live/post_live_test.exs", line: 37]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "WmGwJp/n/n46vUayKGi9Cg1ihi4ocMpBYJmDdisCS5G++n32jVTpVlazmnqzpC+tUIZ/8JSI1NCZGWCJsItlyw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceMXi7jLk84AAAth"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/posts"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/posts")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/post_live_test.exs:37: (test)
+
+
+
+  9) test Index deletes post in listing (EngHubWeb.PostLiveTest)
+     test/eng_hub_web/live/post_live_test.exs:88
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /posts (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "fQt7q5vtWqFfdafMoJasKkLEijH9z7oGieBm0Vn3zP9RixPIWlF1+V5I6ilehomLEyQG0avxjo1x2aLpRukzXA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcePzcwWsj3oAAAuB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.PostLiveTest, :"test Index deletes post in listing", 1, [file: ~c"test/eng_hub_web/live/post_live_test.exs", line: 89]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "fQt7q5vtWqFfdafMoJasKkLEijH9z7oGieBm0Vn3zP9RixPIWlF1+V5I6ilehomLEyQG0avxjo1x2aLpRukzXA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcePzcwWsj3oAAAuB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/posts"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/posts")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/post_live_test.exs:89: (test)
+
+
+
+ 10) test Show updates post and returns to show (EngHubWeb.PostLiveTest)
+     test/eng_hub_web/live/post_live_test.exs:106
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /posts/01KQEEYGYADXTCQYCT371V8KEY (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts", "01KQEEYGYADXTCQYCT371V8KEY"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "HR5RRpx/ArvxNHctdz1xaWBUeCLoZOZzPfjHRNBSPMXK8Ox2JqiBxlrp+3uje+GzBX9ge8mYw118QvlJRQqJwQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts/01KQEEYGYADXTCQYCT371V8KEY", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceRhsAE4JiQAAAuh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.PostLiveTest, :"test Show updates post and returns to show", 1, [file: ~c"test/eng_hub_web/live/post_live_test.exs", line: 107]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts", "01KQEEYGYADXTCQYCT371V8KEY"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "HR5RRpx/ArvxNHctdz1xaWBUeCLoZOZzPfjHRNBSPMXK8Ox2JqiBxlrp+3uje+GzBX9ge8mYw118QvlJRQqJwQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts/01KQEEYGYADXTCQYCT371V8KEY", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceRhsAE4JiQAAAuh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/posts/01KQEEYGYADXTCQYCT371V8KEY"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, show_live, _html} = live(conn, ~p"/posts/#{post}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/post_live_test.exs:107: (test)
+
+
+
+ 11) test Index lists all posts (EngHubWeb.PostLiveTest)
+     test/eng_hub_web/live/post_live_test.exs:29
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /posts (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "sa/sip6urcXPUwU4UPzY7qCIc6jmD03vZZbilIIszHmrcJ+XFKvRTl9c1BUCT7ngq7fo4vlUbbLZVBSiUgCXgA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceWysYQFCRoAAAvB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.PostLiveTest, :"test Index lists all posts", 1, [file: ~c"test/eng_hub_web/live/post_live_test.exs", line: 30]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "sa/sip6urcXPUwU4UPzY7qCIc6jmD03vZZbilIIszHmrcJ+XFKvRTl9c1BUCT7ngq7fo4vlUbbLZVBSiUgCXgA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMceWysYQFCRoAAAvB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/posts"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, html} = live(conn, ~p"/posts")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/post_live_test.exs:30: (test)
+
+
+
+ 12) test Show displays post (EngHubWeb.PostLiveTest)
+     test/eng_hub_web/live/post_live_test.exs:99
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /posts/01KQEEYGZG8ET07CCYZ53A9QMK (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts", "01KQEEYGZG8ET07CCYZ53A9QMK"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "FpFfQB34JwSLmdzpvikUrkHNhqAHn/AM4M0hgYEkDf2Wcwb8jOzU8zHxD/8sRyrodhjpSQtmjk8ofQ3pLdIZNA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts/01KQEEYGZG8ET07CCYZ53A9QMK", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcebr6nL2nzgAAAvh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.PostLiveTest, :"test Show displays post", 1, [file: ~c"test/eng_hub_web/live/post_live_test.exs", line: 100]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["posts", "01KQEEYGZG8ET07CCYZ53A9QMK"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "FpFfQB34JwSLmdzpvikUrkHNhqAHn/AM4M0hgYEkDf2Wcwb8jOzU8zHxD/8sRyrodhjpSQtmjk8ofQ3pLdIZNA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/posts/01KQEEYGZG8ET07CCYZ53A9QMK", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcebr6nL2nzgAAAvh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/posts/01KQEEYGZG8ET07CCYZ53A9QMK"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _show_live, html} = live(conn, ~p"/posts/#{post}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/post_live_test.exs:100: (test)
+
+................
+
+ 13) test Index updates listing in listing (EngHubWeb.ListingLiveTest)
+     test/eng_hub_web/live/listing_live_test.exs:62
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /listings (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "40P+7mUMHgEKpkkUvDdyQsJjh26wX/69ynfaJhkdac6S1GaO8nbKAbnnefcOvQydXYZmzGIOx9XTuQBh/87yCQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcetC9Co7UvkAAAOi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ListingLiveTest, :"test Index updates listing in listing", 1, [file: ~c"test/eng_hub_web/live/listing_live_test.exs", line: 63]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "40P+7mUMHgEKpkkUvDdyQsJjh26wX/69ynfaJhkdac6S1GaO8nbKAbnnefcOvQydXYZmzGIOx9XTuQBh/87yCQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcetC9Co7UvkAAAOi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/listings"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/listings")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/listing_live_test.exs:63: (test)
+
+
+
+ 14) test Index saves new listing (EngHubWeb.ListingLiveTest)
+     test/eng_hub_web/live/listing_live_test.exs:36
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /listings (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "srU/kAyVtPoxUiJlDkkoQ7jX82pb4N+d832Z0JVyc/kJaRSdkHgP3T0s7Kj/mGjKlnb50oMkhQBc0PRRu4K4Iw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcev0w90aXdYAAAPC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ListingLiveTest, :"test Index saves new listing", 1, [file: ~c"test/eng_hub_web/live/listing_live_test.exs", line: 37]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "srU/kAyVtPoxUiJlDkkoQ7jX82pb4N+d832Z0JVyc/kJaRSdkHgP3T0s7Kj/mGjKlnb50oMkhQBc0PRRu4K4Iw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcev0w90aXdYAAAPC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/listings"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/listings")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/listing_live_test.exs:37: (test)
+
+
+
+ 15) test Index deletes listing in listing (EngHubWeb.ListingLiveTest)
+     test/eng_hub_web/live/listing_live_test.exs:88
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /listings (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "INN24E0X8VmJf30SF1veF98jdKjBcMQhMXiJOCnyHgHHYaWfQpo41FqqhiLPQviLd/iVKO1+kQ8ZVnbPto2Xlg"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcewx_sumks8AAAPi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ListingLiveTest, :"test Index deletes listing in listing", 1, [file: ~c"test/eng_hub_web/live/listing_live_test.exs", line: 89]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "INN24E0X8VmJf30SF1veF98jdKjBcMQhMXiJOCnyHgHHYaWfQpo41FqqhiLPQviLd/iVKO1+kQ8ZVnbPto2Xlg"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcewx_sumks8AAAPi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/listings"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/listings")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/listing_live_test.exs:89: (test)
+
+
+
+ 16) test Show updates listing and returns to show (EngHubWeb.ListingLiveTest)
+     test/eng_hub_web/live/listing_live_test.exs:106
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /listings/01KQEEYH2S2B0AKXVFNWCHTSD8 (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings", "01KQEEYH2S2B0AKXVFNWCHTSD8"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "a5u/ayxYmiRR4ez/r/iAK2NTSOy65+olHABWZCPKtlUD7JFdwzk/vRzB30ldsS8ZeNerixCN5gm1epGr2IUDXA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings/01KQEEYH2S2B0AKXVFNWCHTSD8", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcezXeHOkhhUAAAQC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ListingLiveTest, :"test Show updates listing and returns to show", 1, [file: ~c"test/eng_hub_web/live/listing_live_test.exs", line: 107]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings", "01KQEEYH2S2B0AKXVFNWCHTSD8"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "a5u/ayxYmiRR4ez/r/iAK2NTSOy65+olHABWZCPKtlUD7JFdwzk/vRzB30ldsS8ZeNerixCN5gm1epGr2IUDXA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings/01KQEEYH2S2B0AKXVFNWCHTSD8", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcezXeHOkhhUAAAQC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/listings/01KQEEYH2S2B0AKXVFNWCHTSD8"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, show_live, _html} = live(conn, ~p"/listings/#{listing}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/listing_live_test.exs:107: (test)
+
+
+
+ 17) test Index lists all listings (EngHubWeb.ListingLiveTest)
+     test/eng_hub_web/live/listing_live_test.exs:29
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /listings (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "f11qeeqfYYDJIaHW1/ryhGZH2tMoRZwWIRwm2wN0V5FbHlYDannaqrjFE4yUQ3jXDyuTNBo4DTgtsFHnttlrKg"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMce2K4gXLc90AAAxB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ListingLiveTest, :"test Index lists all listings", 1, [file: ~c"test/eng_hub_web/live/listing_live_test.exs", line: 30]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "f11qeeqfYYDJIaHW1/ryhGZH2tMoRZwWIRwm2wN0V5FbHlYDannaqrjFE4yUQ3jXDyuTNBo4DTgtsFHnttlrKg"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMce2K4gXLc90AAAxB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/listings"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, html} = live(conn, ~p"/listings")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/listing_live_test.exs:30: (test)
+
+
+
+ 18) test Show displays listing (EngHubWeb.ListingLiveTest)
+     test/eng_hub_web/live/listing_live_test.exs:99
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /listings/01KQEEYH3CFZ86XZD351H1F4XH (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings", "01KQEEYH3CFZ86XZD351H1F4XH"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "Ksyo0SkudjSDQ0dSAnuiOOppq9v833eWyspezndigAyPdUr19Ff3Pr3//QgJeIZ9LQ55PSh89yrxFd5XVYw3QA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings/01KQEEYH3CFZ86XZD351H1F4XH", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMce4d6VkRoL0AAAQi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ListingLiveTest, :"test Show displays listing", 1, [file: ~c"test/eng_hub_web/live/listing_live_test.exs", line: 100]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["listings", "01KQEEYH3CFZ86XZD351H1F4XH"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "Ksyo0SkudjSDQ0dSAnuiOOppq9v833eWyspezndigAyPdUr19Ff3Pr3//QgJeIZ9LQ55PSh89yrxFd5XVYw3QA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/listings/01KQEEYH3CFZ86XZD351H1F4XH", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMce4d6VkRoL0AAAQi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/listings/01KQEEYH3CFZ86XZD351H1F4XH"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _show_live, html} = live(conn, ~p"/listings/#{listing}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/listing_live_test.exs:100: (test)
+
+................................................................
+
+ 19) test GET / redirects to servers (EngHubWeb.PageControllerTest)
+     test/eng_hub_web/controllers/page_controller_test.exs:4
+     Assertion with =~ failed
+     code:  assert html_response(conn, 302) =~ "/servers"
+     left:  "<html><body>You are being <a href=\"/sign-in\">redirected</a>.</body></html>"
+     right: "/servers"
+     stacktrace:
+       test/eng_hub_web/controllers/page_controller_test.exs:6: (test)
+
+...
+
+ 20) test Index updates thread in listing (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:55
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /threads (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "NLVQoLAFK2ncNV/GQ3YFZ1gsLnInraQ2vdcUmX3V1sNy4CoZu3OEo2cAeMTlBMZpGQ0xxso1lelmnsfXKYLusA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchdMRq1MKJkAAAWC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ThreadLiveTest, :"test Index updates thread in listing", 1, [file: ~c"test/eng_hub_web/live/thread_live_test.exs", line: 56]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "NLVQoLAFK2ncNV/GQ3YFZ1gsLnInraQ2vdcUmX3V1sNy4CoZu3OEo2cAeMTlBMZpGQ0xxso1lelmnsfXKYLusA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchdMRq1MKJkAAAWC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/threads"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/threads")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/thread_live_test.exs:56: (test)
+
+
+
+ 21) test Index saves new thread (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:32
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /threads (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "q987zKmGEKf1AxP0EIBcyDUomT0EfjuWSdFdhnXw5wdh7rQ9Yme4+5nfqByh/y0C4NCQLEsu0zzJ+zhskeOzWw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcheQsfvaKecAABAh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ThreadLiveTest, :"test Index saves new thread", 1, [file: ~c"test/eng_hub_web/live/thread_live_test.exs", line: 33]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "q987zKmGEKf1AxP0EIBcyDUomT0EfjuWSdFdhnXw5wdh7rQ9Yme4+5nfqByh/y0C4NCQLEsu0zzJ+zhskeOzWw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMcheQsfvaKecAABAh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/threads"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, _html} = live(conn, ~p"/threads")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/thread_live_test.exs:33: (test)
+
+
+
+ 22) test Index deletes thread in listing (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:80
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /threads (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "YMLtF0DBbcY1prq0mXviUARqtha01ybOJj1aSjc+X18og+BYlOFlK59ga2GtFXgw0GMDOZjzCdC650vdFnj07g"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchg_FhCRVosAABBB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ThreadLiveTest, :"test Index deletes thread in listing", 1, [file: ~c"test/eng_hub_web/live/thread_live_test.exs", line: 81]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "YMLtF0DBbcY1prq0mXviUARqtha01ybOJj1aSjc+X18og+BYlOFlK59ga2GtFXgw0GMDOZjzCdC650vdFnj07g"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchg_FhCRVosAABBB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/threads"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/threads")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/thread_live_test.exs:81: (test)
+
+
+
+ 23) test Show updates thread and returns to show (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:98
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /threads/01KQEEYHSRPM40C6PJ47CV3TWP (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads", "01KQEEYHSRPM40C6PJ47CV3TWP"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "dM8pFrXPvGATFuwcsjJZ1zIQf9zYERMT8cH3s/UUYtUkGnH9oAcBoPkxT2MsJYU53vGCcEOD/4d5V0xK4ojufA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads/01KQEEYHSRPM40C6PJ47CV3TWP", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchiijWCfJRoAAAWi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ThreadLiveTest, :"test Show updates thread and returns to show", 1, [file: ~c"test/eng_hub_web/live/thread_live_test.exs", line: 99]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads", "01KQEEYHSRPM40C6PJ47CV3TWP"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "dM8pFrXPvGATFuwcsjJZ1zIQf9zYERMT8cH3s/UUYtUkGnH9oAcBoPkxT2MsJYU53vGCcEOD/4d5V0xK4ojufA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads/01KQEEYHSRPM40C6PJ47CV3TWP", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchiijWCfJRoAAAWi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/threads/01KQEEYHSRPM40C6PJ47CV3TWP"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, show_live, _html} = live(conn, ~p"/threads/#{thread}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/thread_live_test.exs:99: (test)
+
+
+
+ 24) test Index lists all threads (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:25
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /threads (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "reURWuCZvFG9ubIKlrEW1/dUrQg83Ux2htdCk9YYHlQp1q3an7cJ4IpKG4oj4v4AepLCVc/61BmBMDVrjrz7NA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchjZleINzGgAABBh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ThreadLiveTest, :"test Index lists all threads", 1, [file: ~c"test/eng_hub_web/live/thread_live_test.exs", line: 26]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "reURWuCZvFG9ubIKlrEW1/dUrQg83Ux2htdCk9YYHlQp1q3an7cJ4IpKG4oj4v4AepLCVc/61BmBMDVrjrz7NA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchjZleINzGgAABBh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/threads"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, html} = live(conn, ~p"/threads")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/thread_live_test.exs:26: (test)
+
+
+
+ 25) test Show displays thread (EngHubWeb.ThreadLiveTest)
+     test/eng_hub_web/live/thread_live_test.exs:91
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /threads/01KQEEYHT7APCCDJ3EPERM23XB (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads", "01KQEEYHT7APCCDJ3EPERM23XB"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "o84R3n9mjWpwnKKAINM+0MfGF2bbJ8Z58FwNQVR5JNs/ix3/NF13RstIS+vS3xz+dqmthxd70dom4/yg+O0D1w"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads/01KQEEYHT7APCCDJ3EPERM23XB", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchmHhk3N-ysAAAXC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ThreadLiveTest, :"test Show displays thread", 1, [file: ~c"test/eng_hub_web/live/thread_live_test.exs", line: 92]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["threads", "01KQEEYHT7APCCDJ3EPERM23XB"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "o84R3n9mjWpwnKKAINM+0MfGF2bbJ8Z58FwNQVR5JNs/ix3/NF13RstIS+vS3xz+dqmthxd70dom4/yg+O0D1w"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/threads/01KQEEYHT7APCCDJ3EPERM23XB", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchmHhk3N-ysAAAXC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/threads/01KQEEYHT7APCCDJ3EPERM23XB"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _show_live, html} = live(conn, ~p"/threads/#{thread}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/thread_live_test.exs:92: (test)
+
+
+
+ 26) test Index updates file in listing (EngHubWeb.FileLiveTest)
+     test/eng_hub_web/live/file_live_test.exs:60
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /files (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "m5av5cCxoMi4NSI8VyAJzT5kXO49krhYHMSa2Id/kT8XLpV5nehwAzQi2imL8B8WYsBgQyZegpyv3fxGBhDcFQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchnpivv3A-cAAAXi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.FileLiveTest, :"test Index updates file in listing", 1, [file: ~c"test/eng_hub_web/live/file_live_test.exs", line: 61]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "m5av5cCxoMi4NSI8VyAJzT5kXO49krhYHMSa2Id/kT8XLpV5nehwAzQi2imL8B8WYsBgQyZegpyv3fxGBhDcFQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchnpivv3A-cAAAXi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/files"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/files")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/file_live_test.exs:61: (test)
+
+
+
+ 27) test Index saves new file (EngHubWeb.FileLiveTest)
+     test/eng_hub_web/live/file_live_test.exs:38
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /files (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "S2AIkKibS1HI6MTa4sWOXck1ucMYJMItkOgy9i2oJPDSCit+71TI+QcoSaNwANC3MQ8SrDqqz9H3MxTMcAAzAg"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchpxNqAF_SMAAAYC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.FileLiveTest, :"test Index saves new file", 1, [file: ~c"test/eng_hub_web/live/file_live_test.exs", line: 39]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "S2AIkKibS1HI6MTa4sWOXck1ucMYJMItkOgy9i2oJPDSCit+71TI+QcoSaNwANC3MQ8SrDqqz9H3MxTMcAAzAg"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchpxNqAF_SMAAAYC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/files"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/files")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/file_live_test.exs:39: (test)
+
+
+
+ 28) test Index deletes file in listing (EngHubWeb.FileLiveTest)
+     test/eng_hub_web/live/file_live_test.exs:86
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /files (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "dDNBaMwu4IvQ0EWwIBbwlv9O9gUtPcxwtfW0cMfNRVif4DyjfJ0EkQYKvtKfnh5FFZ78xBJGO6FMt5FP6egTIw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchqa0fCrWowAAAYi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.FileLiveTest, :"test Index deletes file in listing", 1, [file: ~c"test/eng_hub_web/live/file_live_test.exs", line: 87]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "dDNBaMwu4IvQ0EWwIBbwlv9O9gUtPcxwtfW0cMfNRVif4DyjfJ0EkQYKvtKfnh5FFZ78xBJGO6FMt5FP6egTIw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchqa0fCrWowAAAYi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/files"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/files")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/file_live_test.exs:87: (test)
+
+
+
+ 29) test Show updates file and returns to show (EngHubWeb.FileLiveTest)
+     test/eng_hub_web/live/file_live_test.exs:104
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /files/01KQEEYHTY9Z5VZA9FC3N9MP4H (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files", "01KQEEYHTY9Z5VZA9FC3N9MP4H"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "g/vBIz/v6f8UbxfDQ0E2bbV/Tbu91NQuD2RV21qMZYOa1QznZBm1XCHa41/ltvGLVUM0ioq2MoQQvy2oX85DFw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files/01KQEEYHTY9Z5VZA9FC3N9MP4H", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchtLRcej8boAABCB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.FileLiveTest, :"test Show updates file and returns to show", 1, [file: ~c"test/eng_hub_web/live/file_live_test.exs", line: 105]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files", "01KQEEYHTY9Z5VZA9FC3N9MP4H"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "g/vBIz/v6f8UbxfDQ0E2bbV/Tbu91NQuD2RV21qMZYOa1QznZBm1XCHa41/ltvGLVUM0ioq2MoQQvy2oX85DFw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files/01KQEEYHTY9Z5VZA9FC3N9MP4H", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchtLRcej8boAABCB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/files/01KQEEYHTY9Z5VZA9FC3N9MP4H"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, show_live, _html} = live(conn, ~p"/files/#{file}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/file_live_test.exs:105: (test)
+
+
+
+ 30) test Index lists all files (EngHubWeb.FileLiveTest)
+     test/eng_hub_web/live/file_live_test.exs:31
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /files (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "nR/Qmqzv76Q9J4z7KIsv3Ghipgc2BN3Xp5+rX0MPsfYxxNMkMbrN57gPrpl9xgJqsmp5vMRBs1+Oe2JNkxISmA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchurwVLqS8oAAAZC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.FileLiveTest, :"test Index lists all files", 1, [file: ~c"test/eng_hub_web/live/file_live_test.exs", line: 32]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "nR/Qmqzv76Q9J4z7KIsv3Ghipgc2BN3Xp5+rX0MPsfYxxNMkMbrN57gPrpl9xgJqsmp5vMRBs1+Oe2JNkxISmA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchurwVLqS8oAAAZC"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/files"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, html} = live(conn, ~p"/files")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/file_live_test.exs:32: (test)
+
+
+
+ 31) test Show displays file (EngHubWeb.FileLiveTest)
+     test/eng_hub_web/live/file_live_test.exs:97
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /files/01KQEEYHVFV6YGD2BMBREQBCP9 (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files", "01KQEEYHVFV6YGD2BMBREQBCP9"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "PK2/nb1SvYBeRcIWbmypBQE4v5saGddsuZZckkArSIFad1N84qi5z95tmxCn2mLDABXYWPvm18Lf0RMx/Ogp0g"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files/01KQEEYHVFV6YGD2BMBREQBCP9", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchwd4JG-GqEAABCh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.FileLiveTest, :"test Show displays file", 1, [file: ~c"test/eng_hub_web/live/file_live_test.exs", line: 98]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["files", "01KQEEYHVFV6YGD2BMBREQBCP9"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "PK2/nb1SvYBeRcIWbmypBQE4v5saGddsuZZckkArSIFad1N84qi5z95tmxCn2mLDABXYWPvm18Lf0RMx/Ogp0g"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/files/01KQEEYHVFV6YGD2BMBREQBCP9", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchwd4JG-GqEAABCh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/files/01KQEEYHVFV6YGD2BMBREQBCP9"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _show_live, html} = live(conn, ~p"/files/#{file}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/file_live_test.exs:98: (test)
+
+
+
+ 32) test Index updates project in listing (EngHubWeb.ProjectLiveTest)
+     test/eng_hub_web/live/project_live_test.exs:52
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /projects (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "a2DZ9S0z4x30klJCFhMndjXDJjl6YyR++jTDeLw/akPJI1KY4FIZUk+QQcSg7VYe9kW5G2H3AhH2LTu9nER23Q"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchys2h7XOI0AAAZi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ProjectLiveTest, :"test Index updates project in listing", 1, [file: ~c"test/eng_hub_web/live/project_live_test.exs", line: 53]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "a2DZ9S0z4x30klJCFhMndjXDJjl6YyR++jTDeLw/akPJI1KY4FIZUk+QQcSg7VYe9kW5G2H3AhH2LTu9nER23Q"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchys2h7XOI0AAAZi"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/projects"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/projects")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/project_live_test.exs:53: (test)
+
+
+
+ 33) test Index saves new project (EngHubWeb.ProjectLiveTest)
+     test/eng_hub_web/live/project_live_test.exs:26
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /projects (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "yWZ+yJM64JjPZVXm4CI1eBJ/A11bYXD9HulLySRQmr2FFMrBgh1Q38UVqkBD8C1OsEoQtDE9CDrp9zXvTSqQJw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchzNQr-KdCIAABDB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ProjectLiveTest, :"test Index saves new project", 1, [file: ~c"test/eng_hub_web/live/project_live_test.exs", line: 27]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "yWZ+yJM64JjPZVXm4CI1eBJ/A11bYXD9HulLySRQmr2FFMrBgh1Q38UVqkBD8C1OsEoQtDE9CDrp9zXvTSqQJw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMchzNQr-KdCIAABDB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/projects"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/projects")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/project_live_test.exs:27: (test)
+
+
+
+ 34) test Index deletes project in listing (EngHubWeb.ProjectLiveTest)
+     test/eng_hub_web/live/project_live_test.exs:78
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /projects (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "SNH8mPktqXezPjrgKWKGV/zYsxUvlBKDNseaxxRb5iDqBzwg5jxbS1gg0ez8azuZW3oCudZrbs5Vl9LFn4BKkQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch15pj7bVo0AABDh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ProjectLiveTest, :"test Index deletes project in listing", 1, [file: ~c"test/eng_hub_web/live/project_live_test.exs", line: 79]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "SNH8mPktqXezPjrgKWKGV/zYsxUvlBKDNseaxxRb5iDqBzwg5jxbS1gg0ez8azuZW3oCudZrbs5Vl9LFn4BKkQ"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch15pj7bVo0AABDh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/projects"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, index_live, _html} = live(conn, ~p"/projects")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/project_live_test.exs:79: (test)
+
+
+
+ 35) test Show updates project and returns to show (EngHubWeb.ProjectLiveTest)
+     test/eng_hub_web/live/project_live_test.exs:96
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /projects/01KQEEYHWDADE8F6ZYZVVENWB0 (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects", "01KQEEYHWDADE8F6ZYZVVENWB0"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "TTwVHb6ypVJY4ByAlUvNGJIdCBhcplD1Ig+CdYs8OORjQz9Mr0ziqTrAKIYfF9SYEF8tLqmr2sbWU83d8jELTA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects/01KQEEYHWDADE8F6ZYZVVENWB0", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch2f1EtAf58AABEB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ProjectLiveTest, :"test Show updates project and returns to show", 1, [file: ~c"test/eng_hub_web/live/project_live_test.exs", line: 97]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects", "01KQEEYHWDADE8F6ZYZVVENWB0"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "TTwVHb6ypVJY4ByAlUvNGJIdCBhcplD1Ig+CdYs8OORjQz9Mr0ziqTrAKIYfF9SYEF8tLqmr2sbWU83d8jELTA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects/01KQEEYHWDADE8F6ZYZVVENWB0", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch2f1EtAf58AABEB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/projects/01KQEEYHWDADE8F6ZYZVVENWB0"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, show_live, _html} = live(conn, ~p"/projects/#{project}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/project_live_test.exs:97: (test)
+
+
+
+ 36) test Index lists all projects (EngHubWeb.ProjectLiveTest)
+     test/eng_hub_web/live/project_live_test.exs:19
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /projects (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "ozlr3OHZm0lCCZAA4kd8iDso1WyDpWYc84/eus2Trao+/91X7wzyV7u/b3RTyZKYZVsWJ5vqMebZUh/2dM02sw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch3SUr6idc4AABEh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ProjectLiveTest, :"test Index lists all projects", 1, [file: ~c"test/eng_hub_web/live/project_live_test.exs", line: 20]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "ozlr3OHZm0lCCZAA4kd8iDso1WyDpWYc84/eus2Trao+/91X7wzyV7u/b3RTyZKYZVsWJ5vqMebZUh/2dM02sw"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch3SUr6idc4AABEh"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/projects"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _index_live, html} = live(conn, ~p"/projects")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/project_live_test.exs:20: (test)
+
+
+
+ 37) test Show displays project (EngHubWeb.ProjectLiveTest)
+     test/eng_hub_web/live/project_live_test.exs:89
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/3
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/3:
+
+         # 1
+         %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{reason: %Phoenix.Router.NoRouteError{plug_status: 404, message: "no route found for GET /projects/01KQEEYHWRT42Z3PT3YW1MKVDC (EngHubWeb.Router)", conn: %Plug.Conn{adapter: {Plug.Adapters.Test.Conn, :...}, assigns: %{}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects", "01KQEEYHWRT42Z3PT3YW1MKVDC"], path_params: %{}, port: 80, private: %{EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "YIvwIwnWBFeqJx26+nTBWQmtd68DoMODKFuf1mPpQNrWXeR+lgxnDx83zLwEPHfUNwG/uP9gT9l91fqo6S31JA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => true, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects/01KQEEYHWRT42Z3PT3YW1MKVDC", resp_body: nil, resp_cookies: %{}, resp_headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch5Y_snNmNkAABFB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :unset, status: nil}, router: EngHubWeb.Router}, status: 404, stack: [{EngHubWeb.Router, :call, 2, [file: ~c"deps/phoenix/lib/phoenix/router.ex", line: 465]}, {EngHubWeb.Endpoint, :plug_builder_call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {EngHubWeb.Endpoint, :call, 2, [file: ~c"lib/eng_hub_web/endpoint.ex", line: 1]}, {Phoenix.ConnTest, :dispatch, 5, [file: ~c"lib/phoenix/test/conn_test.ex", line: 225]}, {EngHubWeb.ProjectLiveTest, :"test Show displays project", 1, [file: ~c"test/eng_hub_web/live/project_live_test.exs", line: 90]}, {ExUnit.Runner, :exec_test, 2, [file: ~c"lib/ex_unit/runner.ex", line: 472]}, {:timer, :tc, 2, [file: ~c"timer.erl", line: 270]}, {ExUnit.Runner, :"-spawn_test_monitor/4-fun-1-", 6, [file: ~c"lib/ex_unit/runner.ex", line: 394]}], kind: :error, layout: false, __changed__: nil}, body_params: %{}, cookies: %{}, halted: false, host: "www.example.com", method: "GET", owner: nil, params: %{}, path_info: ["projects", "01KQEEYHWRT42Z3PT3YW1MKVDC"], path_params: %{}, port: 80, private: %{:phoenix_template => "404.html", :phoenix_view => %{_: EngHubWeb.ErrorHTML}, EngHubWeb.Router => [], :phoenix_endpoint => EngHubWeb.Endpoint, :phoenix_router => EngHubWeb.Router, :plug_session_info => :write, :plug_session_fetch => #Function<1.123481966/1 in Plug.Session.fetch_session/1>, :plug_session => %{"user_token" => "YIvwIwnWBFeqJx26+nTBWQmtd68DoMODKFuf1mPpQNrWXeR+lgxnDx83zLwEPHfUNwG/uP9gT9l91fqo6S31JA"}, :before_send => [#Function<0.54455629/1 in Plug.Telemetry.call/2>], :plug_skip_csrf_protection => true, :phoenix_recycled => false, :phoenix_layout => %{_: false}, :phoenix_format => "html", :phoenix_root_layout => %{_: false}, :phoenix_request_logger => {"request_logger", "request_logger"}}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [], request_path: "/projects/01KQEEYHWRT42Z3PT3YW1MKVDC", resp_body: "Not Found", resp_cookies: %{}, resp_headers: [{"content-type", "text/html; charset=utf-8"}, {"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "GKsMch5Y_snNmNkAABFB"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 404}
+
+         # 2
+         "/projects/01KQEEYHWRT42Z3PT3YW1MKVDC"
+
+         # 3
+         []
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path, opts)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path, _opts)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path, _opts) when -redir === 301- or -redir === 302- or -redir === 303-
+
+     code: {:ok, _show_live, html} = live(conn, ~p"/projects/#{project}")
+     stacktrace:
+       (phoenix_live_view 1.1.25) lib/phoenix_live_view/test/live_view_test.ex:324: Phoenix.LiveViewTest.connect_from_static_token/3
+       test/eng_hub_web/live/project_live_test.exs:90: (test)
+
+........................
+Finished in 3.1 seconds (1.8s async, 1.3s sync)
+172 tests, 37 failures
+
+Randomized with seed 28590

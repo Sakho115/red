@@ -24,6 +24,9 @@ defmodule EngHub.Identity.UserToken do
   schema "user_tokens" do
     field :type, Ecto.Enum, values: [:session, :otp, :magic_link_token], default: :session
     field :value, :binary
+    field :device_name, :string
+    field :user_agent, :string
+    field :ip_address, :string
     belongs_to :user, User
 
     timestamps(updated_at: false)
@@ -34,7 +37,7 @@ defmodule EngHub.Identity.UserToken do
     fields = __MODULE__.__schema__(:fields)
 
     user_token
-    |> cast(attrs, fields)
+    |> cast(attrs, fields ++ [:device_name, :user_agent, :ip_address])
     |> validate_required([:type])
     |> put_default_value()
     |> validate_required([:value])

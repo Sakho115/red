@@ -97,6 +97,11 @@ defmodule EngHub.Projects do
   def delete_project(%Project{} = project) do
     Repo.transaction(fn ->
       from(m in ProjectMember, where: m.project_id == ^project.id) |> Repo.delete_all()
+      
+      from(c in EngHub.Communities.Channel, where: c.project_id == ^project.id)
+      |> Repo.all()
+      |> Enum.each(&EngHub.Communities.delete_channel/1)
+      
       Repo.delete!(project)
     end)
   end

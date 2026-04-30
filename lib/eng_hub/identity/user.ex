@@ -30,6 +30,8 @@ defmodule EngHub.Identity.User do
     field :bio, :string
     field :website, :string
     field :avatar_url, :string
+    field :banner_url, :string
+    field :settings, :map, default: %{}
 
     field :reputation_score, :integer, default: 0
     field :contribution_level, :string, default: "Beginner"

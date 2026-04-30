@@ -51,6 +51,7 @@ defmodule EngHubWeb do
   def live_view do
     quote do
       use Phoenix.LiveView
+      on_mount EngHubWeb.ProfileHandlers
 
       unquote(html_helpers())
     end
@@ -88,6 +89,8 @@ defmodule EngHubWeb do
       import EngHubWeb.CoreComponents
       import EngHubWeb.ServerComponents
       import EngHubWeb.MemberComponents
+      import EngHubWeb.SkeletonComponents
+      import EngHubWeb.AuthzHelpers
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS

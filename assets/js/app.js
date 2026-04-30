@@ -41,9 +41,19 @@ let customHooks = {
   AuthenticationHook,
   RegistrationHook,
   HardwarePreview: HardwarePreviewHook,
-  ScrollToBottom: {
-    mounted() { this.el.scrollTop = this.el.scrollHeight },
-    updated() { this.el.scrollTop = this.el.scrollHeight }
+  SmartScroll: {
+    mounted() {
+      this.el.scrollTop = this.el.scrollHeight;
+      this.el.addEventListener("scroll", () => {
+        const atBottom = this.el.scrollHeight - this.el.scrollTop <= this.el.clientHeight + 100;
+        this.el.dataset.atBottom = atBottom;
+      });
+    },
+    updated() {
+      if (this.el.dataset.atBottom === "true") {
+        this.el.scrollTo({ top: this.el.scrollHeight, behavior: 'smooth' });
+      }
+    }
   }
 }
 

@@ -27,7 +27,8 @@ defmodule EngHubWeb.HackathonLiveTest do
     test "lists all hackathons", %{conn: conn, user: user, hackathon: hackathon} do
       {:ok, _index_live, html} = live(conn, ~p"/hackathons")
 
-      assert html =~ "Listing Hackathons"
+      assert html =~ "Hackathons"
+      assert html =~ "Events"
       assert html =~ hackathon.title
     end
 
@@ -36,7 +37,7 @@ defmodule EngHubWeb.HackathonLiveTest do
 
       assert {:ok, form_live, _} =
                index_live
-               |> element("a", "New Hackathon")
+               |> element("a", "New Event")
                |> render_click()
                |> follow_redirect(conn, ~p"/hackathons/new")
 
@@ -94,14 +95,14 @@ defmodule EngHubWeb.HackathonLiveTest do
   describe "Show" do
     setup [:register_and_log_in_user, :create_hackathon]
 
-    test "displays hackathon", %{conn: conn, user: user, hackathon: hackathon} do
+    test "displays hackathon", %{conn: conn, user: _user, hackathon: hackathon} do
       {:ok, _show_live, html} = live(conn, ~p"/hackathons/#{hackathon}")
 
       assert html =~ "Show Hackathon"
       assert html =~ hackathon.title
     end
 
-    test "updates hackathon and returns to show", %{conn: conn, user: user, hackathon: hackathon} do
+    test "updates hackathon and returns to show", %{conn: conn, user: _user, hackathon: hackathon} do
       {:ok, show_live, _html} = live(conn, ~p"/hackathons/#{hackathon}")
 
       assert {:ok, form_live, _} =

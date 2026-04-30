@@ -23,7 +23,13 @@ defmodule EngHub.MessagingTest do
 
     test "create_channel/1 with valid data creates a channel" do
       category = EngHub.CommunitiesFixtures.category_fixture()
-      valid_attrs = %{name: "some name", server_id: category.server_id, category_id: category.id, type: :general_chat}
+
+      valid_attrs = %{
+        name: "some name",
+        server_id: category.server_id,
+        category_id: category.id,
+        type: :general_chat
+      }
 
       assert {:ok, %Channel{} = channel} = Messaging.create_channel(valid_attrs)
       assert channel.name == "some name"

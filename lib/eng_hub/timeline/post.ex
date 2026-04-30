@@ -2,14 +2,16 @@ defmodule EngHub.Timeline.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
   schema "posts" do
     field :body, :string
     field :code_snippet, :string
     field :github_url, :string
     field :deleted_at, :utc_datetime
-    belongs_to :user, EngHub.Identity.User, type: Ecto.ULID
-    belongs_to :server, EngHub.Communities.Server, type: Ecto.ULID
-    belongs_to :channel, EngHub.Communities.Channel, type: Ecto.ULID
+    belongs_to :user, EngHub.Identity.User
+    belongs_to :server, EngHub.Communities.Server
+    belongs_to :channel, EngHub.Communities.Channel
 
     timestamps(type: :utc_datetime)
   end

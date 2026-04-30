@@ -13,6 +13,20 @@ defmodule EngHub.Vault do
   end
 
   @doc """
+  Subscribes to the vault PubSub topic.
+  """
+  def subscribe do
+    Phoenix.PubSub.subscribe(EngHub.PubSub, "vault")
+  end
+
+  defp broadcast({:ok, file}, event) do
+    Phoenix.PubSub.broadcast(EngHub.PubSub, "vault", {__MODULE__, event, file})
+    {:ok, file}
+  end
+
+  defp broadcast({:error, _reason} = error, _event), do: error
+
+  @doc """
   Returns the list of files for a specific channel.
   """
   def list_files_by_channel(channel_id) do
@@ -50,6 +64,14 @@ defmodule EngHub.Vault do
   def get_file!(id), do: Repo.get!(File, id)
 
   @doc """
+  Gets a single file by its IPFS CID.
+  """
+  def get_file_by_cid(cid) do
+    from(f in File, where: f.cid == ^cid)
+    |> Repo.one()
+  end
+
+  @doc """
   Creates a file.
 
   ## Examples
@@ -65,6 +87,7 @@ defmodule EngHub.Vault do
     %File{}
     |> File.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:file_created)
   end
 
   @doc """
@@ -83,6 +106,7 @@ defmodule EngHub.Vault do
     file
     |> File.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:file_updated)
   end
 
   @doc """
@@ -99,6 +123,7 @@ defmodule EngHub.Vault do
   """
   def delete_file(%File{} = file) do
     Repo.delete(file)
+    |> broadcast(:file_deleted)
   end
 
   @doc """

@@ -1,0 +1,59 @@
+<div class="fixed inset-0 z-[100] bg-base-100 flex animate-in fade-in duration-300">
+  <!-- Settings Sidebar -->
+  <aside class="w-[240px] md:w-[280px] shrink-0 bg-base-200 flex flex-col pt-16 pb-8 px-6 overflow-y-auto custom-scrollbar border-r border-black/10">
+    <nav class="space-y-6">
+      <%= for group <- @sidebar_groups do %>
+        <div class="space-y-1">
+          <h3 class="px-2 mb-2 text-[11px] font-black text-white/20 uppercase tracking-[0.2em]">
+            {group.title}
+          </h3>
+          <%= for item <- group.items do %>
+            <.link
+              patch={item.path}
+              class={[
+                "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[15px] font-medium transition-all group",
+                if(@active_tab == item.id,
+                  do: "bg-white/10 text-white",
+                  else: "text-white/40 hover:bg-white/5 hover:text-white/80"
+                )
+              ]}
+            >
+              <span class="truncate">{item.label}</span>
+            </.link>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="pt-6 border-t border-white/5">
+        <button
+          phx-click="sign_out"
+          class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-error/60 text-[15px] font-bold hover:bg-error/5 hover:text-error transition-all"
+        >
+          <span>Log Out</span>
+          <div class="flex-1"></div>
+          <.icon name="hero-arrow-right-on-rectangle" class="w-4 h-4" />
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Settings Content -->
+  <main class="flex-1 bg-base-100 relative overflow-y-auto custom-scrollbar">
+    <!-- Close Button (Fixed) -->
+    <div class="fixed top-12 right-12 z-50">
+      <button
+        phx-click="close_settings"
+        class="group flex flex-col items-center gap-2 outline-none"
+      >
+        <div class="w-10 h-10 rounded-full border-2 border-white/10 flex items-center justify-center text-white/40 group-hover:border-white/40 group-hover:text-white transition-all duration-300">
+          <.icon name="hero-x-mark" class="w-6 h-6" />
+        </div>
+        <span class="text-[11px] font-black text-white/20 uppercase tracking-widest group-hover:text-white transition-colors">
+          ESC
+        </span>
+      </button>
+    </div>
+
+    {render_slot(@inner_block)}
+  </main>
+</div>

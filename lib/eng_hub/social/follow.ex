@@ -2,9 +2,11 @@ defmodule EngHub.Social.Follow do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
+  @foreign_key_type Ecto.ULID
   schema "follows" do
-    belongs_to :follower, EngHub.Identity.User, type: Ecto.ULID
-    belongs_to :following, EngHub.Identity.User, type: Ecto.ULID
+    belongs_to :follower, EngHub.Identity.User
+    belongs_to :following, EngHub.Identity.User
 
     timestamps(type: :utc_datetime)
   end

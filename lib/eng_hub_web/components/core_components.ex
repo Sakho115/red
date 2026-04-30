@@ -386,9 +386,12 @@ defmodule EngHubWeb.CoreComponents do
 
   slot :col, required: true do
     attr :label, :string
+    attr :class, :any
   end
 
-  slot :action, doc: "the slot for showing user actions in the last table column"
+  slot :action, doc: "the slot for showing user actions in the last table column" do
+    attr :class, :any
+  end
 
   def table(assigns) do
     assigns =
@@ -400,8 +403,8 @@ defmodule EngHubWeb.CoreComponents do
     <table class="table table-zebra">
       <thead>
         <tr>
-          <th :for={col <- @col}>{col[:label]}</th>
-          <th :if={@action != []}>
+          <th :for={col <- @col} class={col[:class]}>{col[:label]}</th>
+          <th :if={@action != []} class={List.first(@action)[:class]}>
             <span class="sr-only">{gettext("Actions")}</span>
           </th>
         </tr>
@@ -411,11 +414,11 @@ defmodule EngHubWeb.CoreComponents do
           <td
             :for={col <- @col}
             phx-click={@row_click && @row_click.(row)}
-            class={@row_click && "hover:cursor-pointer"}
+            class={[col[:class], @row_click && "hover:cursor-pointer"]}
           >
             {render_slot(col, @row_item.(row))}
           </td>
-          <td :if={@action != []} class="w-0 font-semibold">
+          <td :if={@action != []} class={["w-0 font-semibold", List.first(@action)[:class]]}>
             <div class="flex gap-4">
               <%= for action <- @action do %>
                 {render_slot(action, @row_item.(row))}
@@ -426,6 +429,86 @@ defmodule EngHubWeb.CoreComponents do
       </tbody>
     </table>
     """
+  end
+
+  @doc """
+  Renders a modal.
+
+  ## Examples
+
+      <.modal id="confirm-modal" show on_cancel={JS.push("delete")}>
+        This is a modal.
+      </.modal>
+
+  The slot `:on_confirm` may be used to render a confirm button
+  and `:on_cancel` to render a cancel button.
+  """
+  attr :id, :string, required: true
+  attr :show, :boolean, default: false
+  attr :on_cancel, JS, default: %JS{}
+  slot :inner_block, required: true
+
+  def modal(assigns) do
+    ~H"""
+    <div
+      id={@id}
+      phx-mounted={@show && show_modal(@id)}
+      phx-remove={hide_modal(@id)}
+      data-cancel={JS.exec(@on_cancel, "phx-remove")}
+      class="relative z-[200] hidden"
+    >
+      <div
+        id={"#{@id}-bg"}
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        aria-hidden="true"
+      />
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-10 text-center">
+          <div
+            id={"#{@id}-container"}
+            phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
+            phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
+            phx-key="escape"
+            class="relative w-full max-w-lg transform overflow-hidden rounded-[24px] bg-base-200 p-8 text-left align-middle shadow-2xl transition-all border border-white/5"
+          >
+            <div class="absolute top-4 right-4">
+              <button
+                phx-click={JS.exec("data-cancel", to: "##{@id}")}
+                class="size-8 rounded-full flex items-center justify-center text-white/20 hover:text-white transition-colors"
+              >
+                <.icon name="hero-x-mark" class="size-5" />
+              </button>
+            </div>
+            {render_slot(@inner_block)}
+          </div>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  def show_modal(js \\ %JS{}, id) when is_binary(id) do
+    js
+    |> JS.show(to: "##{id}")
+    |> JS.show(
+      to: "##{id}-bg",
+      transition: {"transition-all transform ease-out duration-300", "opacity-0", "opacity-100"}
+    )
+    |> show(to: "##{id}-container")
+    |> JS.add_class("overflow-hidden", to: "body")
+    |> JS.focus_first(to: "##{id}-container")
+  end
+
+  def hide_modal(js \\ %JS{}, id) do
+    js
+    |> JS.hide(
+      to: "##{id}-bg",
+      transition: {"transition-all transform ease-in duration-200", "opacity-100", "opacity-0"}
+    )
+    |> hide(to: "##{id}-container")
+    |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
+    |> JS.remove_class("overflow-hidden", to: "body")
+    |> JS.pop_focus()
   end
 
   @doc """

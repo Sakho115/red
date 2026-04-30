@@ -21,55 +21,34 @@ defmodule EngHubWeb.Router do
   scope "/", EngHubWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/landing", PageController, :home
 
     live_session :public, on_mount: [{EngHubWeb.UserAuth, :mount_current_user}] do
       live "/sign-up", AuthenticationLive, :new
       live "/sign-in", AuthenticationLive, :new
       post "/sign-in", SessionController, :create
       get "/auth/magic/:token", MagicLinkController, :show
-      live "/users/:username", ProfileLive.Show, :show
-
-      live "/servers", ServerLive.Index, :index
-      live "/servers/:server_id", ChannelLive.Index, :index
-      live "/servers/:server_id/channels/:id", ChannelLive.Index, :show
+      delete "/sign-out", SessionController, :delete
     end
 
-    live_session :require_authenticated_user,
+    live_session :app_session,
       on_mount: [{EngHubWeb.UserAuth, :ensure_authenticated}] do
-      live "/posts", PostLive.Index, :index
-      live "/posts/new", PostLive.Form, :new
-      live "/posts/:id", PostLive.Show, :show
-      live "/posts/:id/edit", PostLive.Form, :edit
-
-      live "/projects", ProjectLive.Index, :index
-      live "/projects/new", ProjectLive.Form, :new
-      live "/projects/:id", ProjectLive.Show, :show
-      live "/projects/:id/edit", ProjectLive.Form, :edit
-
-      # Kept for compatibility or removed if fully migrating
-      live "/projects/:project_id/channels", ChannelLive.Index, :index
-      live "/projects/:project_id/channels/:id", ChannelLive.Index, :show
-
-      live "/files", FileLive.Index, :index
-      live "/files/new", FileLive.Form, :new
-      live "/files/:id", FileLive.Show, :show
-      live "/files/:id/edit", FileLive.Form, :edit
-
-      live "/threads", ThreadLive.Index, :index
-      live "/threads/new", ThreadLive.Form, :new
-      live "/threads/:id", ThreadLive.Show, :show
-      live "/threads/:id/edit", ThreadLive.Form, :edit
-
-      live "/listings", ListingLive.Index, :index
-      live "/listings/new", ListingLive.Form, :new
-      live "/listings/:id", ListingLive.Show, :show
-      live "/listings/:id/edit", ListingLive.Form, :edit
-
-      live "/hackathons", HackathonLive.Index, :index
-      live "/hackathons/new", HackathonLive.Form, :new
-      live "/hackathons/:id", HackathonLive.Show, :show
-      live "/hackathons/:id/edit", HackathonLive.Form, :edit
+      
+      # The unified entrypoint for the application
+      live "/", AppLive.Index, :home
+      live "/threads", AppLive.Index, :threads
+      live "/threads/new", AppLive.Index, :threads_new
+      live "/threads/:id", AppLive.Index, :threads_show
+      live "/threads/:id/edit", AppLive.Index, :threads_edit
+      live "/projects", AppLive.Index, :projects
+      live "/projects/new", AppLive.Index, :projects_new
+      live "/projects/:id", AppLive.Index, :projects_show
+      live "/projects/:id/edit", AppLive.Index, :projects_edit
+      live "/dms", AppLive.Index, :dms
+      live "/dms/:id", AppLive.Index, :dm
+      
+      live "/s/:server_id", AppLive.Index, :server
+      live "/s/:server_id/c/:channel_id", AppLive.Index, :channel
     end
   end
 

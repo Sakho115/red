@@ -16,7 +16,8 @@ defmodule EngHub.Discussions do
   end
 
   defp broadcast({:ok, thread}, event) do
-    Phoenix.PubSub.broadcast(EngHub.PubSub, "threads", {__MODULE__, event, thread})
+    preloaded = Repo.preload(thread, :author)
+    Phoenix.PubSub.broadcast(EngHub.PubSub, "threads", {__MODULE__, event, preloaded})
     {:ok, thread}
   end
 
@@ -35,6 +36,7 @@ defmodule EngHub.Discussions do
   def list_threads_by_channel(channel_id) do
     from(t in Thread, where: t.channel_id == ^channel_id, order_by: [desc: t.inserted_at])
     |> Repo.all()
+    |> Repo.preload(:author)
   end
 
   @doc """
@@ -202,17 +204,33 @@ defmodule EngHub.Discussions do
   end
 
   @doc """
-  Deletes a comment.
-
-  ## Examples
-
-      iex> delete_comment(comment)
-      {:ok, %Comment{}}
-
-      iex> delete_comment(comment)
-      {:error, %Ecto.Changeset{}}
-
+  Marks a comment as the solution for its thread.
   """
+  def mark_as_solution(%Comment{} = comment) do
+    Repo.transaction(fn ->
+      # 1. Unmark any previous solution in the same thread
+      from(c in Comment, where: c.thread_id == ^comment.thread_id and c.is_solution == true)
+      |> Repo.update_all(set: [is_solution: false])
+
+      # 2. Mark current comment as solution
+      comment
+      |> Comment.changeset(%{is_solution: true})
+      |> Repo.update!()
+    end)
+    |> case do
+      {:ok, comment} ->
+        broadcast({:ok, Repo.preload(comment, :thread)}, :comment_updated)
+        {:ok, comment}
+
+      error ->
+        error
+    end
+  end
+
+  @doc """
+  Deletes a comment.
+  """
+
   def delete_comment(%Comment{} = comment) do
     Repo.delete(comment)
   end

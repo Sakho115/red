@@ -9,8 +9,14 @@ defmodule EngHubWeb.SessionController do
       |> UserAuth.log_in_user(user)
     else
       conn
-      |> put_flash(:error, "Invalid session token.")
+      |> put_flash(:error, "Invalid or expired session token.")
       |> redirect(to: ~p"/sign-in")
     end
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> put_flash(:info, "Logged out successfully.")
+    |> UserAuth.log_out_user()
   end
 end

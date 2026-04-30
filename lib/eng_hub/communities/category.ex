@@ -6,6 +6,8 @@ defmodule EngHub.Communities.Category do
   @foreign_key_type Ecto.ULID
   schema "categories" do
     field :name, :string
+    field :description, :string
+    field :emoji, :string
     field :position, :integer, default: 0
 
     belongs_to :server, EngHub.Communities.Server
@@ -16,7 +18,7 @@ defmodule EngHub.Communities.Category do
 
   def changeset(category, attrs) do
     category
-    |> cast(attrs, [:name, :position, :server_id])
+    |> cast(attrs, [:name, :position, :server_id, :description, :emoji])
     |> validate_required([:name, :server_id])
   end
 end
